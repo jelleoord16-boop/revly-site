@@ -14,13 +14,14 @@
   <header><span class="dot"></span><a href="../">Revly</a><a class="lang" href="../en/privacy/" hreflang="en" lang="en">EN</a></header>
 
   <h1>Privacyverklaring</h1>
-  <p class="muted">Laatst bijgewerkt: 29 september 2026</p>
+  <p class="muted">Laatst bijgewerkt: 30 september 2026</p>
 
   <div class="card">
     <strong>In het kort</strong>
     <ul>
       <li>Je auto's, onderhoud, ritten en foto's staan alleen op je eigen iPhone.</li>
       <li>Revly heeft geen account en geen eigen server. We zien je dossier niet.</li>
+      <li>Voor het weer en de kaart gaat je locatie naar Apple en Google, alleen als je die functies gebruikt.</li>
       <li>Anonieme gebruiksstatistieken en crashrapporten sturen we alleen als jij daar toestemming voor geeft.</li>
       <li>We gebruiken je gegevens nooit voor advertenties en verkopen niets door.</li>
     </ul>
@@ -30,7 +31,7 @@
   <p>Revly wordt gemaakt door Jelle, een autoliefhebber uit Nederland. Vragen over privacy stel je via <a href="mailto:[e-mailadres volgt]">[e-mailadres volgt]</a>.</p>
 
   <h2>Wat staat er op je telefoon?</h2>
-  <p>Alles wat je in Revly invult, bewaart de app lokaal op je iPhone. Denk aan je auto's en kentekens, onderhoud en kosten, herinneringen, kilometerstanden, tank- en laadbeurten, paspoortregels, verzekeringsgegevens, de aankoopprijs en waarde van je auto als je die invult, foto's van je auto, bonnen en facturen (ook als pdf), en ritten.</p>
+  <p>Alles wat je in Revly invult, bewaart de app lokaal op je iPhone. Denk aan je auto's en kentekens, onderhoud en kosten, herinneringen, kilometerstanden, tank- en laadbeurten, paspoortregels, verzekeringsgegevens, wegenbelasting en leasegegevens, de aankoopprijs en waarde van je auto als je die invult, foto's van je auto, bonnen en facturen (ook als pdf), bladzijden van je onderhoudsboekje, en ritten.</p>
   <p>Staat de iCloud-back-up van je iPhone aan, dan neemt Apple deze gegevens mee in je eigen back-up. Daar heeft Revly geen toegang toe.</p>
 
   <h2>Ritten en locatie</h2>
@@ -43,6 +44,13 @@
   <h2>Bonnen en facturen scannen (Revly Plus)</h2>
   <p>Scan je een tankbon of garagefactuur, of kies je een foto, screenshot of pdf, dan leest Revly de tekst op je iPhone zelf, met de tekstherkenning van Apple. Er gaat niets naar een server. De camera vraagt alleen om toestemming als je voor het eerst gaat scannen. Foto's kies je zelf met de fotokiezer van iOS, dus Revly ziet de rest van je fotobibliotheek niet.</p>
 
+  <h2>Onderhoudsboekje scannen</h2>
+  <p>Fotografeer je de bladzijden van je onderhoudsboekje, dan leest Revly de datums, kilometerstanden en garages op je iPhone zelf, ook met de tekstherkenning van Apple. Er gaat niets naar een server. Jij controleert wat er gevonden is voordat het wordt opgeslagen. De foto van een bladzijde bewaart de app bij de beurt, op je telefoon. Het eerste boekje is gratis, daarna hoort het bij Revly Plus.</p>
+
+  <h2>Kaart met tankstations, laadpunten en garages</h2>
+  <p>De kaart zelf is van Apple (Apple Kaarten). Tankstations, laadpunten en garages zoekt Revly op via Google Places. Daarvoor gaat het gebied waar je op de kaart kijkt naar Google, en bij merkgarages het merk van je auto als zoekwoord (bijvoorbeeld "Volvo garage"). Tik je op een plek, dan haalt Revly de naam, het adres, de beoordeling en de openingstijden bij Google op met de ID van die plek. Google ontvangt daarbij ook gewone technische gegevens, zoals je IP-adres. Je kenteken en andere gegevens uit je dossier gaan nooit naar Google. Revly bewaart niets van Google op je telefoon.</p>
+  <p>Zoek je op een plaats of postcode, dan zoekt Apple die op. Kies je bij een route voor Google Maps, dan opent die app (of de website) met de bestemming. Daarop is de <a href="https://policies.google.com/privacy">privacyverklaring van Google</a> van toepassing. Werkt Google even niet, dan gebruikt Revly de zoekfunctie van Apple.</p>
+
   <h2>Exporteren</h2>
   <p>Exporteer je je kosten of je rittenadministratie naar Excel, dan maakt Revly het bestand op je telefoon. Jij kiest in het deelmenu waar het naartoe gaat, bijvoorbeeld naar je mail of je werkgever. Revly stuurt het zelf nergens heen.</p>
 
@@ -54,9 +62,9 @@
       <tbody>
         <tr><td>RDW Open Data</td><td>Alleen bij Nederlandse auto's: merk, model, bouwjaar, datum eerste toelating en APK-datum ophalen, één keer per week kijken of er een nieuwe APK-datum is, en kijken of je vorige auto's nog rijden</td><td>Het kenteken</td></tr>
         <tr><td>NHTSA (Verenigde Staten)</td><td>Alleen bij auto's uit de VS: merk, model, bouwjaar en brandstof opzoeken</td><td>Het chassisnummer (VIN), als je dat invult</td></tr>
-        <tr><td>Open-Meteo</td><td>Weer en seizoenstips, zoals de winterbandencheck</td><td>Je locatie, afgerond op ongeveer 100 meter</td></tr>
-        <tr><td>CBS Open Data</td><td>Gemiddelde brandstofprijzen</td><td>Geen persoonsgegevens</td></tr>
-        <tr><td>Apple (Kaarten)</td><td>Garages en laadpunten op de kaart, plaatsnamen bij ritten en adressen voor de rittenadministratie</td><td>Je locatie, zoekopdracht of het begin- en eindpunt van een rit, verwerkt door Apple</td></tr>
+        <tr><td>Apple Weer (WeatherKit)</td><td>Weer en seizoenstips, zoals de winterbandencheck (hooguit eens per 6 uur)</td><td>Je locatie, verwerkt door Apple. Revly vraagt daarvoor nooit zelf om locatietoestemming</td></tr>
+        <tr><td>Apple (Kaarten)</td><td>De kaart zelf, zoeken op plaats of postcode, plaatsnamen bij ritten, adressen voor de rittenadministratie, en garages en laadpunten als Google Places niet werkt</td><td>Je locatie, zoekopdracht of het begin- en eindpunt van een rit, verwerkt door Apple</td></tr>
+        <tr><td>Google Places</td><td>Tankstations, laadpunten en garages vinden op de kaart, en de gegevens van een plek tonen</td><td>Het gebied op de kaart, bij merkgarages het merk als zoekwoord, en de ID van een plek die je opent</td></tr>
         <tr><td>Apple (App Store)</td><td>Revly Plus kopen, verlengen en herstellen</td><td>Verloopt via je Apple ID. Revly ziet geen betaalgegevens</td></tr>
         <tr><td>Google Firebase</td><td>Anonieme gebruiksstatistieken, crashrapporten en snelheidsmetingen</td><td>Alleen met jouw toestemming, zie hieronder</td></tr>
       </tbody>
@@ -65,7 +73,7 @@
 
   <h2>Gebruiksstatistieken en crashrapporten</h2>
   <p>Revly gebruikt Google Firebase (Analytics, Crashlytics en Performance Monitoring) om te zien welke functies gebruikt worden en om fouten op te lossen. Dit staat standaard <strong>uit</strong>. Het gaat pas aan als je daar in de welkomstflow of in <em>Profiel &gt; Data &amp; privacy</em> toestemming voor geeft.</p>
-  <p>Met toestemming stuurt de app onder meer: welke schermen en functies je gebruikt (bijvoorbeeld "onderhoud vastgelegd" of "rit bevestigd"), algemene apparaatgegevens zoals het iPhone-model en de iOS-versie, een willekeurige app-ID en, bij een crash, technische gegevens over de fout. We sturen <strong>nooit</strong> je kenteken, routes, notities, bonnen, namen van garages of andere inhoud van je dossier mee.</p>
+  <p>Met toestemming stuurt de app onder meer: welke schermen en functies je gebruikt (bijvoorbeeld "onderhoud vastgelegd" of "rit bevestigd"), algemene apparaatgegevens zoals het iPhone-model en de iOS-versie, een willekeurige app-ID en, bij een crash, technische gegevens over de fout. We sturen <strong>nooit</strong> je kenteken, routes, notities, bonnen, namen van garages of andere inhoud van je dossier mee. Van de kaart meten we alleen hoeveel plekken er gevonden zijn en een korte foutcode als zoeken mislukt, nooit welke plekken, waar je zocht of wat je zocht.</p>
   <p>Advertentiemeting staat altijd uit. Firebase is een dienst van Google Ireland Limited. Google kan gegevens ook buiten de EU verwerken, met de waarborgen die Google daarvoor hanteert. Statistieken worden maximaal 14 maanden bewaard. Trek je je toestemming in, dan stopt de app direct met meten en worden de statistieken op je telefoon gewist.</p>
   <p>De grondslag hiervoor is je toestemming. Je kunt die altijd intrekken, zonder dat de app daardoor minder werkt.</p>
 

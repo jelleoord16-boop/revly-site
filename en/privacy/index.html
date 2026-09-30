@@ -14,13 +14,14 @@
   <header><span class="dot"></span><a href="../">Revly</a><a class="lang" href="../../privacy/" hreflang="nl" lang="nl">NL</a></header>
 
   <h1>Privacy policy</h1>
-  <p class="muted">Last updated: 29 September 2026. The Dutch version of this policy is leading if the two differ.</p>
+  <p class="muted">Last updated: 30 September 2026. The Dutch version of this policy is leading if the two differ.</p>
 
   <div class="card">
     <strong>In short</strong>
     <ul>
       <li>Your cars, maintenance, trips and photos are stored only on your own iPhone.</li>
       <li>Revly has no account and no server of its own. We can't see your file.</li>
+      <li>For the weather and the map, your location goes to Apple and Google, only when you use those features.</li>
       <li>We only send anonymous usage statistics and crash reports if you give permission.</li>
       <li>We never use your data for advertising and we don't sell anything on.</li>
     </ul>
@@ -30,7 +31,7 @@
   <p>Revly is made by Jelle, a car enthusiast from the Netherlands. You can ask privacy questions via <a href="mailto:[e-mail address coming soon]">[e-mail address coming soon]</a>.</p>
 
   <h2>What is stored on your phone?</h2>
-  <p>Everything you enter in Revly is stored locally on your iPhone. Think of your cars and registrations, maintenance and costs, reminders, odometer readings, fill-ups and charging sessions, passport entries, insurance details, your car's purchase price and value if you enter them, photos of your car, receipts and invoices (including PDFs), and trips.</p>
+  <p>Everything you enter in Revly is stored locally on your iPhone. Think of your cars and registrations, maintenance and costs, reminders, odometer readings, fill-ups and charging sessions, passport entries, insurance details, road tax and lease details, your car's purchase price and value if you enter them, photos of your car, receipts and invoices (including PDFs), pages of your service book, and trips.</p>
   <p>If your iPhone's iCloud backup is on, Apple includes this data in your own backup. Revly has no access to it.</p>
 
   <h2>Trips and location</h2>
@@ -43,6 +44,13 @@
   <h2>Scanning receipts and invoices (Revly Plus)</h2>
   <p>When you scan a fuel receipt or garage invoice, or pick a photo, screenshot or PDF, Revly reads the text on your iPhone itself, using Apple's text recognition. Nothing is sent to a server. The camera only asks for permission the first time you scan. You pick photos yourself with the iOS photo picker, so Revly doesn't see the rest of your photo library.</p>
 
+  <h2>Scanning your service book</h2>
+  <p>When you photograph the pages of your service book, Revly reads the dates, odometer readings and garages on your iPhone itself, also using Apple's text recognition. Nothing is sent to a server. You check what was found before it is saved. The app keeps the photo of a page with the service entry, on your phone. The first service book is free, after that it is part of Revly Plus.</p>
+
+  <h2>Map with fuel stations, charging points and garages</h2>
+  <p>The map itself is Apple's (Apple Maps). Revly looks up fuel stations, charging points and garages through Google Places. For this, the area you are looking at on the map is sent to Google, and for brand garages your car's brand as a search term (for example "Volvo garage"). When you tap a place, Revly fetches its name, address, rating and opening hours from Google using the ID of that place. Google also receives ordinary technical data, such as your IP address. Your registration number and other data from your file never go to Google. Revly doesn't keep anything from Google on your phone.</p>
+  <p>If you search for a town or postcode, Apple looks it up. If you choose Google Maps for a route, that app (or the website) opens with the destination. <a href="https://policies.google.com/privacy">Google's privacy policy</a> applies to that. If Google is briefly unavailable, Revly uses Apple's search instead.</p>
+
   <h2>Exporting</h2>
   <p>When you export your costs or trip log to Excel, Revly creates the file on your phone. You choose in the share sheet where it goes, for example to your email or your employer. Revly doesn't send it anywhere itself.</p>
 
@@ -54,9 +62,9 @@
       <tbody>
         <tr><td>RDW Open Data (Netherlands)</td><td>Dutch cars only: fetching brand, model, year, first registration date and inspection (APK) date, checking once a week for a new inspection date, and checking whether your previous cars are still on the road</td><td>The registration number</td></tr>
         <tr><td>NHTSA (United States)</td><td>US cars only: looking up brand, model, year and fuel</td><td>The chassis number (VIN), if you enter it</td></tr>
-        <tr><td>Open-Meteo</td><td>Weather and seasonal tips, such as the winter tyre check</td><td>Your location, rounded to about 100 metres</td></tr>
-        <tr><td>CBS Open Data (Netherlands)</td><td>Average fuel prices</td><td>No personal data</td></tr>
-        <tr><td>Apple (Maps)</td><td>Garages and charging points on the map, place names for trips and addresses for the trip log</td><td>Your location, search or the start and end point of a trip, processed by Apple</td></tr>
+        <tr><td>Apple Weather (WeatherKit)</td><td>Weather and seasonal tips, such as the winter tyre check (at most once every 6 hours)</td><td>Your location, processed by Apple. Revly never asks for location permission just for this</td></tr>
+        <tr><td>Apple (Maps)</td><td>The map itself, searching for a town or postcode, place names for trips, addresses for the trip log, and garages and charging points when Google Places doesn't work</td><td>Your location, search or the start and end point of a trip, processed by Apple</td></tr>
+        <tr><td>Google Places</td><td>Finding fuel stations, charging points and garages on the map, and showing the details of a place</td><td>The area on the map, for brand garages the brand as a search term, and the ID of a place you open</td></tr>
         <tr><td>Apple (App Store)</td><td>Buying, renewing and restoring Revly Plus</td><td>Handled via your Apple ID. Revly sees no payment details</td></tr>
         <tr><td>Google Firebase</td><td>Anonymous usage statistics, crash reports and performance measurements</td><td>Only with your permission, see below</td></tr>
       </tbody>
@@ -65,7 +73,7 @@
 
   <h2>Usage statistics and crash reports</h2>
   <p>Revly uses Google Firebase (Analytics, Crashlytics and Performance Monitoring) to see which features are used and to fix bugs. This is <strong>off</strong> by default. It only turns on if you give permission in the welcome flow or in <em>Profile &gt; Data &amp; privacy</em>.</p>
-  <p>With permission, the app sends things like: which screens and features you use (for example "maintenance logged" or "trip confirmed"), general device information such as the iPhone model and iOS version, a random app ID and, in case of a crash, technical details about the error. We <strong>never</strong> send your registration number, routes, notes, receipts, garage names or other content of your file.</p>
+  <p>With permission, the app sends things like: which screens and features you use (for example "maintenance logged" or "trip confirmed"), general device information such as the iPhone model and iOS version, a random app ID and, in case of a crash, technical details about the error. We <strong>never</strong> send your registration number, routes, notes, receipts, garage names or other content of your file. From the map we only measure how many places were found and a short error code if a search fails, never which places, where you searched or what you searched for.</p>
   <p>Advertising measurement is always off. Firebase is a service of Google Ireland Limited. Google may also process data outside the EU, with the safeguards Google applies for this. Statistics are kept for up to 14 months. If you withdraw your permission, the app stops measuring immediately and the statistics on your phone are deleted.</p>
   <p>The legal basis for this is your consent. You can withdraw it at any time, without the app working any less well.</p>
 
