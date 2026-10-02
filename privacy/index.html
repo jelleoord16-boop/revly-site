@@ -6,6 +6,7 @@
   <title>Revly privacyverklaring</title>
   <meta name="description" content="Hoe Revly omgaat met je gegevens.">
   <link rel="stylesheet" href="../style.css">
+  <script>if (new URLSearchParams(location.search).has("app")) document.documentElement.classList.add("app");</script>
   <link rel="alternate" hreflang="nl" href="https://jelleoord16-boop.github.io/revly-site/privacy/">
   <link rel="alternate" hreflang="en" href="https://jelleoord16-boop.github.io/revly-site/en/privacy/">
 </head>
@@ -14,7 +15,7 @@
   <header><span class="dot"></span><a href="../">Revly</a><a class="lang" href="../en/privacy/" hreflang="en" lang="en">EN</a></header>
 
   <h1>Privacyverklaring</h1>
-  <p class="muted">Laatst bijgewerkt: 1 oktober 2026</p>
+  <p class="muted">Laatst bijgewerkt: 2 oktober 2026</p>
 
   <div class="card">
     <strong>In het kort</strong>
@@ -41,6 +42,9 @@
   <h3>Zakelijke ritten (Revly Plus)</h3>
   <p>Zet je <em>Zakelijke ritten bijhouden</em> aan, dan bewaart Revly bij elke rit ook het begin- en eindpunt, zelfs als je routes niet bewaart. Daarmee zoekt de app het adres op via Apple Kaarten, zodat het in je rittenadministratie staat. Voor het adres gaan die twee punten naar Apple. Begin- en eindpunt, adressen, of een rit zakelijk of privé is en je omschrijving blijven op je telefoon tot je de rit verwijdert. Zet je de instelling uit, dan bewaart Revly geen nieuwe begin- en eindpunten meer.</p>
 
+  <h3>Thuis en werk</h3>
+  <p>Stel je bij <em>Profiel &gt; Ritten &gt; Vaste plekken</em> een thuis- of werkadres in, dan bewaart Revly dat adres en het punt op de kaart op je telefoon. Je ritten heten dan bijvoorbeeld <em>Thuis → Werk</em>, ritten tussen thuis en werk staan alvast op zakelijk als je zakelijke ritten bijhoudt, en de app pikt een rit die bij huis of werk begint beter op. Bij een rit onthoudt Revly alleen of die bij thuis of werk begon of eindigde, niet opnieuw het adres. Het adres zoek je op via Apple Kaarten; daarvoor gaat je zoekopdracht of je huidige locatie naar Apple. Je verwijdert een vaste plek op hetzelfde scherm, en <em>Alles verwijderen</em> wist ze ook.</p>
+
   <h2>Bonnen en facturen scannen (Revly Plus)</h2>
   <p>Scan je een tankbon of garagefactuur, of kies je een foto, screenshot of pdf, dan leest Revly de tekst op je iPhone zelf, met de tekstherkenning van Apple. Er gaat niets naar een server. De camera vraagt alleen om toestemming als je voor het eerst gaat scannen. Foto's kies je zelf met de fotokiezer van iOS, dus Revly ziet de rest van je fotobibliotheek niet.</p>
 
@@ -63,7 +67,7 @@
         <tr><td>RDW Open Data</td><td>Alleen bij Nederlandse auto's: merk, model, bouwjaar, datum eerste toelating en APK-datum ophalen, één keer per week kijken of er een nieuwe APK-datum is, en kijken of je vorige auto's nog rijden</td><td>Het kenteken</td></tr>
         <tr><td>NHTSA (Verenigde Staten)</td><td>Alleen bij auto's uit de VS: merk, model, bouwjaar en brandstof opzoeken</td><td>Het chassisnummer (VIN), als je dat invult</td></tr>
         <tr><td>Apple Weer (WeatherKit)</td><td>Weer en seizoenstips, zoals de winterbandencheck (hooguit eens per 6 uur)</td><td>Je locatie, verwerkt door Apple. Revly vraagt daarvoor nooit zelf om locatietoestemming</td></tr>
-        <tr><td>Apple (Kaarten)</td><td>De kaart zelf, zoeken op plaats of postcode, plaatsnamen bij ritten, adressen voor de rittenadministratie, en garages en laadpunten als Google Places niet werkt</td><td>Je locatie, zoekopdracht of het begin- en eindpunt van een rit, verwerkt door Apple</td></tr>
+        <tr><td>Apple (Kaarten)</td><td>De kaart zelf, zoeken op plaats of postcode, plaatsnamen bij ritten, adressen voor de rittenadministratie, en garages en laadpunten als Google Places niet werkt</td><td>Je locatie, zoekopdracht (ook het adres dat je zoekt voor thuis of werk) of het begin- en eindpunt van een rit, verwerkt door Apple</td></tr>
         <tr><td>Google Places</td><td>Tankstations, laadpunten en garages vinden op de kaart, en de gegevens van een plek tonen</td><td>Het gebied op de kaart, bij merkgarages het merk als zoekwoord, en de ID van een plek die je opent</td></tr>
         <tr><td>Apple (App Store)</td><td>Revly Plus kopen, verlengen en herstellen</td><td>Verloopt via je Apple ID. Revly ziet geen betaalgegevens</td></tr>
         <tr><td>Google Firebase</td><td>Anonieme gebruiksstatistieken, crashrapporten en snelheidsmetingen</td><td>Alleen met jouw toestemming, zie hieronder</td></tr>

@@ -6,6 +6,7 @@
   <title>Revly privacy policy</title>
   <meta name="description" content="How Revly handles your data.">
   <link rel="stylesheet" href="../../style.css">
+  <script>if (new URLSearchParams(location.search).has("app")) document.documentElement.classList.add("app");</script>
   <link rel="alternate" hreflang="nl" href="https://jelleoord16-boop.github.io/revly-site/privacy/">
   <link rel="alternate" hreflang="en" href="https://jelleoord16-boop.github.io/revly-site/en/privacy/">
 </head>
@@ -14,7 +15,7 @@
   <header><span class="dot"></span><a href="../">Revly</a><a class="lang" href="../../privacy/" hreflang="nl" lang="nl">NL</a></header>
 
   <h1>Privacy policy</h1>
-  <p class="muted">Last updated: 1 October 2026. The Dutch version of this policy is leading if the two differ.</p>
+  <p class="muted">Last updated: 2 October 2026. The Dutch version of this policy is leading if the two differ.</p>
 
   <div class="card">
     <strong>In short</strong>
@@ -41,6 +42,9 @@
   <h3>Business trips (Revly Plus)</h3>
   <p>If you turn on <em>Keep track of business trips</em>, Revly also keeps the start and end point of every trip, even if you don't keep routes. The app uses them to look up the address through Apple Maps, so it appears in your trip log. For the address, those two points are sent to Apple. Start and end points, addresses, whether a trip is business or private and your description stay on your phone until you delete the trip. If you turn the setting off, Revly no longer keeps new start and end points.</p>
 
+  <h3>Home and work</h3>
+  <p>If you set a home or work address under <em>Profile &gt; Trips &gt; Saved places</em>, Revly keeps that address and its point on the map on your phone. Your trips are then named, for example, <em>Home → Work</em>, trips between home and work are set to business in advance if you keep track of business trips, and the app picks up a trip that starts at home or work more reliably. For each trip, Revly only remembers whether it started or ended at home or work, not the address again. You look up the address through Apple Maps; for that, your search or current location is sent to Apple. You remove a saved place on the same screen, and <em>Delete everything</em> removes them too.</p>
+
   <h2>Scanning receipts and invoices (Revly Plus)</h2>
   <p>When you scan a fuel receipt or garage invoice, or pick a photo, screenshot or PDF, Revly reads the text on your iPhone itself, using Apple's text recognition. Nothing is sent to a server. The camera only asks for permission the first time you scan. You pick photos yourself with the iOS photo picker, so Revly doesn't see the rest of your photo library.</p>
 
@@ -63,7 +67,7 @@
         <tr><td>RDW Open Data (Netherlands)</td><td>Dutch cars only: fetching brand, model, year, first registration date and inspection (APK) date, checking once a week for a new inspection date, and checking whether your previous cars are still on the road</td><td>The registration number</td></tr>
         <tr><td>NHTSA (United States)</td><td>US cars only: looking up brand, model, year and fuel</td><td>The chassis number (VIN), if you enter it</td></tr>
         <tr><td>Apple Weather (WeatherKit)</td><td>Weather and seasonal tips, such as the winter tyre check (at most once every 6 hours)</td><td>Your location, processed by Apple. Revly never asks for location permission just for this</td></tr>
-        <tr><td>Apple (Maps)</td><td>The map itself, searching for a town or postcode, place names for trips, addresses for the trip log, and garages and charging points when Google Places doesn't work</td><td>Your location, search or the start and end point of a trip, processed by Apple</td></tr>
+        <tr><td>Apple (Maps)</td><td>The map itself, searching for a town or postcode, place names for trips, addresses for the trip log, and garages and charging points when Google Places doesn't work</td><td>Your location, search (including the address you look up for home or work) or the start and end point of a trip, processed by Apple</td></tr>
         <tr><td>Google Places</td><td>Finding fuel stations, charging points and garages on the map, and showing the details of a place</td><td>The area on the map, for brand garages the brand as a search term, and the ID of a place you open</td></tr>
         <tr><td>Apple (App Store)</td><td>Buying, renewing and restoring Revly Plus</td><td>Handled via your Apple ID. Revly sees no payment details</td></tr>
         <tr><td>Google Firebase</td><td>Anonymous usage statistics, crash reports and performance measurements</td><td>Only with your permission, see below</td></tr>

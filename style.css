@@ -43,3 +43,9 @@ footer { margin-top: 48px; font-size: 14px; color: var(--muted); }
 nav a { margin-right: 16px; }
 .lang { margin-left: auto; font-size: 14px; font-weight: 600; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; color: var(--muted); }
 .lang:hover { color: var(--ink); }
+
+/* In de app (?app=1): geen kop en voettekst, de app toont zelf een titel en sluitknop. */
+.app body { background: transparent; }
+.app header, .app footer { display: none; }
+.app main { padding: 12px 18px 48px; }
+.app h1 { font-size: 28px; }
