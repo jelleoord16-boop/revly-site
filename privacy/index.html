@@ -21,7 +21,7 @@
     <strong>In het kort</strong>
     <ul>
       <li>Je auto's, onderhoud, ritten en foto's staan alleen op je eigen iPhone.</li>
-      <li>Revly heeft geen account en geen eigen server. We zien je dossier niet.</li>
+      <li>Revly heeft geen account en bewaart je dossier niet op een server. We zien je dossier niet.</li>
       <li>Voor het weer en de kaart gaat je locatie naar Apple en Google, alleen als je die functies gebruikt.</li>
       <li>Anonieme gebruiksstatistieken en crashrapporten sturen we alleen als jij daar toestemming voor geeft.</li>
       <li>We gebruiken je gegevens nooit voor advertenties en verkopen niets door.</li>
@@ -49,6 +49,9 @@
   <h3>Ritlogboek</h3>
   <p>Om te kunnen zien waarom een rit wel of niet werd gemeten, houdt Revly op je telefoon een ritlogboek bij. Daarin staan alleen tijden en wat de app besloot, zoals "GPS aan", "rit gestart" of "aan de vorige rit vastgeplakt", zonder plekken of adressen. Regels ouder dan 7 dagen verdwijnen vanzelf. Je vindt het in <em>Profiel &gt; Instellingen &gt; Data &amp; privacy &gt; Ritlogboek</em>. Daar kun je het wissen, of zelf delen als je ons een probleem meldt. Revly verstuurt het nooit uit zichzelf.</p>
 
+  <h3>Rit bezig (Live Activity)</h3>
+  <p>Staat <em>Rit bezig tonen</em> aan (<em>Profiel &gt; Ritten</em>), dan zie je tijdens een rit afstand, tijd en snelheid op je vergrendelscherm, in het Dynamic Island en in CarPlay. Draait Revly op de achtergrond, dan mag de app dat blok niet zelf starten. Daarom stuurt Revly bij het begin van een rit een kort verzoek naar de server van Revly (bij Cloudflare), die via Apple een startsignaal naar je iPhone stuurt. Daarbij gaan alleen een code van iOS (het push-token), een willekeurig ritnummer en de starttijd mee, plus gewone technische gegevens zoals je IP-adres. Geen locatie, kenteken of ritgegevens. De server bewaart niets. Afstand, tijd en snelheid werkt de app daarna zelf bij op je telefoon. Zet je de schakelaar uit, dan gebeurt dit niet meer.</p>
+
   <h2>Bonnen en facturen scannen (Revly Plus)</h2>
   <p>Scan je een tankbon of garagefactuur, of kies je een foto, screenshot of pdf, dan leest Revly de tekst op je iPhone zelf, met de tekstherkenning van Apple. Er gaat niets naar een server. De camera vraagt alleen om toestemming als je voor het eerst gaat scannen. Foto's kies je zelf met de fotokiezer van iOS, dus Revly ziet de rest van je fotobibliotheek niet.</p>
 
@@ -75,6 +78,7 @@
         <tr><td>Google Places</td><td>Tankstations, laadpunten en garages vinden op de kaart, en de gegevens van een plek tonen</td><td>Het gebied op de kaart, bij merkgarages het merk als zoekwoord, en de ID van een plek die je opent</td></tr>
         <tr><td>Apple (App Store)</td><td>Revly Plus kopen, verlengen en herstellen</td><td>Verloopt via je Apple ID. Revly ziet geen betaalgegevens</td></tr>
         <tr><td>Google Firebase</td><td>Anonieme gebruiksstatistieken, crashrapporten en snelheidsmetingen</td><td>Alleen met jouw toestemming, zie hieronder</td></tr>
+        <tr><td>Cloudflare (server van Revly)</td><td>Het startsignaal voor Rit bezig via Apple naar je iPhone sturen</td><td>Een code van iOS, een willekeurig ritnummer en de starttijd, plus je IP-adres. Er wordt niets bewaard</td></tr>
         <tr><td>Microsoft Clarity</td><td>Schermopnames om te zien waar de app lastig is</td><td>Alleen als je dit zelf aanzet, zie hieronder</td></tr>
       </tbody>
     </table>
@@ -100,7 +104,7 @@
   <h2>Jouw rechten</h2>
   <ul>
     <li><strong>Inzien en meenemen:</strong> via <em>Profiel &gt; Instellingen &gt; Data &amp; privacy &gt; Mijn gegevens exporteren</em> krijg je al je gegevens in één bestand.</li>
-    <li><strong>Verwijderen:</strong> via <em>Alles verwijderen</em> in hetzelfde scherm, of door de app te verwijderen. Omdat we geen server hebben, staan je gegevens daarna nergens meer bij ons.</li>
+    <li><strong>Verwijderen:</strong> via <em>Alles verwijderen</em> in hetzelfde scherm, of door de app te verwijderen. Omdat je dossier niet op een server staat, staan je gegevens daarna nergens meer bij ons.</li>
     <li><strong>Toestemming intrekken:</strong> zet de schakelaars voor statistieken en crashrapporten uit.</li>
     <li><strong>Vragen of een klacht:</strong> mail ons via het adres hierboven. Kom je er met ons niet uit, dan kun je een klacht indienen bij de <a href="https://autoriteitpersoonsgegevens.nl">Autoriteit Persoonsgegevens</a>.</li>
   </ul>

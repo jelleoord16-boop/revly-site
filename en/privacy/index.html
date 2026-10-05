@@ -21,7 +21,7 @@
     <strong>In short</strong>
     <ul>
       <li>Your cars, maintenance, trips and photos are stored only on your own iPhone.</li>
-      <li>Revly has no account and no server of its own. We can't see your file.</li>
+      <li>Revly has no account and doesn't store your file on a server. We can't see your file.</li>
       <li>For the weather and the map, your location goes to Apple and Google, only when you use those features.</li>
       <li>We only send anonymous usage statistics and crash reports if you give permission.</li>
       <li>We never use your data for advertising and we don't sell anything on.</li>
@@ -49,6 +49,9 @@
   <h3>Trip log</h3>
   <p>So you can see why a trip was or wasn't measured, Revly keeps a trip log on your phone. It only contains times and what the app decided, such as "GPS on", "trip started" or "joined to the previous trip", without places or addresses. Entries older than 7 days disappear automatically. You find it in <em>Profile &gt; Settings &gt; Data &amp; privacy &gt; Trip log</em>. There you can clear it, or share it yourself if you report a problem to us. Revly never sends it on its own.</p>
 
+  <h3>Trip in progress (Live Activity)</h3>
+  <p>If <em>Show trip in progress</em> is on (<em>Profile &gt; Trips</em>), you see distance, time and speed during a trip on your Lock Screen, in the Dynamic Island and in CarPlay. While Revly runs in the background, the app isn't allowed to start that itself. So at the start of a trip Revly sends a short request to Revly's server (at Cloudflare), which sends a start signal to your iPhone via Apple. Only a code from iOS (the push token), a random trip number and the start time are sent, plus ordinary technical data such as your IP address. No location, registration or trip data. The server stores nothing. The app then updates distance, time and speed itself on your phone. If you turn the switch off, this no longer happens.</p>
+
   <h2>Scanning receipts and invoices (Revly Plus)</h2>
   <p>When you scan a fuel receipt or garage invoice, or pick a photo, screenshot or PDF, Revly reads the text on your iPhone itself, using Apple's text recognition. Nothing is sent to a server. The camera only asks for permission the first time you scan. You pick photos yourself with the iOS photo picker, so Revly doesn't see the rest of your photo library.</p>
 
@@ -75,6 +78,7 @@
         <tr><td>Google Places</td><td>Finding fuel stations, charging points and garages on the map, and showing the details of a place</td><td>The area on the map, for brand garages the brand as a search term, and the ID of a place you open</td></tr>
         <tr><td>Apple (App Store)</td><td>Buying, renewing and restoring Revly Plus</td><td>Handled via your Apple ID. Revly sees no payment details</td></tr>
         <tr><td>Google Firebase</td><td>Anonymous usage statistics, crash reports and performance measurements</td><td>Only with your permission, see below</td></tr>
+        <tr><td>Cloudflare (Revly's server)</td><td>Sending the start signal for Trip in progress to your iPhone via Apple</td><td>A code from iOS, a random trip number and the start time, plus your IP address. Nothing is stored</td></tr>
         <tr><td>Microsoft Clarity</td><td>Screen recordings to see where the app is hard to use</td><td>Only if you turn this on yourself, see below</td></tr>
       </tbody>
     </table>
@@ -100,7 +104,7 @@
   <h2>Your rights</h2>
   <ul>
     <li><strong>Access and take with you:</strong> via <em>Profile &gt; Settings &gt; Data &amp; privacy &gt; Export my data</em> you get all your data in one file.</li>
-    <li><strong>Delete:</strong> via <em>Delete everything</em> on the same screen, or by deleting the app. Because we have no server, your data is then nowhere with us.</li>
+    <li><strong>Delete:</strong> via <em>Delete everything</em> on the same screen, or by deleting the app. Because your file isn't stored on a server, your data is then nowhere with us.</li>
     <li><strong>Withdraw consent:</strong> turn off the switches for statistics and crash reports.</li>
     <li><strong>Questions or a complaint:</strong> e-mail us at the address above. If we can't work it out together, you can file a complaint with the Dutch Data Protection Authority, the <a href="https://autoriteitpersoonsgegevens.nl/en">Autoriteit Persoonsgegevens</a>, or with the supervisory authority in your own country.</li>
   </ul>
