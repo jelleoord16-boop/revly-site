@@ -15,7 +15,7 @@
   <header><span class="dot"></span><a href="../">Revly</a><a class="lang" href="../en/privacy/" hreflang="en" lang="en">EN</a></header>
 
   <h1>Privacyverklaring</h1>
-  <p class="muted">Laatst bijgewerkt: 15 oktober 2026</p>
+  <p class="muted">Laatst bijgewerkt: 16 oktober 2026</p>
 
   <div class="card">
     <strong>In het kort</strong>
@@ -50,7 +50,7 @@
   <p>Om te kunnen zien waarom een rit wel of niet werd gemeten, houdt Revly op je telefoon een ritlogboek bij. Daarin staan alleen tijden en wat de app besloot, zoals "GPS aan", "rit gestart" of "aan de vorige rit vastgeplakt", zonder plekken of adressen. Regels ouder dan 7 dagen verdwijnen vanzelf. Je vindt het in <em>Profiel &gt; Instellingen &gt; Data &amp; privacy &gt; Ritlogboek</em>. Daar kun je het wissen, of zelf delen als je ons een probleem meldt. Revly verstuurt het nooit uit zichzelf.</p>
 
   <h3>Rit bezig (Live Activity)</h3>
-  <p>Staat <em>Rit bezig tonen</em> aan (<em>Profiel &gt; Ritten</em>), dan zie je tijdens een rit afstand, tijd en snelheid op je vergrendelscherm, in het Dynamic Island en in CarPlay. Draait Revly op de achtergrond, dan mag de app dat blok niet zelf starten. Daarom stuurt Revly bij het begin van een rit een kort verzoek naar de server van Revly (bij Cloudflare), die via Apple een startsignaal naar je iPhone stuurt. Daarbij gaan alleen een code van iOS (het push-token), een willekeurig ritnummer en de starttijd mee, plus gewone technische gegevens zoals je IP-adres. Geen locatie, kenteken of ritgegevens. De server bewaart niets. Afstand, tijd en snelheid werkt de app daarna zelf bij op je telefoon. Zet je de schakelaar uit, dan gebeurt dit niet meer.</p>
+  <p>Staat <em>Rit bezig tonen</em> aan (<em>Profiel &gt; Ritten</em>), dan zie je tijdens een rit afstand, tijd en snelheid op je vergrendelscherm, in het Dynamic Island en in CarPlay. Draait Revly op de achtergrond, dan mag de app dat blok niet zelf starten. Daarom stuurt Revly bij het begin van een rit een kort verzoek naar de server van Revly (bij Cloudflare), die via Apple een startsignaal naar je iPhone stuurt. Daarbij gaan alleen een code van iOS (het push-token), een willekeurig ritnummer en de starttijd mee, plus gewone technische gegevens zoals je IP-adres. Geen locatie, kenteken of ritgegevens. De server bewaart geen pushtokens of ritinhoud in een database. Cloudflare Workers Logs bewaart wel technische aanroepgegevens en foutmeldingen. Afstand, tijd en snelheid werkt de app daarna zelf bij op je telefoon. Zet je de schakelaar uit, dan gebeurt dit niet meer.</p>
 
   <h2>Bonnen en facturen scannen (Revly Plus)</h2>
   <p>Scan je een tankbon of garagefactuur, of kies je een foto, screenshot of pdf, dan leest Revly de tekst op je iPhone zelf, met de tekstherkenning van Apple. Er gaat niets naar een server. De camera vraagt alleen om toestemming als je voor het eerst gaat scannen. Foto's kies je zelf met de fotokiezer van iOS, dus Revly ziet de rest van je fotobibliotheek niet.</p>
@@ -79,8 +79,7 @@
         <tr><td>Google Places</td><td>Tankstations, laadpunten en garages vinden op de kaart, en de gegevens van een plek tonen</td><td>Het gebied op de kaart, bij merkgarages het merk als zoekwoord, en de ID van een plek die je opent</td></tr>
         <tr><td>Apple (App Store)</td><td>Revly Plus kopen, verlengen en herstellen</td><td>Verloopt via je Apple ID. Revly ziet geen betaalgegevens</td></tr>
         <tr><td>Google Firebase</td><td>Anonieme gebruiksstatistieken, crashrapporten en snelheidsmetingen</td><td>Alleen met jouw toestemming, zie hieronder</td></tr>
-        <tr><td>Cloudflare (server van Revly)</td><td>Het startsignaal voor Rit bezig via Apple naar je iPhone sturen</td><td>Een code van iOS, een willekeurig ritnummer en de starttijd, plus je IP-adres. Er wordt niets bewaard</td></tr>
-        <tr><td>Microsoft Clarity</td><td>Schermopnames om te zien waar de app lastig is</td><td>Alleen als je dit zelf aanzet, zie hieronder</td></tr>
+        <tr><td>Cloudflare (server van Revly)</td><td>Het startsignaal voor Rit bezig via Apple naar je iPhone sturen</td><td>Een code van iOS, een willekeurig ritnummer en de starttijd, plus je IP-adres. Cloudflare Workers Logs bewaart technische aanroepgegevens en fouten; applicatielogs bevatten geen pushtokens of verzoekinhoud</td></tr>
       </tbody>
     </table>
   </div>
@@ -103,16 +102,19 @@
   <p>Advertentiemeting staat altijd uit. Firebase is een dienst van Google Ireland Limited. Google kan gegevens ook buiten de EU verwerken, met de waarborgen die Google daarvoor hanteert. Statistieken worden maximaal 14 maanden bewaard. Trek je je toestemming in, dan stopt de app direct met meten en worden de statistieken op je telefoon gewist.</p>
   <p>De grondslag hiervoor is je toestemming. Je kunt die altijd intrekken, zonder dat de app daardoor minder werkt.</p>
 
-  <h2>Schermopnames</h2>
-  <p>Je kunt in <em>Profiel &gt; Instellingen &gt; Data &amp; privacy</em> zelf <strong>Schermopnames</strong> aanzetten. Dit staat standaard <strong>uit</strong>, ook als je gebruiksstatistieken al hebt aangezet. Staat het aan, dan maakt Microsoft Clarity een opname van hoe je door de app tikt en scrolt, zodat we kunnen zien waar iets onduidelijk is of vastloopt.</p>
-  <p>In die opnames worden teksten, kentekens, bedragen en foto's afgeschermd. Je dossier zelf, je routes en je bonnen worden niet verstuurd. Wel gaan algemene gegevens mee, zoals het iPhone-model, de iOS-versie, het land en een willekeurige ID.</p>
-  <p>Clarity is een dienst van Microsoft Corporation. Microsoft kan gegevens buiten de EU verwerken, met de waarborgen die Microsoft daarvoor hanteert. Opnames worden 30 dagen bewaard, overige gegevens maximaal 9 maanden. De grondslag is je toestemming. Zet je het uit, dan stopt de app direct met opnemen.</p>
+  <details>
+    <summary>Schermopnames in oudere appversies</summary>
+    <p>Clarity en de schakelaar voor schermopnames worden uit Revly verwijderd. Appversies zonder deze functie sturen geen schermopnames naar Microsoft. Oudere versies kunnen deze optionele functie nog aanbieden; daarvoor geldt onderstaande uitleg.</p>
+    <p>In oudere appversies kun je in <em>Profiel &gt; Instellingen &gt; Data &amp; privacy</em> zelf <strong>Schermopnames</strong> aanzetten. Dit staat standaard <strong>uit</strong>, ook als je gebruiksstatistieken al hebt aangezet. Staat het aan, dan maakt Microsoft Clarity een opname van hoe je door de app tikt en scrolt, zodat we kunnen zien waar iets onduidelijk is of vastloopt.</p>
+    <p>In die opnames worden teksten, kentekens, bedragen en foto's afgeschermd. Je dossier zelf, je routes en je bonnen worden niet verstuurd. Wel gaan algemene gegevens mee, zoals het iPhone-model, de iOS-versie, het land en een willekeurige ID.</p>
+    <p>Clarity is een dienst van Microsoft Corporation. Microsoft kan gegevens buiten de EU verwerken, met de waarborgen die Microsoft daarvoor hanteert. Opnames worden 30 dagen bewaard, overige gegevens maximaal 9 maanden. De grondslag is je toestemming. Zet je het uit, dan stopt de app direct met opnemen.</p>
+  </details>
 
   <h2>Revly Plus</h2>
   <p>Een abonnement op Revly Plus loopt via de App Store van Apple. Apple verwerkt de betaling. Revly krijgt van Apple alleen te horen of je abonnement actief is, zodat de Plus-functies werken. Opzeggen doe je in de instellingen van je Apple ID.</p>
 
   <h2>Meldingen</h2>
-  <p>Herinneringen voor onderhoud, ritten, seizoenstips, mijlpalen (zoals een ronde kilometerstand of de verjaardag van je auto) en het verbruiksalarm zijn lokale meldingen. Ze worden op je telefoon gepland, en er gaat niets via een server. In <em>Profiel &gt; Instellingen &gt; Meldingen</em> zet je elke soort aan of uit.</p>
+  <p>Herinneringen voor onderhoud, ritten, seizoenstips, mijlpalen (zoals een ronde kilometerstand of de verjaardag van je auto), het verbruiksalarm en uitnodigingen om verbruiksgegevens bij te dragen zijn lokale meldingen. Ze worden op je telefoon gepland, en er gaat niets via een server. In <em>Profiel &gt; Instellingen &gt; Meldingen</em> zet je elke soort aan of uit.</p>
 
   <h2>Jouw rechten</h2>
   <ul>

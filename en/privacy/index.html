@@ -15,7 +15,7 @@
   <header><span class="dot"></span><a href="../">Revly</a><a class="lang" href="../../privacy/" hreflang="nl" lang="nl">NL</a></header>
 
   <h1>Privacy policy</h1>
-  <p class="muted">Last updated: 15 October 2026. The Dutch version of this policy is leading if the two differ.</p>
+  <p class="muted">Last updated: 16 October 2026. The Dutch version of this policy is leading if the two differ.</p>
 
   <div class="card">
     <strong>In short</strong>
@@ -50,7 +50,7 @@
   <p>So you can see why a trip was or wasn't measured, Revly keeps a trip log on your phone. It only contains times and what the app decided, such as "GPS on", "trip started" or "joined to the previous trip", without places or addresses. Entries older than 7 days disappear automatically. You find it in <em>Profile &gt; Settings &gt; Data &amp; privacy &gt; Trip log</em>. There you can clear it, or share it yourself if you report a problem to us. Revly never sends it on its own.</p>
 
   <h3>Trip in progress (Live Activity)</h3>
-  <p>If <em>Show trip in progress</em> is on (<em>Profile &gt; Trips</em>), you see distance, time and speed during a trip on your Lock Screen, in the Dynamic Island and in CarPlay. While Revly runs in the background, the app isn't allowed to start that itself. So at the start of a trip Revly sends a short request to Revly's server (at Cloudflare), which sends a start signal to your iPhone via Apple. Only a code from iOS (the push token), a random trip number and the start time are sent, plus ordinary technical data such as your IP address. No location, registration or trip data. The server stores nothing. The app then updates distance, time and speed itself on your phone. If you turn the switch off, this no longer happens.</p>
+  <p>If <em>Show trip in progress</em> is on (<em>Profile &gt; Trips</em>), you see distance, time and speed during a trip on your Lock Screen, in the Dynamic Island and in CarPlay. While Revly runs in the background, the app isn't allowed to start that itself. So at the start of a trip Revly sends a short request to Revly's server (at Cloudflare), which sends a start signal to your iPhone via Apple. Only a code from iOS (the push token), a random trip number and the start time are sent, plus ordinary technical data such as your IP address. No location, registration or trip data. The server does not store push tokens or trip content in a database. Cloudflare Workers Logs does store technical request metadata and errors. The app then updates distance, time and speed itself on your phone. If you turn the switch off, this no longer happens.</p>
 
   <h2>Scanning receipts and invoices (Revly Plus)</h2>
   <p>When you scan a fuel receipt or garage invoice, or pick a photo, screenshot or PDF, Revly reads the text on your iPhone itself, using Apple's text recognition. Nothing is sent to a server. The camera only asks for permission the first time you scan. You pick photos yourself with the iOS photo picker, so Revly doesn't see the rest of your photo library.</p>
@@ -79,8 +79,7 @@
         <tr><td>Google Places</td><td>Finding fuel stations, charging points and garages on the map, and showing the details of a place</td><td>The area on the map, for brand garages the brand as a search term, and the ID of a place you open</td></tr>
         <tr><td>Apple (App Store)</td><td>Buying, renewing and restoring Revly Plus</td><td>Handled via your Apple ID. Revly sees no payment details</td></tr>
         <tr><td>Google Firebase</td><td>Anonymous usage statistics, crash reports and performance measurements</td><td>Only with your permission, see below</td></tr>
-        <tr><td>Cloudflare (Revly's server)</td><td>Sending the start signal for Trip in progress to your iPhone via Apple</td><td>A code from iOS, a random trip number and the start time, plus your IP address. Nothing is stored</td></tr>
-        <tr><td>Microsoft Clarity</td><td>Screen recordings to see where the app is hard to use</td><td>Only if you turn this on yourself, see below</td></tr>
+        <tr><td>Cloudflare (Revly's server)</td><td>Sending the start signal for Trip in progress to your iPhone via Apple</td><td>A code from iOS, a random trip number and the start time, plus your IP address. Cloudflare Workers Logs stores technical request metadata and errors; application logs do not include push tokens or request bodies</td></tr>
       </tbody>
     </table>
   </div>
@@ -103,16 +102,19 @@
   <p>Advertising measurement is always off. Firebase is a service of Google Ireland Limited. Google may also process data outside the EU, with the safeguards Google applies for this. Statistics are kept for up to 14 months. If you withdraw your permission, the app stops measuring immediately and the statistics on your phone are deleted.</p>
   <p>The legal basis for this is your consent. You can withdraw it at any time, without the app working any less well.</p>
 
-  <h2>Screen recordings</h2>
-  <p>You can turn on <strong>Screen recordings</strong> yourself in <em>Profile &gt; Settings &gt; Data &amp; privacy</em>. This is <strong>off</strong> by default, even if you have already turned on usage statistics. When it is on, Microsoft Clarity records how you tap and scroll through the app, so we can see where something is unclear or gets stuck.</p>
-  <p>In these recordings, text, registration numbers, amounts and photos are hidden. Your file itself, your routes and your receipts are not sent. General information is included, such as the iPhone model, the iOS version, the country and a random ID.</p>
-  <p>Clarity is a service of Microsoft Corporation. Microsoft may process data outside the EU, with the safeguards Microsoft applies for this. Recordings are kept for 30 days, other data for up to 9 months. The legal basis is your consent. If you turn it off, the app stops recording immediately.</p>
+  <details>
+    <summary>Screen recordings in older app versions</summary>
+    <p>Clarity and the screen-recording switch are being removed from Revly. App versions without this feature do not send screen recordings to Microsoft. Older versions may still offer this optional feature; the following explanation applies to those versions.</p>
+    <p>In older app versions, you can turn on <strong>Screen recordings</strong> yourself in <em>Profile &gt; Settings &gt; Data &amp; privacy</em>. This is <strong>off</strong> by default, even if you have already turned on usage statistics. When it is on, Microsoft Clarity records how you tap and scroll through the app, so we can see where something is unclear or gets stuck.</p>
+    <p>In these recordings, text, registration numbers, amounts and photos are hidden. Your file itself, your routes and your receipts are not sent. General information is included, such as the iPhone model, the iOS version, the country and a random ID.</p>
+    <p>Clarity is a service of Microsoft Corporation. Microsoft may process data outside the EU, with the safeguards Microsoft applies for this. Recordings are kept for 30 days, other data for up to 9 months. The legal basis is your consent. If you turn it off, the app stops recording immediately.</p>
+  </details>
 
   <h2>Revly Plus</h2>
   <p>A Revly Plus subscription runs through Apple's App Store. Apple processes the payment. Revly only learns from Apple whether your subscription is active, so the Plus features work. You cancel in your Apple ID settings. The <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">standard Apple terms of use (EULA)</a> apply.</p>
 
   <h2>Notifications</h2>
-  <p>Reminders for maintenance, trips, seasonal tips, milestones (such as a round odometer reading or your car's birthday) and the fuel use alert are local notifications. They are scheduled on your phone, and nothing goes through a server. In <em>Profile &gt; Settings &gt; Notifications</em> you turn each type on or off.</p>
+  <p>Reminders for maintenance, trips, seasonal tips, milestones (such as a round odometer reading or your car's birthday), the fuel use alert and invitations to contribute consumption data are local notifications. They are scheduled on your phone, and nothing goes through a server. In <em>Profile &gt; Settings &gt; Notifications</em> you turn each type on or off.</p>
 
   <h2>Your rights</h2>
   <ul>
