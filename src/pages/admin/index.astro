@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import data from '../../data/verbruik.json';
+import { genoegData, fmt, verschil } from '../../lib/verbruik';
+import { getCollection } from 'astro:content';
+
+// In productie: deze pagina staat achter Cloudflare Access en leest live uit D1 (revly-insights).
+const modellen = [...data.modellen].sort((a, b) => b.revly.deelnemers - a.revly.deelnemers);
+const totaalDeelnemers = modellen.reduce((s, m) => s + m.revly.deelnemers, 0);
+const totaalKm = modellen.reduce((s, m) => s + m.revly.kilometers, 0);
+const publiceerbaar = modellen.filter((m) => genoegData(m, data.drempel)).length;
+const posts = await getCollection('blog');
+const blogPerModel = (id: string) => posts.filter((p) => p.body?.includes(`model="${id}"`)).length;
+---
+<Base title="Admin | Revly" description="Beheer" noindex>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Admin <span class="demo-label">Voorbeelddata</span></p>
+      <h1 style="font-size:36px">Verbruiksdata</h1>
+      <p class="muted">In productie staat deze pagina achter Cloudflare Access, en komen de cijfers live uit D1. Alleen jij kunt hier inloggen.</p>
+      <div class="stat-grid" style="margin:24px 0 32px">
+        <div class="stat"><div class="label">Deelnemers</div><div class="value">{totaalDeelnemers}</div></div>
+        <div class="stat"><div class="label">Gemeten kilometers</div><div class="value">{(totaalKm / 1000).toFixed(0)}k</div></div>
+        <div class="stat"><div class="label">Modellen klaar om te publiceren</div><div class="value">{publiceerbaar} <small>van {modellen.length}</small></div></div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>Model</th><th>Deelnemers</th><th>Km</th><th>Grootste aandeel</th><th>Revly</th><th>Officieel</th><th>Status</th><th>In blogs</th><th>Actie</th></tr></thead>
+          <tbody>
+            {modellen.map((m) => {
+              const ok = genoegData(m, data.drempel);
+              return (
+                <tr>
+                  <td><strong>{m.merk} {m.model}</strong><br /><span class="muted" style="font-size:13px">{m.brandstof}</span></td>
+                  <td class="num">{m.revly.deelnemers}</td>
+                  <td class="num">{m.revly.kilometers.toLocaleString('nl-NL')}</td>
+                  <td class="num" style={m.revly.grootsteAandeel > data.drempel.maxAandeel ? 'color:var(--warn)' : ''}>{Math.round(m.revly.grootsteAandeel * 100)}%</td>
+                  <td class="num">{fmt(m.revly.gemiddelde)} l</td>
+                  <td class="num">{fmt(m.rdw)} l {ok && <span class="muted">(+{verschil(m)}%)</span>}</td>
+                  <td>{ok ? <span class="pill">Publiceerbaar</span> : <span class="muted" style="font-size:13px">Te weinig data</span>}</td>
+                  <td class="num">{blogPerModel(m.id)}</td>
+                  <td>{ok && <a class="btn btn-secondary btn-small" href="/keystatic/collection/blog/create">Blogconcept</a>}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p class="notice">Drempel voor publicatie: minstens {data.drempel.deelnemers} deelnemers, {data.drempel.deelnemerMaanden} deelnemer-maanden en {data.drempel.kilometers.toLocaleString('nl-NL')} km, en niemand levert meer dan {data.drempel.maxAandeel * 100}% van de kilometers. Gelijk aan de regels in de privacyverklaring.</p>
+    </div>
+  </section>
+</Base>

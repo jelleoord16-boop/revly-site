@@ -1,0 +1,23 @@
+---
+import data from '../data/verbruik.json';
+import { genoegData, verschil, fmt, afgerondKm, afgerondAantal } from '../lib/verbruik';
+const { model } = Astro.props;
+const m = data.modellen.find((x) => x.id === model);
+---
+{m ? (
+  <div class="card" style="margin:24px 0">
+    <p class="eyebrow" style="margin-bottom:4px">Revly-verbruiksdata <span class="demo-label">Voorbeelddata</span></p>
+    <p style="font-weight:700;font-size:21px;margin:0 0 4px">{m.merk} {m.model} ({m.brandstof.toLowerCase()})</p>
+    {genoegData(m, data.drempel) ? (
+      <>
+        <div class="bars">
+          <div class="bar"><span>Revly-rijders</span><div class="track"><div class="fill" style={`width:${Math.min(100, (m.revly.gemiddelde / 12) * 100)}%`}></div></div><strong class="num">{fmt(m.revly.gemiddelde)} l/100 km</strong></div>
+          <div class="bar"><span>Officiële opgave</span><div class="track"><div class="fill ref" style={`width:${Math.min(100, (m.rdw / 12) * 100)}%`}></div></div><span class="num">{fmt(m.rdw)} l/100 km</span></div>
+        </div>
+        <p class="muted" style="font-size:14px;margin:8px 0 0">In de praktijk {verschil(m) > 0 ? `${verschil(m)}% meer` : `${Math.abs(verschil(m))}% minder`} dan de officiële opgave. Gemeten door {afgerondAantal(m.revly.deelnemers)} Revly-rijders over {afgerondKm(m.revly.kilometers)} km. <a href={`/verbruik/${m.merkSlug}/${m.modelSlug}/`}>Alle cijfers</a></p>
+      </>
+    ) : (
+      <p class="muted" style="margin:6px 0 0">Nog te weinig Revly-rijders voor betrouwbare cijfers. De officiële opgave is {fmt(m.rdw)} l/100 km.</p>
+    )}
+  </div>
+) : null}

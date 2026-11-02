@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import html from '../../legacy/privacy-en.html?raw';
+---
+<Base title="Privacy policy | Revly" description="How Revly handles your data. Your car records stay on your own iPhone and nothing is used for advertising." lang="en" alternates={{ nl: '/privacy/', en: '/en/privacy/' }}>
+  <section class="section legacy">
+    <div class="prose" set:html={html} />
+  </section>
+</Base>

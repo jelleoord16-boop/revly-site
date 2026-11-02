@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const rijen: [string, boolean, boolean][] = [
+  ['Eén auto met onderhoud, herinneringen en APK-melding', true, true],
+  ['Verbruik, ritten en autopaspoort', true, true],
+  ['Vorige auto\'s volgen', true, true],
+  ['Meerdere auto\'s bijhouden', false, true],
+  ['Bonnen en garagefacturen scannen', false, true],
+  ['Kosteninzicht met afschrijving en verwachting', false, true],
+  ['Verbruiksalarm', false, true],
+  ['Kosten exporteren naar Excel', false, true],
+  ['Zakelijke rittenadministratie', false, true],
+  ['Eigen kleur voor de app', false, true],
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Revly Plus',
+  description: 'Abonnement op Revly met meerdere auto\'s, scannen en kosteninzicht.',
+  offers: [
+    { '@type': 'Offer', price: site.prijsMaand.replace(',', '.'), priceCurrency: 'EUR', name: 'Per maand' },
+    { '@type': 'Offer', price: site.prijsJaar.replace(',', '.'), priceCurrency: 'EUR', name: 'Per jaar' },
+  ],
+};
+---
+<Base
+  tab="plus"
+  title="Revly Plus: meerdere auto's, scannen en kosteninzicht"
+  description={`Revly is gratis voor je eerste auto. Met Revly Plus voor € ${site.prijsJaar} per jaar houd je meerdere auto's bij en scan je bonnen en facturen.`}
+  alternates={{ nl: '/plus/' }}
+  schema={schema}
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="/">Revly</a> / Revly Plus</div>
+      <div style="text-align:center;max-width:640px;margin:0 auto 40px">
+        <h1>Revly Plus</h1>
+        <p class="lead" style="margin:0 auto">Je eerste auto is gratis, met alles erop en eraan. Plus is voor wie meer auto's heeft of alles tot op de euro wil weten.</p>
+      </div>
+      <div class="price-grid">
+        <div class="card">
+          <h2 style="font-size:19px;margin:0 0 6px">Per maand</h2>
+          <div class="price">€ {site.prijsMaand} <small>per maand</small></div>
+          <p class="muted">Maandelijks opzegbaar via je Apple ID.</p>
+        </div>
+        <div class="card featured">
+          <span class="pill">Voordeligst</span>
+          <h2 style="font-size:19px;margin:10px 0 6px">Per jaar</h2>
+          <div class="price">€ {site.prijsJaar} <small>per jaar</small></div>
+          <p class="muted">Dat is ongeveer € {(parseFloat(site.prijsJaar.replace(',', '.')) / 12).toFixed(2).replace('.', ',')} per maand.</p>
+        </div>
+      </div>
+      {site.proefperiode && <p class="muted" style="text-align:center;margin-top:16px">Probeer eerst {site.proefperiode}.</p>}
+
+      <div class="prose" style="margin-top:56px;padding:0">
+        <h2>Gratis tegenover Plus</h2>
+        <table class="compare">
+          <thead><tr><th>Functie</th><th>Gratis</th><th>Plus</th></tr></thead>
+          <tbody>
+            {rijen.map(([naam, gratis, plus]) => (
+              <tr><td>{naam}</td><td class={gratis ? 'yes' : 'no'}>{gratis ? 'Ja' : 'Nee'}</td><td class={plus ? 'yes' : 'no'}>{plus ? 'Ja' : 'Nee'}</td></tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="notice">Je betaalt via de App Store. Opzeggen doe je in Instellingen op je iPhone, onder je naam en dan Abonnementen. Je houdt Plus tot het einde van de periode die je al hebt betaald.</p>
+      </div>
+    </div>
+  </section>
+</Base>

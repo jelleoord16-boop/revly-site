@@ -1,0 +1,87 @@
+---
+import Base from '../../../layouts/Base.astro';
+import StoreKnop from '../../../components/StoreKnop.astro';
+import data from '../../../data/verbruik.json';
+import { genoegData, fmt, verschil, afgerondKm, afgerondAantal } from '../../../lib/verbruik';
+
+export function getStaticPaths() {
+  return data.modellen.map((m) => ({ params: { merk: m.merkSlug, model: m.modelSlug }, props: { m } }));
+}
+
+const { m } = Astro.props;
+const ok = genoegData(m, data.drempel);
+const naam = `${m.merk} ${m.model}`;
+const seizoenen = m.perSeizoen ? Object.entries(m.perSeizoen) : [];
+const max = Math.max(m.revly.gemiddelde, m.rdw, ...seizoenen.map(([, v]) => v as number)) * 1.1;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: `Gemeten brandstofverbruik ${naam}`,
+  description: `Verbruik van de ${naam} (${m.brandstof.toLowerCase()}) in de praktijk, gemeten door Revly-rijders, naast de officiële opgave.`,
+  creator: { '@type': 'Organization', name: 'Revly' },
+  dateModified: data.bijgewerkt,
+  variableMeasured: 'Brandstofverbruik in liters per 100 km',
+};
+---
+<Base
+  tab="check"
+  title={`Verbruik ${naam}: zo zuinig is hij echt`}
+  description={ok
+    ? `De ${naam} verbruikt in de praktijk ${fmt(m.revly.gemiddelde)} l/100 km volgens Revly-rijders. De officiële opgave is ${fmt(m.rdw)} l. Bekijk alle cijfers.`
+    : `Wat verbruikt een ${naam}? De officiële opgave is ${fmt(m.rdw)} l/100 km. Deel je eigen verbruik via Revly.`}
+  alternates={{ nl: `/verbruik/${m.merkSlug}/${m.modelSlug}/` }}
+  schema={schema}
+  noindex={!ok}
+>
+  <section class="section">
+    <div class="prose">
+      <div class="breadcrumb"><a href="/">Revly</a> / <a href="/verbruik/">Verbruik</a> / {naam}</div>
+      <h1>Verbruik {naam}</h1>
+      <p class="lead">{m.brandstof}, bouwjaren {m.bouwjaren}. <span class="demo-label">Voorbeelddata</span></p>
+
+      {ok ? (
+        <>
+          <div class="stat-grid" style="margin-top:24px">
+            <div class="stat"><div class="label">Revly-rijders</div><div class="value">{fmt(m.revly.gemiddelde)} <small>l/100 km</small></div></div>
+            <div class="stat"><div class="label">Officiële opgave</div><div class="value">{fmt(m.rdw)} <small>l/100 km</small></div></div>
+            <div class="stat"><div class="label">Verschil</div><div class="value">+{verschil(m)}<small>%</small></div></div>
+          </div>
+
+          <h2 style="margin-top:40px">Praktijk tegenover officiële opgave</h2>
+          <p>De {naam} verbruikt volgens {afgerondAantal(m.revly.deelnemers)} Revly-rijders gemiddeld {fmt(m.revly.gemiddelde)} liter per 100 km. Dat is {verschil(m)}% meer dan de officiële opgave van {fmt(m.rdw)} liter. Dat is normaal: die opgave komt uit een test op de rollenbank, niet uit de file op de A12.</p>
+          <div class="bars">
+            <div class="bar"><span>Revly-rijders</span><div class="track"><div class="fill" style={`width:${(m.revly.gemiddelde / max) * 100}%`}></div></div><strong class="num">{fmt(m.revly.gemiddelde)} l</strong></div>
+            <div class="bar"><span>Officiële opgave</span><div class="track"><div class="fill ref" style={`width:${(m.rdw / max) * 100}%`}></div></div><span class="num">{fmt(m.rdw)} l</span></div>
+          </div>
+
+          {seizoenen.length > 0 && (
+            <>
+              <h2 style="margin-top:40px">Per seizoen</h2>
+              <p>In de winter verbruikt een auto meer: een koude motor, winterbanden en de verwarming kosten brandstof.</p>
+              <div class="bars">
+                {seizoenen.map(([s, v]) => (
+                  <div class="bar"><span style="text-transform:capitalize">{s}</span><div class="track"><div class="fill" style={`width:${((v as number) / max) * 100}%`}></div></div><span class="num">{fmt(v as number)} l</span></div>
+                ))}
+              </div>
+            </>
+          )}
+
+          <h2 style="margin-top:40px">Hoe we meten</h2>
+          <p>Revly berekent het verbruik uit volle tankbeurten: de liters die je tankt, gedeeld door de kilometers sinds de vorige volle tank. Rijders delen alleen de maandtotalen, en alleen als ze daar zelf voor kiezen. We ontvangen geen kenteken, routes of locaties.</p>
+          <p class="muted" style="font-size:15px">Gebaseerd op {afgerondKm(m.revly.kilometers)} gemeten kilometers. Het gemiddelde is gewogen naar afstand, over maximaal 24 maanden.</p>
+        </>
+      ) : (
+        <div class="card" style="margin-top:24px">
+          <h3>Nog te weinig data</h3>
+          <p class="muted">Er zijn nog te weinig Revly-rijders met een {naam} die hun verbruik delen. We tonen cijfers vanaf {data.drempel.deelnemers} rijders, zodat niemand herkenbaar is. De officiële opgave is {fmt(m.rdw)} liter per 100 km.</p>
+        </div>
+      )}
+
+      <div class="cta-box">
+        <div><strong style="font-size:20px">Rijd je zelf een {m.merk}?</strong><p>Houd je verbruik bij in Revly en vergelijk met andere rijders.</p></div>
+        <StoreKnop />
+      </div>
+    </div>
+  </section>
+</Base>

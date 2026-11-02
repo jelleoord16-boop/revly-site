@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import StoreKnop from '../../components/StoreKnop.astro';
+
+const features = [
+  ['Logbook', 'Every service, repair and fill-up in one place. Scan your invoice and Revly fills in most of it.'],
+  ['Smarter reminders', 'Not just the MOT. Oil after so many miles, the timing belt by age, and winter tyres when it gets cold.'],
+  ['Trips, automatically', 'Revly recognises your drives, also through CarPlay. Your odometer goes up by itself.'],
+];
+---
+<Base
+  title="Revly: the logbook for your car"
+  description="Track maintenance, inspections, trips and costs for your car in one app. Free for your first car. Your data stays on your iPhone."
+  lang="en"
+  alternates={{ nl: '/', en: '/en/' }}
+  tab="home"
+  heroTop
+>
+  <section class="hero">
+    <div class="brand-disc shape-a" style="right:-170px;top:30px;width:560px;height:560px" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Drive.<br />Revly remembers the rest.</h1>
+        <p class="lead">The logbook for your car. Revly recognises your trips, counts your miles and tells you in time when something needs doing.</p>
+        <div style="margin-top:28px"><StoreKnop lang="en" /></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap grid-3">
+      {features.map(([titel, tekst]) => (
+        <div class="card"><h2 style="font-size:21px;letter-spacing:-0.015em;line-height:1.2;margin:0 0 6px">{titel}</h2><p class="muted">{tekst}</p></div>
+      ))}
+    </div>
+  </section>
+</Base>

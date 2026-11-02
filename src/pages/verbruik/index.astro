@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import data from '../../data/verbruik.json';
+import { genoegData, fmt, verschil } from '../../lib/verbruik';
+
+const modellen = [...data.modellen].sort((a, b) => a.merk.localeCompare(b.merk));
+const bijgewerkt = new Date(data.bijgewerkt).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base
+  tab="check"
+  title="Echt verbruik per automodel, gemeten door Revly-rijders"
+  description="Wat verbruikt jouw auto in de praktijk? Bekijk het gemeten verbruik van Revly-rijders per model, naast de officiële opgave uit de RDW."
+  alternates={{ nl: '/verbruik/' }}
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="/">Revly</a> / Verbruik</div>
+      <h1>Echt verbruik per model</h1>
+      <p class="lead">Revly-rijders kunnen anoniem hun verbruik delen. Zo zie je wat een auto in de praktijk doet, naast de officiële opgave.</p>
+      <p><span class="demo-label">Voorbeelddata in deze proefversie</span> <span class="muted" style="font-size:14px">Bijgewerkt op {bijgewerkt}</span></p>
+      <div style="overflow-x:auto;margin-top:24px">
+        <table class="data-table">
+          <thead><tr><th>Model</th><th>Brandstof</th><th>Bouwjaren</th><th>Revly-rijders</th><th>Officieel</th><th>Verschil</th></tr></thead>
+          <tbody>
+            {modellen.map((m) => {
+              const ok = genoegData(m, data.drempel);
+              return (
+                <tr>
+                  <td><a href={`/verbruik/${m.merkSlug}/${m.modelSlug}/`}>{m.merk} {m.model}</a></td>
+                  <td>{m.brandstof}</td>
+                  <td class="muted">{m.bouwjaren}</td>
+                  <td class="num">{ok ? <strong>{fmt(m.revly.gemiddelde)} l</strong> : <span class="muted">Nog te weinig data</span>}</td>
+                  <td class="num">{fmt(m.rdw)} l</td>
+                  <td class="num">{ok ? `+${verschil(m)}%` : ''}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p class="notice">Verbruik in liters per 100 km. We tonen alleen cijfers als minstens {data.drempel.deelnemers} rijders samen meer dan {data.drempel.kilometers.toLocaleString('nl-NL')} km hebben gemeten, en niemand meer dan een kwart van de kilometers levert. Alleen Nederlandse benzine- en dieselauto's zonder hybride aandrijving.</p>
+    </div>
+  </section>
+</Base>

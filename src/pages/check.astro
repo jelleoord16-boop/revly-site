@@ -1,0 +1,343 @@
+---
+import Base from '../layouts/Base.astro';
+import StoreKnop from '../components/StoreKnop.astro';
+
+const vragen = [
+  {
+    vraag: 'Hoe vroeg kan ik mijn APK laten doen?',
+    antwoord: 'Tot twee maanden voor de vervaldatum. Je nieuwe vervaldatum telt dan vanaf je oude, dus je verliest geen dagen. Daarom geeft Revly je twee maanden van tevoren een seintje, en nog eens twee weken voor de vervaldatum.',
+  },
+  {
+    vraag: 'Wat gebeurt er met mijn kenteken?',
+    antwoord: 'Je kenteken gaat vanuit je browser rechtstreeks naar RDW Open Data, de openbare gegevens van de RDW. Revly krijgt en bewaart niets. Je kilometerstand blijft op je eigen apparaat.',
+  },
+  {
+    vraag: 'Wat is een terugroepactie?',
+    antwoord: 'Als een fabrikant een fout ontdekt die de veiligheid raakt, roept hij auto\'s terug voor herstel. Staat er een terugroepactie open voor jouw kenteken, dan laat Revly je dat weten.',
+  },
+  {
+    vraag: 'Waarom vraagt Revly naar mijn onderhoud?',
+    antwoord: 'Revly weet niet wanneer je olie of distributieriem voor het laatst is vervangen. In plaats van te gokken, vraagt de app het je. Weet je het niet, dan kies je "Weet ik niet, laat het nakijken".',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'APK- en kentekencheck van Revly',
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Alle browsers',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+    description: 'Vul je kenteken en kilometerstand in en zie wanneer je APK verloopt, of er een terugroepactie openstaat en welk onderhoud eraan komt.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: vragen.map((v) => ({ '@type': 'Question', name: v.vraag, acceptedAnswer: { '@type': 'Answer', text: v.antwoord } })),
+  },
+];
+---
+<Base
+  title="APK check op kenteken: zie wat je auto nodig heeft | Revly"
+  description="Vul je kenteken en kilometerstand in. Je ziet direct wanneer je APK verloopt, of er een terugroepactie openstaat en welk onderhoud eraan komt. Gratis, zonder account."
+  alternates={{ nl: '/check/' }}
+  schema={schema}
+  tab="check"
+>
+  <section class="section" style="padding-top:40px">
+    <div class="wrap check-grid">
+      <div>
+        <div class="breadcrumb"><a href="/">Revly</a> / Check</div>
+        <h1 style="font-size:clamp(40px,6vw,76px)">Check je auto.</h1>
+        <p class="lead">Vul je kenteken en kilometerstand in. Je ziet meteen wat Revly voor jouw auto zou bijhouden: je APK, terugroepacties, onderhoud en mijlpalen.</p>
+
+        <form class="check-form card" id="check-form" novalidate>
+          <label for="kenteken" class="check-label">Kenteken</label>
+          <div class="plate-input">
+            <span class="eu" aria-hidden="true">NL</span>
+            <input id="kenteken" name="kenteken" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="10" placeholder="Je kenteken" aria-describedby="kenteken-fout" />
+          </div>
+          <p class="field-error" id="kenteken-fout" role="alert"></p>
+
+          <label for="km" class="check-label">Kilometerstand <span class="muted" style="font-weight:400">(niet verplicht)</span></label>
+          <div class="km-input">
+            <input id="km" name="km" inputmode="numeric" autocomplete="off" placeholder="Bijvoorbeeld 214320" aria-describedby="km-fout" />
+            <span class="muted">km</span>
+          </div>
+          <p class="field-error" id="km-fout" role="alert"></p>
+
+          <button type="submit" class="btn btn-primary" id="check-knop" style="width:100%;justify-content:center;margin-top:6px">Bekijk mijn auto</button>
+          <p class="muted" style="font-size:14px;margin:14px 0 0">Je kenteken gaat alleen naar RDW Open Data. Revly bewaart niets, en je kilometerstand blijft op je apparaat.</p>
+        </form>
+      </div>
+
+      <div id="resultaat" class="check-result" aria-live="polite">
+        <div class="check-empty" id="leeg">
+          <div class="garage-card garage-card--empty">
+            <svg viewBox="0 0 64 40" width="96" height="60" aria-hidden="true"><path d="M8 28c0-3 1.5-5 4-5.6L18 14c1.3-1.6 3-2.5 5-2.5h14c2 0 3.7.8 5 2.2l7 8.3h3c3 0 5 2.2 5 5V30H8z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><circle cx="19" cy="31" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="46" cy="31" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+            <p style="margin:12px 0 0">Hier verschijnt je auto, zoals in de garage van de app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--card)">
+    <div class="prose">
+      <h2>Zo werkt de check</h2>
+      <p>De gegevens van je auto komen uit RDW Open Data: merk, model, bouwjaar, brandstof, de vervaldatum van je APK en openstaande terugroepacties. Revly gebruikt dezelfde bron als je in de app een auto toevoegt.</p>
+      <p>Daarna past de check dezelfde regels toe als de app. Je ziet wanneer je een APK-melding krijgt, welk onderhoud Revly je vraagt bij te houden en welke mijlpalen eraan komen. In de app gaat het daarna vanzelf verder: Revly herkent je ritten en telt je kilometers.</p>
+      <h2 style="margin-top:48px">Veelgestelde vragen</h2>
+      {vragen.map((v) => (
+        <details class="card" style="margin-top:10px;background:var(--bg)"><summary style="font-weight:700;cursor:pointer">{v.vraag}</summary><p class="muted" style="margin-top:10px">{v.antwoord}</p></details>
+      ))}
+    </div>
+  </section>
+
+  <template id="cta-template">
+    <div class="cta-box" style="margin:20px 0 0">
+      <div><strong style="font-size:20px">Zet dit in Revly</strong><p>Vul in de app je kenteken in en dit staat er meteen in. Gratis voor je eerste auto.</p></div>
+      <StoreKnop />
+    </div>
+  </template>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('check-form');
+      if (!form) return;
+      var plateEl = document.getElementById('kenteken');
+      var kmEl = document.getElementById('km');
+      var plateErr = document.getElementById('kenteken-fout');
+      var kmErr = document.getElementById('km-fout');
+      var knop = document.getElementById('check-knop');
+      var out = document.getElementById('resultaat');
+      var RDW = 'https://opendata.rdw.nl/resource/';
+      var nlDate = function (d, opts) { return d.toLocaleDateString('nl-NL', opts || { day: 'numeric', month: 'long', year: 'numeric' }); };
+      var nlNum = function (n) { return n.toLocaleString('nl-NL'); };
+      var cap = function (s) { return (s || '').toLowerCase().replace(/(^|[\s-])\S/g, function (m) { return m.toUpperCase(); }); };
+      var dagen = function (d) { var now = new Date(); now.setHours(0, 0, 0, 0); return Math.round((d - now) / 86400000); };
+      var rdwDate = function (t) { if (!t || t.length < 8) return null; return new Date(+t.slice(0, 4), +t.slice(4, 6) - 1, +t.slice(6, 8)); };
+      var plusMaanden = function (d, n) { var x = new Date(d); x.setMonth(x.getMonth() + n); return x; };
+
+      // Zelfde regels als RDWService.normalize in de app.
+      var normalize = function (s) { return (s || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); };
+
+      function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+      function haal(dataset, plate) {
+        return fetch(RDW + dataset + '.json?kenteken=' + encodeURIComponent(plate), { headers: { Accept: 'application/json' } })
+          .then(function (r) { if (!r.ok) throw new Error('netwerk'); return r.json(); });
+      }
+
+      function toonFout(tekst, metVoorbeeld) {
+        out.innerHTML = '';
+        var box = el('div', 'card check-error');
+        box.appendChild(el('p', null, tekst));
+        if (metVoorbeeld) {
+          var b = el('button', 'btn btn-secondary btn-small', 'Bekijk een voorbeeld');
+          b.type = 'button';
+          b.addEventListener('click', function () { toon(voorbeeld(), true); });
+          box.appendChild(b);
+        }
+        out.appendChild(box);
+      }
+
+      function voorbeeld() {
+        var apk = new Date(); apk.setDate(apk.getDate() + 75);
+        var f = function (d) { return '' + d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0'); };
+        return {
+          plate: null, merk: 'VOLVO', model: 'S60', eersteToelating: rdwDate('20080512'), apk: rdwDate(f(apk)),
+          kleur: 'Grijs', brandstof: ['Benzine'], verbruik: 9.6, methode: 'NEDC', terugroep: 0,
+          km: kmEl.value ? parseInt(kmEl.value.replace(/\D/g, ''), 10) : 214320,
+        };
+      }
+
+      function regels(a) {
+        var lijst = [];
+        var elektrisch = a.brandstof.length > 0 && a.brandstof.every(function (b) { return /elektr/i.test(b); });
+        var leeftijd = a.eersteToelating ? Math.floor((new Date() - a.eersteToelating) / (365.25 * 86400000)) : null;
+
+        // APK, zoals Notifications.inspectionPlans: twee maanden en twee weken van tevoren.
+        if (a.apk) {
+          var d = dagen(a.apk);
+          var vroeg = plusMaanden(a.apk, -2);
+          var laat = new Date(a.apk); laat.setDate(laat.getDate() - 14);
+          if (d < 0) {
+            lijst.push({ g: 'm', k: 'rood', i: 'apk', t: 'Je APK is verlopen', s: 'Sinds ' + nlDate(a.apk) + '. Je mag zonder geldige APK niet de weg op. Revly zoekt garages bij jou in de buurt.' });
+          } else if (new Date() >= vroeg) {
+            lijst.push({ g: 'm', k: 'oranje', i: 'apk', t: 'Je kunt je APK nu laten doen', s: 'Je APK verloopt op ' + nlDate(a.apk) + '. Keur je nu, dan verlies je geen tijd: de nieuwe datum telt vanaf je oude vervaldatum.' });
+          } else {
+            lijst.push({ g: 'm', k: 'blauw', i: 'apk', t: 'APK tot ' + nlDate(a.apk, { month: 'long', year: 'numeric' }), s: 'Op ' + nlDate(vroeg) + ' krijg je een seintje dat je je APK kunt laten doen, en op ' + nlDate(laat) + ' nog een.' });
+          }
+        }
+
+        // Terugroepacties, zoals Recalls.swift (code_status "O").
+        if (a.terugroep === null) {
+          // Niet op te vragen: niets tonen.
+        } else if (a.terugroep > 0) {
+          lijst.push({ g: 'm', k: 'rood', i: 'terugroep', t: a.terugroep === 1 ? 'Er staat een terugroepactie open' : 'Er staan ' + a.terugroep + ' terugroepacties open', s: 'De fabrikant wil iets herstellen aan je auto. In de app zie je wat er aan de hand is en wie je kunt bellen.' });
+        } else {
+          lijst.push({ g: 'm', k: 'groen', i: 'terugroep', t: 'Geen open terugroepacties', s: 'Revly blijft dit voor je controleren en laat het weten als er iets bijkomt.' });
+        }
+
+        // Onderhoud, met de richtwaarden en teksten uit MaintenanceRules en MaintenanceType.defaultInterval.
+        if (!elektrisch) {
+          lijst.push({ g: 'o', k: 'blauw', i: 'olie', t: 'Kleine beurt en olie', s: 'Richtwaarde elke 15.000 km of 12 maanden. Revly vraagt wanneer het voor het laatst is gedaan, zodat je op tijd een seintje krijgt.' });
+          lijst.push({ g: 'o', k: 'blauw', i: 'riem', t: 'Distributieriem', s: 'Weet je wanneer de riem is vervangen? Voeg een herinnering toe, op kilometers of tijd, wat het eerst komt. Richtwaarde 120.000 km of 6 jaar. Heeft je motor een ketting, dan kun je dit negeren.' });
+          if ((a.km != null && a.km >= 60000) || (leeftijd != null && leeftijd >= 6)) {
+            lijst.push({ g: 'o', k: 'blauw', i: 'bak', t: 'Versnellingsbakolie', s: 'Weet je wanneer de olie van je versnellingsbak is ververst? Vooral bij een automaat of DSG is dat belangrijk, ook als er "levenslang" staat.' });
+          }
+        }
+        lijst.push({ g: 'o', k: 'blauw', i: 'rem', t: 'Remvloeistof', s: 'Remvloeistof brengt de kracht van je rempedaal over naar de remmen. Richtwaarde elke 2 jaar, ongeacht hoeveel je rijdt.' });
+        if (leeftijd != null && leeftijd >= 10) {
+          lijst.push({ g: 'o', k: 'oranje', i: 'zoek', t: 'Rubbers, slangen en ophanging', s: 'Je auto is ' + leeftijd + ' jaar oud. Laat bij de volgende beurt rubbers, slangen en ophanging extra controleren.' });
+        }
+        lijst.push({ g: 'm', k: 'blauw', i: 'sneeuw', t: 'Winterbanden', s: 'Zodra het bij jou kouder wordt dan 7 graden, krijg je een seintje. Vul de DOT-code van je banden in, dan houdt Revly ook hun leeftijd bij.' });
+
+        // Mijlpalen, zoals Milestones.swift.
+        if (a.km != null && a.km > 0) {
+          var volgende = (Math.floor(a.km / 50000) + 1) * 50000;
+          lijst.push({ g: 'p', k: 'paars', i: 'vlag', t: 'Op naar ' + nlNum(volgende) + ' km', s: 'Nog ' + nlNum(volgende - a.km) + ' km. Revly viert het met je als je hem haalt.' });
+        }
+        if (a.eersteToelating && leeftijd != null) {
+          var jarig = new Date(a.eersteToelating); jarig.setFullYear(new Date().getFullYear());
+          if (dagen(jarig) < 0) jarig.setFullYear(jarig.getFullYear() + 1);
+          var wordt = jarig.getFullYear() - a.eersteToelating.getFullYear();
+          var extra = wordt === 25 ? ' Dan is hij officieel een youngtimer.' : wordt === 40 ? ' Dan is hij een echte klassieker, en betaal je in Nederland geen wegenbelasting meer.' : '';
+          lijst.push({ g: 'p', k: 'paars', i: 'taart', t: 'Op ' + nlDate(jarig, { day: 'numeric', month: 'long' }) + ' is je auto jarig', s: 'Hij wordt dan ' + wordt + ' jaar.' + extra });
+        }
+        return lijst;
+      }
+
+      var iconen = {
+        apk: 'M9 12.5l2 2 4-4.5M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z',
+        terugroep: 'M12 4l9 16H3zM12 10v4M12 17h.01',
+        olie: 'M4 10h5l2-2h4l1 2h3l4-2v2l-3 5H6a2 2 0 0 1-2-2zM10 8V6M8 6h4',
+        riem: 'M6 7.5a2.5 2.5 0 1 0 0 .01M18 16.5a2.5 2.5 0 1 0 0 .01M7.5 5.5l12 9M4.5 9.5l12 9',
+        bak: 'M6 5v14M12 5v14M18 5v7H6',
+        rem: 'M12 3.5s6 6.4 6 10.5a6 6 0 0 1-12 0c0-4.1 6-10.5 6-10.5z',
+        zoek: 'M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM15.5 15.5 20 20',
+        sneeuw: 'M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9',
+        vlag: 'M5 21V4M5 4h11l-2 4 2 4H5',
+        taart: 'M4 20h16v-7H4zM4 15c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 4 0M12 9v4M12 5.5c.8 0 1.3-.6 1.3-1.3S12 2 12 2s-1.3 1.5-1.3 2.2.5 1.3 1.3 1.3z',
+      };
+      var svgNS = 'http://www.w3.org/2000/svg';
+      function icoon(naam) {
+        var s = document.createElementNS(svgNS, 'svg'); s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('aria-hidden', 'true');
+        var p = document.createElementNS(svgNS, 'path'); p.setAttribute('d', iconen[naam] || iconen.apk);
+        p.setAttribute('fill', 'none'); p.setAttribute('stroke', 'currentColor'); p.setAttribute('stroke-width', '1.9'); p.setAttribute('stroke-linecap', 'round'); p.setAttribute('stroke-linejoin', 'round');
+        s.appendChild(p); return s;
+      }
+
+      function toon(a, isVoorbeeld) {
+        out.innerHTML = '';
+        if (isVoorbeeld) out.appendChild(el('p', 'demo-label', 'Voorbeeld: de RDW was niet bereikbaar'));
+
+        // Garagekaart, zoals de voertuigkaart in de app.
+        var kaart = el('div', 'garage-card');
+        var top = el('div', 'garage-top');
+        var naam = el('div');
+        naam.appendChild(el('div', 'garage-name', cap(a.merk) + ' ' + cap(a.model)));
+        var sub = [];
+        if (a.eersteToelating) sub.push(a.eersteToelating.getFullYear());
+        if (a.brandstof.length) sub.push(a.brandstof.map(cap).join(' + ').toLowerCase());
+        if (a.kleur) sub.push(a.kleur.toLowerCase());
+        naam.appendChild(el('div', 'garage-sub', sub.join(', ')));
+        top.appendChild(naam);
+        if (a.plate) {
+          var plaat = el('span', 'plate');
+          plaat.appendChild(el('span', 'eu', 'NL'));
+          plaat.appendChild(el('span', 'nr', a.plate));
+          top.appendChild(plaat);
+        }
+        kaart.appendChild(top);
+        var onder = el('div', 'garage-bottom');
+        if (a.km != null) {
+          var odo = el('div', 'garage-odo', nlNum(a.km) + ' ');
+          odo.appendChild(el('span', null, 'km'));
+          onder.appendChild(odo);
+        }
+        if (a.apk) {
+          var d = dagen(a.apk);
+          onder.appendChild(el('div', 'garage-apk', d < 0 ? 'APK verlopen' : d > 60 ? 'APK tot ' + nlDate(a.apk, { month: 'long', year: 'numeric' }) : 'APK nog ' + d + ' dagen'));
+        }
+        kaart.appendChild(onder);
+        out.appendChild(kaart);
+
+        // Meldingen, onderhoud en mijlpalen, in groepen zoals in de app.
+        out.appendChild(el('h2', 'check-h2', 'Dit laat Revly je weten'));
+        var alle = regels(a);
+        [['m', 'Meldingen'], ['o', 'Onderhoud dat Revly bijhoudt'], ['p', 'Mijlpalen']].forEach(function (groep) {
+          var items = alle.filter(function (r) { return r.g === groep[0]; });
+          if (!items.length) return;
+          out.appendChild(el('h3', 'check-h3', groep[1]));
+          var lijst = el('div', 'rows');
+          items.forEach(function (r) {
+            var rij = el('div', 'row');
+            var ic = el('span', 'row-icon row-icon--' + r.k); ic.appendChild(icoon(r.i));
+            rij.appendChild(ic);
+            var tekst = el('div');
+            tekst.appendChild(el('div', 'row-title', r.t));
+            tekst.appendChild(el('div', 'row-sub', r.s));
+            rij.appendChild(tekst);
+            lijst.appendChild(rij);
+          });
+          out.appendChild(lijst);
+        });
+
+        // Verbruik volgens de officiële opgave.
+        if (a.verbruik) {
+          var vb = el('div', 'card', null);
+          vb.style.marginTop = '14px';
+          vb.appendChild(el('div', 'row-title', 'Officiële opgave: ' + a.verbruik.toLocaleString('nl-NL', { minimumFractionDigits: 1 }) + ' l/100 km' + (a.methode ? ' (' + a.methode + ')' : '')));
+          vb.appendChild(el('div', 'row-sub', 'Na een paar volle tankbeurten zie je in Revly wat je auto echt verbruikt, en hoe dat zich verhoudt tot andere rijders.'));
+          out.appendChild(vb);
+        }
+
+        var cta = document.getElementById('cta-template');
+        if (cta) out.appendChild(cta.content.cloneNode(true));
+        if (window.innerWidth < 900) out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        plateErr.textContent = ''; kmErr.textContent = '';
+        var plate = normalize(plateEl.value);
+        var kmRuw = kmEl.value.replace(/[\s.]/g, '');
+        var ok = true;
+        if (plate.length < 4 || plate.length > 8) { plateErr.textContent = 'Dit kenteken klopt niet. Gebruik alleen letters en cijfers.'; ok = false; }
+        if (kmRuw && (!/^\d+$/.test(kmRuw) || +kmRuw > 2000000)) { kmErr.textContent = 'Vul je kilometerstand in als getal, zonder punten.'; ok = false; }
+        if (!ok) return;
+        var km = kmRuw ? parseInt(kmRuw, 10) : null;
+        knop.disabled = true; knop.textContent = 'Even zoeken bij de RDW...';
+        Promise.all([
+          haal('m9d7-ebf2', plate),
+          haal('8ys7-d773', plate).catch(function () { return []; }),
+          haal('t49b-isb7', plate).catch(function () { return null; }),
+        ]).then(function (res) {
+          var v = res[0][0];
+          if (!v) { toonFout('Geen voertuig gevonden bij de RDW. Controleer het kenteken.', false); return; }
+          var fuels = res[1] || [];
+          var brandstof = [];
+          fuels.forEach(function (f) { var b = (f.brandstof_omschrijving || '').trim(); if (b && brandstof.indexOf(b) < 0) brandstof.push(b); });
+          var f0 = fuels[0] || {};
+          var wltp = parseFloat(f0.brandstof_verbruik_gecombineerd_wltp);
+          var nedc = parseFloat(f0.brandstofverbruik_gecombineerd);
+          var open = res[2] === null ? null : res[2].filter(function (r) { return (r.code_status || '').toUpperCase() === 'O'; })
+            .map(function (r) { return r.referentiecode_rdw; }).filter(function (c, i, arr) { return c && arr.indexOf(c) === i; }).length;
+          toon({
+            plate: plateEl.value.toUpperCase().trim(), merk: v.merk, model: v.handelsbenaming,
+            eersteToelating: rdwDate(v.datum_eerste_toelating), apk: rdwDate(v.vervaldatum_apk), kleur: v.eerste_kleur && v.eerste_kleur !== 'Niet geregistreerd' ? v.eerste_kleur : null,
+            brandstof: brandstof, verbruik: !isNaN(wltp) ? wltp : (!isNaN(nedc) ? nedc : null), methode: !isNaN(wltp) ? 'WLTP' : (!isNaN(nedc) ? 'NEDC' : ''),
+            terugroep: open, km: km,
+          }, false);
+        }).catch(function () {
+          toonFout('De RDW is niet bereikbaar. Controleer je internetverbinding en probeer opnieuw.', true);
+        }).finally(function () {
+          knop.disabled = false; knop.textContent = 'Bekijk mijn auto';
+        });
+      });
+    });
+  </script>
+</Base>

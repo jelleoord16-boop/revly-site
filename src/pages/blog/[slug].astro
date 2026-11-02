@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import StoreKnop from '../../components/StoreKnop.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  // Concepten worden niet gebouwd en staan dus nergens online.
+  const posts = await getCollection('blog', (p) => p.data.status === 'gepubliceerd');
+  return posts.map((p) => ({ params: { slug: p.id }, props: { p } }));
+}
+
+const { p } = Astro.props;
+const { Content } = await render(p);
+const d = p.data;
+const titel = d.seo.titel || d.titel;
+const beschrijving = d.seo.beschrijving || d.samenvatting;
+const datum = d.datum?.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+const url = `https://getrevly.nl/blog/${p.id}/`;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: d.titel,
+    description: beschrijving,
+    datePublished: d.datum?.toISOString().slice(0, 10),
+    dateModified: (d.bijgewerkt ?? d.datum)?.toISOString().slice(0, 10),
+    inLanguage: d.taal,
+    author: { '@type': 'Person', name: 'Jelle Oord' },
+    publisher: { '@type': 'Organization', name: 'Revly', url: 'https://getrevly.nl' },
+    mainEntityOfPage: url,
+    ...(d.seo.afbeelding ? { image: 'https://getrevly.nl' + d.seo.afbeelding } : {}),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Revly', item: 'https://getrevly.nl/' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://getrevly.nl/blog/' },
+      { '@type': 'ListItem', position: 3, name: d.titel, item: url },
+    ],
+  },
+];
+---
+<Base
+  tab="onderhoud"
+  title={titel}
+  description={beschrijving}
+  lang={d.taal}
+  noindex={d.seo.noindex}
+  image={d.seo.afbeelding}
+  canonical={d.seo.canonical || undefined}
+  schema={schema}
+  ogType="article"
+  alternates={{ [d.taal]: `/blog/${p.id}/` }}
+>
+  <article class="section article">
+    <div class="prose">
+      <div class="breadcrumb"><a href="/">Revly</a> / <a href="/blog/">Blog</a></div>
+      <h1>{d.titel}</h1>
+      <p class="meta">{datum}{d.bijgewerkt && ` · bijgewerkt ${d.bijgewerkt.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })}`} · Jelle Oord</p>
+      {d.samenvatting && <p class="lead" style="margin-top:18px">{d.samenvatting}</p>}
+      <Content />
+      <div class="cta-box">
+        <div><strong style="font-size:20px">Nooit meer vergeten wanneer het tijd is</strong><p>Revly onthoudt het onderhoud van je auto en geeft op tijd een seintje.</p></div>
+        <StoreKnop />
+      </div>
+    </div>
+  </article>
+</Base>

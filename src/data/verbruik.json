@@ -1,0 +1,79 @@
+{
+  "_let_op": "VOORBEELDDATA voor de proefversie. In productie komen deze cijfers uit D1 (revly-insights) en de RDW-referentiecatalogus.",
+  "bijgewerkt": "2026-11-01",
+  "drempel": { "deelnemers": 10, "deelnemerMaanden": 20, "kilometers": 10000, "maxAandeel": 0.25 },
+  "modellen": [
+    {
+      "id": "volvo-s60-2-4",
+      "merk": "Volvo",
+      "merkSlug": "volvo",
+      "model": "S60 2.4",
+      "modelSlug": "s60-2-4",
+      "brandstof": "Benzine",
+      "bouwjaren": "2000 tot 2009",
+      "rdw": 9.6,
+      "revly": { "gemiddelde": 10.4, "deelnemers": 23, "deelnemerMaanden": 214, "kilometers": 186400, "grootsteAandeel": 0.11 },
+      "perSeizoen": { "winter": 11.1, "lente": 10.2, "zomer": 9.8, "herfst": 10.5 }
+    },
+    {
+      "id": "volkswagen-golf-1-4-tsi",
+      "merk": "Volkswagen",
+      "merkSlug": "volkswagen",
+      "model": "Golf 1.4 TSI",
+      "modelSlug": "golf-1-4-tsi",
+      "brandstof": "Benzine",
+      "bouwjaren": "2008 tot 2016",
+      "rdw": 6.2,
+      "revly": { "gemiddelde": 7.1, "deelnemers": 41, "deelnemerMaanden": 388, "kilometers": 402100, "grootsteAandeel": 0.07 },
+      "perSeizoen": { "winter": 7.7, "lente": 7.0, "zomer": 6.7, "herfst": 7.1 }
+    },
+    {
+      "id": "toyota-aygo-1-0",
+      "merk": "Toyota",
+      "merkSlug": "toyota",
+      "model": "Aygo 1.0",
+      "modelSlug": "aygo-1-0",
+      "brandstof": "Benzine",
+      "bouwjaren": "2005 tot 2014",
+      "rdw": 4.6,
+      "revly": { "gemiddelde": 5.1, "deelnemers": 18, "deelnemerMaanden": 151, "kilometers": 97300, "grootsteAandeel": 0.14 },
+      "perSeizoen": { "winter": 5.6, "lente": 5.0, "zomer": 4.8, "herfst": 5.1 }
+    },
+    {
+      "id": "peugeot-308-1-6-hdi",
+      "merk": "Peugeot",
+      "merkSlug": "peugeot",
+      "model": "308 1.6 HDi",
+      "modelSlug": "308-1-6-hdi",
+      "brandstof": "Diesel",
+      "bouwjaren": "2007 tot 2013",
+      "rdw": 4.7,
+      "revly": { "gemiddelde": 5.4, "deelnemers": 12, "deelnemerMaanden": 96, "kilometers": 138900, "grootsteAandeel": 0.19 },
+      "perSeizoen": { "winter": 5.9, "lente": 5.3, "zomer": 5.1, "herfst": 5.4 }
+    },
+    {
+      "id": "ford-focus-1-0-ecoboost",
+      "merk": "Ford",
+      "merkSlug": "ford",
+      "model": "Focus 1.0 EcoBoost",
+      "modelSlug": "focus-1-0-ecoboost",
+      "brandstof": "Benzine",
+      "bouwjaren": "2012 tot 2018",
+      "rdw": 5.0,
+      "revly": { "gemiddelde": 6.3, "deelnemers": 7, "deelnemerMaanden": 44, "kilometers": 31200, "grootsteAandeel": 0.31 },
+      "perSeizoen": null
+    },
+    {
+      "id": "opel-astra-1-6",
+      "merk": "Opel",
+      "merkSlug": "opel",
+      "model": "Astra 1.6",
+      "modelSlug": "astra-1-6",
+      "brandstof": "Benzine",
+      "bouwjaren": "2004 tot 2010",
+      "rdw": 7.2,
+      "revly": { "gemiddelde": 7.9, "deelnemers": 4, "deelnemerMaanden": 19, "kilometers": 8800, "grootsteAandeel": 0.42 },
+      "perSeizoen": null
+    }
+  ]
+}

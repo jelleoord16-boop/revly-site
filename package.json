@@ -1,0 +1,25 @@
+{
+  "name": "revly-site",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:mockup": "MOCKUP=1 astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/markdoc": "^2.1.2",
+    "@astrojs/react": "^7.1.2",
+    "@astrojs/sitemap": "^3.7.4",
+    "@keystatic/astro": "^6.0.0",
+    "@keystatic/core": "^0.6.9",
+    "astro": "^7.4.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}

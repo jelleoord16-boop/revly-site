@@ -1,0 +1,6 @@
+{
+  "regels": [
+    { "van": "/hulp/", "naar": "/support/", "code": "301" },
+    { "van": "/prijzen/", "naar": "/plus/", "code": "301" }
+  ]
+}

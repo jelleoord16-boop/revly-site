@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import html from '../legacy/support-nl.html?raw';
+---
+<Base title="Hulp en contact | Revly" description="Antwoorden op veelgestelde vragen over Revly: ritten, meldingen, Revly Plus en je gegevens. Of mail ons direct." lang="nl" alternates={{ nl: '/support/', en: '/en/support/' }}>
+  <section class="section legacy">
+    <div class="prose" set:html={html} />
+  </section>
+</Base>

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /keystatic/
+Disallow: /api/
+
+Sitemap: https://getrevly.nl/sitemap-index.xml
