@@ -1,4 +1,5 @@
 ---
+import HeroApp from '../components/HeroApp.astro';
 import Base from '../layouts/Base.astro';
 import StoreKnop from '../components/StoreKnop.astro';
 import site from '../data/site.json';
@@ -80,7 +81,6 @@ const schema = [
   km
 >
   <section class="hero">
-    <div class="brand-disc shape-a" style="right:-170px;top:30px;width:620px;height:620px" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
         <h1>Rij.<br />Revly onthoudt de rest.</h1>
@@ -90,30 +90,18 @@ const schema = [
           <a class="btn btn-light" href="/check/">Check je auto</a>
         </div>
       </div>
-      <div class="hero-cards" aria-hidden="true">
-        <div class="glass" style="position:absolute;left:0;top:20px;width:320px;border-radius:30px;padding:22px 24px;transform:rotate(-4deg)">
-          <div style="font-size:14px">Rit bezig</div>
-          <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px"><span style="font-weight:800;font-size:54px;letter-spacing:-0.03em">12,4</span><span style="font-size:18px">km</span></div>
-          <div style="height:8px;border-radius:99px;background:rgba(255,255,255,.3);margin-top:14px"><div style="width:62%;height:100%;border-radius:99px;background:#fff"></div></div>
-          <div style="display:flex;justify-content:space-between;font-size:14px;margin-top:10px"><span>Thuis</span><span>18 min</span><span>Werk</span></div>
-        </div>
-        <div class="glass" style="position:absolute;right:10px;top:190px;width:210px;height:210px;border-radius:40px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(5deg)">
-          <span style="font-size:15px">APK</span>
-          <span style="font-weight:800;font-size:70px;line-height:.9;letter-spacing:-0.04em">34<span style="font-size:20px;font-weight:600;letter-spacing:0"> dagen</span></span>
-          <span style="font-size:14px">Volvo S60</span>
-        </div>
-      </div>
+      <HeroApp lang="nl" />
     </div>
   </section>
 
-  <section class="section">
+  <section class="section ride-section" id="een-week">
     <div class="wrap">
       <h2 style="max-width:860px">Scroll mee. Zo rijdt een week met Revly.</h2>
       <p class="lead" style="margin-bottom:56px">Je hoeft niets bij te houden. Revly telt mee en geeft pas een seintje als het ertoe doet.</p>
       <div class="ride">
         <div class="road">
           <div class="road-car">
-            <svg width="58" height="102" viewBox="0 0 64 112" role="img" aria-label="Auto op de weg">
+            <svg width="58" height="102" viewBox="0 0 64 112" role="img" aria-label="Auto rijdt vooruit langs de weg">
               <rect x="6" y="4" width="52" height="104" rx="18" fill="#3B85FD" stroke="#E5E5EA" stroke-width="2.5" />
               <path d="M14 34 Q32 24 50 34 L47 50 H17 Z" fill="#1C1C1E" />
               <path d="M17 84 H47 L50 96 Q32 102 14 96 Z" fill="#1C1C1E" opacity=".85" />
@@ -143,7 +131,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section" style="background:var(--card)">
+  <section class="section consumption-section" id="verbruik">
     <div class="wrap split">
       <div>
         <h2>Wat verbruikt jouw auto echt?</h2>
@@ -180,9 +168,9 @@ const schema = [
   <section class="section">
     <div class="wrap">
       <h2>En verder</h2>
-      <div class="grid-3" style="margin-top:28px">
+      <div class="grid-3 surface-stage" style="margin-top:28px">
         {features.map(([titel, tekst, icon]) => (
-          <div class="card feature">
+          <div class="card feature glass-surface">
             <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icon} /></svg></div>
             <h3>{titel}</h3>
             <p class="muted">{tekst}</p>
@@ -196,12 +184,12 @@ const schema = [
   <section class="wrap" style="padding-bottom:88px">
     <div class="plus-band">
       <div style="max-width:560px">
-        <h2 style="font-size:clamp(32px,4.5vw,56px)">Eerste auto gratis. Echt alles erop.</h2>
+        <h2 style="font-size:clamp(32px,4.5vw,56px)">Je eerste auto gratis. Meer met Plus.</h2>
         <p style="font-size:19px;margin:0">Met Revly Plus houd je meer auto's bij, scan je bonnen en facturen en zie je wat je auto echt kost.</p>
       </div>
       <div>
         <div class="plus-price">€ {site.prijsJaar}</div>
-        <p style="margin:6px 0 10px">per jaar, of € {site.prijsMaand} per maand{site.proefperiode ? `, eerst ${site.proefperiode}` : ''}</p>
+        <p style="margin:6px 0 10px">per jaar, € {site.prijsMaand} per maand of € {site.prijsLifetime} eenmalig{site.proefperiode ? `, eerst ${site.proefperiode}` : ''}</p>
         <a href="/plus/" style="font-weight:700">Bekijk Revly Plus</a>
       </div>
     </div>
@@ -210,10 +198,10 @@ const schema = [
   {posts.length > 0 && (
     <section class="section" style="background:var(--card)">
       <div class="wrap">
-        <h2>Lezen over onderhoud</h2>
-        <div class="grid-3" style="margin-top:24px">
+        <h2>Blog</h2>
+        <div class="grid-3 surface-stage" style="margin-top:24px">
           {posts.map((p) => (
-            <a class="card post-item" style="background:var(--bg)" href={`/blog/${p.id}/`}>
+            <a class="card post-item glass-surface" href={`/blog/${p.id}/`}>
               <p class="meta">{p.data.datum?.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
               <h3>{p.data.titel}</h3>
               <p class="muted">{p.data.samenvatting}</p>
@@ -229,7 +217,7 @@ const schema = [
       <div class="prose">
         <h2>Veelgestelde vragen</h2>
         {vragen.map((v) => (
-          <details class="card" style="margin-top:10px"><summary style="font-weight:700;cursor:pointer">{v.data.vraag}</summary><p class="muted" style="margin-top:10px">{v.data.antwoord}</p></details>
+          <details class="card glass-surface" style="margin-top:10px"><summary style="font-weight:700;cursor:pointer">{v.data.vraag}</summary><p class="muted" style="margin-top:10px">{v.data.antwoord}</p></details>
         ))}
       </div>
     </section>

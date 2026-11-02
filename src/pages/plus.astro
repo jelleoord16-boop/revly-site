@@ -23,6 +23,7 @@ const schema = {
   offers: [
     { '@type': 'Offer', price: site.prijsMaand.replace(',', '.'), priceCurrency: 'EUR', name: 'Per maand' },
     { '@type': 'Offer', price: site.prijsJaar.replace(',', '.'), priceCurrency: 'EUR', name: 'Per jaar' },
+    { '@type': 'Offer', price: site.prijsLifetime.replace(',', '.'), priceCurrency: 'EUR', name: 'Eenmalig' },
   ],
 };
 ---
@@ -38,7 +39,7 @@ const schema = {
       <div class="breadcrumb"><a href="/">Revly</a> / Revly Plus</div>
       <div style="text-align:center;max-width:640px;margin:0 auto 40px">
         <h1>Revly Plus</h1>
-        <p class="lead" style="margin:0 auto">Je eerste auto is gratis, met alles erop en eraan. Plus is voor wie meer auto's heeft of alles tot op de euro wil weten.</p>
+        <p class="lead" style="margin:0 auto">Houd je eerste auto gratis bij. Plus voegt meerdere auto's, scannen en uitgebreid kosteninzicht toe.</p>
       </div>
       <div class="price-grid">
         <div class="card">
@@ -51,6 +52,11 @@ const schema = {
           <h2 style="font-size:19px;margin:10px 0 6px">Per jaar</h2>
           <div class="price">€ {site.prijsJaar} <small>per jaar</small></div>
           <p class="muted">Dat is ongeveer € {(parseFloat(site.prijsJaar.replace(',', '.')) / 12).toFixed(2).replace('.', ',')} per maand.</p>
+        </div>
+        <div class="card">
+          <h2 style="font-size:19px;margin:0 0 6px">Eenmalig</h2>
+          <div class="price">€ {site.prijsLifetime} <small>eenmalig</small></div>
+          <p class="muted">Lifetime toegang tot Revly Plus, zonder terugkerend abonnement.</p>
         </div>
       </div>
       {site.proefperiode && <p class="muted" style="text-align:center;margin-top:16px">Probeer eerst {site.proefperiode}.</p>}
@@ -65,7 +71,7 @@ const schema = {
             ))}
           </tbody>
         </table>
-        <p class="notice">Je betaalt via de App Store. Opzeggen doe je in Instellingen op je iPhone, onder je naam en dan Abonnementen. Je houdt Plus tot het einde van de periode die je al hebt betaald.</p>
+        <p class="notice">Je betaalt via de App Store. Opzeggen doe je in Instellingen op je iPhone, onder je naam en dan Abonnementen. Je houdt Plus tot het einde van de periode die je al hebt betaald. Kies je eenmalige toegang terwijl je al een abonnement hebt? Zeg dat abonnement zelf op; het stopt niet automatisch.</p>
       </div>
     </div>
   </section>

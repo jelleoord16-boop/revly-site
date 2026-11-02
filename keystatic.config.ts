@@ -139,6 +139,7 @@ export default config({
         appStoreUrl: fields.text({ label: 'App Store-link', description: 'Leeg = "Binnenkort in de App Store".' }),
         prijsMaand: fields.text({ label: 'Prijs Plus per maand (zonder euroteken)' }),
         prijsJaar: fields.text({ label: 'Prijs Plus per jaar (zonder euroteken)' }),
+        prijsLifetime: fields.text({ label: 'Prijs Plus eenmalig (zonder euroteken)' }),
         proefperiode: fields.text({ label: 'Proefperiode', description: 'Bijvoorbeeld "14 dagen gratis". Leeg = niet tonen.' }),
         supportEmail: fields.text({ label: 'Supportadres' }),
         kvkNummer: fields.text({ label: 'KvK-nummer' }),

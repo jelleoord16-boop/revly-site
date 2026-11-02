@@ -42,7 +42,7 @@ export default defineConfig({
   integrations: [
     markdoc(),
     sitemap({
-      filter: (page) => !page.includes('/admin/') && !page.includes('/keystatic') && !uitSitemap.some((p) => page.endsWith(p)),
+      filter: (page) => !page.includes('/admin/') && !page.includes('/onderhoud') && !page.includes('/keystatic') && !uitSitemap.some((p) => page.endsWith(p)),
       i18n: { defaultLocale: 'nl', locales: { nl: 'nl-NL', en: 'en-GB' } },
     }),
     cloudflareRedirects,

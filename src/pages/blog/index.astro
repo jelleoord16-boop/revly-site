@@ -16,9 +16,9 @@ const posts = (await getCollection('blog', (p) => p.data.status === 'gepubliceer
       <div class="breadcrumb"><a href="/">Revly</a> / Blog</div>
       <h1>Blog</h1>
       <p class="lead">Over onderhoud, kosten en het langer houden van je auto.</p>
-      <div class="post-list" style="margin-top:32px">
+      <div class="post-list surface-stage" style="margin-top:32px">
         {posts.map((p) => (
-          <a class="card post-item" href={`/blog/${p.id}/`}>
+          <a class="card post-item glass-surface" href={`/blog/${p.id}/`}>
             <p class="meta">{p.data.datum?.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
             <h2 style="font-size:21px;letter-spacing:-0.015em;line-height:1.2;margin:0 0 6px">{p.data.titel}</h2>
             <p class="muted">{p.data.samenvatting}</p>

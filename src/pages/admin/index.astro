@@ -1,52 +1,53 @@
 ---
-import Base from '../../layouts/Base.astro';
+import '../../styles/global.css';
+import '../../styles/admin.css';
 import data from '../../data/verbruik.json';
+import site from '../../data/site.json';
 import { genoegData, fmt, verschil } from '../../lib/verbruik';
 import { getCollection } from 'astro:content';
-
-// In productie: deze pagina staat achter Cloudflare Access en leest live uit D1 (revly-insights).
-const modellen = [...data.modellen].sort((a, b) => b.revly.deelnemers - a.revly.deelnemers);
-const totaalDeelnemers = modellen.reduce((s, m) => s + m.revly.deelnemers, 0);
-const totaalKm = modellen.reduce((s, m) => s + m.revly.kilometers, 0);
-const publiceerbaar = modellen.filter((m) => genoegData(m, data.drempel)).length;
+const modellen = [...data.modellen].sort((a,b) => b.revly.deelnemers-a.revly.deelnemers);
+const totaalKm = modellen.reduce((s,m) => s+m.revly.kilometers,0);
+const publiceerbaar = modellen.filter(m => genoegData(m,data.drempel)).length;
 const posts = await getCollection('blog');
-const blogPerModel = (id: string) => posts.filter((p) => p.body?.includes(`model="${id}"`)).length;
+const vragen = await getCollection('vragen');
+const blogPerModel = (id:string) => posts.filter(p=>p.body?.includes(`model="${id}"`)).length;
+const navigation = [
+  {id:'overzicht',label:'Overzicht',icon:'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z'},
+  {id:'website',label:'Website bewerken',icon:'M3 5h18v15H3zM3 9h18M7 5v4'},
+  {id:'bezoek',label:'Websitebezoek',icon:'M4 20V10m8 10V4m8 16v-7'},
+  {id:'data',label:'Vergelijkingsdata',icon:'M3 15v4h3v-2h12v2h3v-9l-3-6H6l-3 6zM3 10h18M6 13h2m8 0h2'},
+  {id:'backend',label:'Backend',icon:'M4 3h16v7H4zM4 14h16v7H4zM7 6h1M7 17h1'},
+];
 ---
-<Base title="Admin | Revly" description="Beheer" noindex>
-  <section class="section">
-    <div class="wrap">
-      <p class="eyebrow">Admin <span class="demo-label">Voorbeelddata</span></p>
-      <h1 style="font-size:36px">Verbruiksdata</h1>
-      <p class="muted">In productie staat deze pagina achter Cloudflare Access, en komen de cijfers live uit D1. Alleen jij kunt hier inloggen.</p>
-      <div class="stat-grid" style="margin:24px 0 32px">
-        <div class="stat"><div class="label">Deelnemers</div><div class="value">{totaalDeelnemers}</div></div>
-        <div class="stat"><div class="label">Gemeten kilometers</div><div class="value">{(totaalKm / 1000).toFixed(0)}k</div></div>
-        <div class="stat"><div class="label">Modellen klaar om te publiceren</div><div class="value">{publiceerbaar} <small>van {modellen.length}</small></div></div>
-      </div>
-      <div style="overflow-x:auto">
-        <table class="data-table">
-          <thead><tr><th>Model</th><th>Deelnemers</th><th>Km</th><th>Grootste aandeel</th><th>Revly</th><th>Officieel</th><th>Status</th><th>In blogs</th><th>Actie</th></tr></thead>
-          <tbody>
-            {modellen.map((m) => {
-              const ok = genoegData(m, data.drempel);
-              return (
-                <tr>
-                  <td><strong>{m.merk} {m.model}</strong><br /><span class="muted" style="font-size:13px">{m.brandstof}</span></td>
-                  <td class="num">{m.revly.deelnemers}</td>
-                  <td class="num">{m.revly.kilometers.toLocaleString('nl-NL')}</td>
-                  <td class="num" style={m.revly.grootsteAandeel > data.drempel.maxAandeel ? 'color:var(--warn)' : ''}>{Math.round(m.revly.grootsteAandeel * 100)}%</td>
-                  <td class="num">{fmt(m.revly.gemiddelde)} l</td>
-                  <td class="num">{fmt(m.rdw)} l {ok && <span class="muted">(+{verschil(m)}%)</span>}</td>
-                  <td>{ok ? <span class="pill">Publiceerbaar</span> : <span class="muted" style="font-size:13px">Te weinig data</span>}</td>
-                  <td class="num">{blogPerModel(m.id)}</td>
-                  <td>{ok && <a class="btn btn-secondary btn-small" href="/keystatic/collection/blog/create">Blogconcept</a>}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <p class="notice">Drempel voor publicatie: minstens {data.drempel.deelnemers} deelnemers, {data.drempel.deelnemerMaanden} deelnemer-maanden en {data.drempel.kilometers.toLocaleString('nl-NL')} km, en niemand levert meer dan {data.drempel.maxAandeel * 100}% van de kilometers. Gelijk aan de regels in de privacyverklaring.</p>
-    </div>
-  </section>
-</Base>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/><title>Revly beheer | lokaal voorbeeld</title><link rel="icon" href="/favicon.png"/></head>
+<body class="admin-body">
+<a class="admin-skip" href="#beheer-inhoud">Naar inhoud</a>
+<header class="admin-top"><a class="logo" href="/"><img src="/revly-logo.png" width="30" height="30" alt=""/>Revly <span>Beheer</span></a><div class="admin-top-actions"><a class="btn btn-secondary btn-small" href="/">Bekijk website</a><span class="admin-avatar" aria-label="Voorbeeldaccount Jelle">J</span></div></header>
+<div class="admin-shell"><aside class="admin-sidebar"><nav aria-label="Beheermenu">{navigation.map(n=><a href={`#${n.id}`} data-panel-link={n.id} aria-current={n.id==='overzicht'?'page':undefined}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d={n.icon} stroke-linecap="round" stroke-linejoin="round"/></svg>{n.label}</a>)}</nav><div class="admin-sidebar-note"><strong>Lokale preview</strong><p>Website en editor in één project.</p><a href="/keystatic">Open Keystatic</a></div></aside>
+<div class="admin-content"><div class="admin-demo">Voorbeeldomgeving. Bezoek- en appcijfers zijn fictief. Backend niet aangesloten. Deze lokale preview heeft geen login.</div>
+<main id="beheer-inhoud" tabindex="-1">
+<div class="admin-heading"><div><h1 id="panel-title">Goedemorgen, Jelle.</h1><p id="panel-description">Je website, inhoud en gegevens bij elkaar.</p></div><div class="admin-controls" id="stats-controls"><label>Periode<select id="admin-period"><option value="30">Afgelopen 30 dagen</option><option value="7">Afgelopen 7 dagen</option></select></label><button class="btn btn-secondary btn-small" id="admin-export">Exporteer CSV</button></div></div>
+<section data-panel="overzicht" aria-label="Overzicht">
+<div class="admin-metrics"><div><span>Websitebezoeken</span><strong data-metric="visits">1.842</strong><small>Fictieve bezoekcijfers</small></div><div><span>Actieve appgebruikers</span><strong data-metric="users">386</strong><small>Fictieve appcijfers</small></div><div><span>Klikken naar appstores</span><strong data-metric="clicks">124</strong><small>Klikken zijn geen installaties</small></div><div><span>Modellen in voorbeeldbestand</span><strong>{modellen.length}</strong><small>{publiceerbaar} voldoen aan de demodrempel</small></div></div>
+<div class="admin-columns"><section class="admin-card"><div class="admin-card-heading"><div><h2>Hoe mensen Revly vinden</h2><p>Websitebezoeken in de gekozen periode</p></div><span class="admin-tag">Demo</span></div><div class="admin-chart" role="img" aria-label="Fictieve bezoeken per dag, in het algemeen oplopend"><div class="admin-chart-bars" id="overview-bars"></div></div><div class="admin-chart-axis"><span data-range-start>4 oktober</span><span>Voorbeeldverloop</span><span>2 november</span></div><a class="admin-text-link" href="#bezoek">Bekijk websitebezoek</a></section><section class="admin-card"><h2>Wat vraagt aandacht?</h2><div class="admin-task"><span>Inhoud beheren<small>{posts.length} blogberichten en {vragen.length} vragen in de editor</small></span><a href="#website">Open</a></div><div class="admin-task"><span>App Store-link<small>{site.appStoreUrl?'Ingevuld in algemene gegevens':'Nog niet ingevuld'}</small></span><a href="/keystatic/singleton/site">Bewerk</a></div><div class="admin-task"><span>Vergelijkingsdata<small>Alle cijfers komen uit een voorbeeldbestand</small></span><a href="#data">Bekijk</a></div><div class="admin-task"><span>Backend aansluiten<small>Er is nog geen live koppeling in dit dashboard</small></span><a href="#backend">Bekijk</a></div></section></div>
+<section class="admin-card admin-shortcuts"><div><h2>Verder met de website</h2><p>Open je bestaande editor of bekijk het resultaat.</p></div><div><a class="btn btn-primary btn-small" href="/keystatic">Inhoud bewerken</a><a class="btn btn-secondary btn-small" href="/">Publieke website</a></div></section>
+</section>
+<section data-panel="website" hidden aria-label="Website bewerken"><div class="admin-card"><h2>Jouw inhoud, zonder code</h2><p>Deze knoppen openen de echte lokale Keystatic-editor. Opgeslagen wijzigingen veranderen bestanden in deze lokale kopie.</p><div class="admin-edit-list">{[
+['Blog','Schrijf artikelen, beheer concepten en SEO-velden.','/keystatic/collection/blog',`${posts.length} berichten`],
+['Veelgestelde vragen','Pas antwoorden aan en kies welke op de homepage staan.','/keystatic/collection/vragen',`${vragen.length} vragen`],
+['Algemene gegevens','Prijzen, App Store-link en contactgegevens.','/keystatic/singleton/site','Instellingen'],
+['Redirects','Laat oude adressen doorverwijzen naar de juiste pagina.','/keystatic/singleton/redirects','Instellingen']
+].map(([title,description,href,count])=><a href={href}><div><h3>{title}</h3><p>{description}</p></div><span>{count}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></span></a>)}</div><div class="admin-note">Homepageblokken en screenshots zijn nog niet via Keystatic bewerkbaar. Online opslaan via GitHub en toegang voor beheerders moeten nog worden ingericht.</div></div></section>
+<section data-panel="bezoek" hidden aria-label="Websitebezoek"><div class="admin-card"><div class="admin-card-heading"><div><h2>Populaire pagina’s</h2><p>Fictief voorbeeld van toekomstige webstatistieken.</p></div><span class="admin-tag">Demo</span></div><div class="admin-table-scroll"><table class="data-table"><thead><tr><th>Pagina</th><th>Bezoeken</th><th>Bekijk</th></tr></thead><tbody>{[['Homepage','/',920],['Functies','/functies/',364],['Kentekencheck','/check/',285],['Revly Plus','/plus/',173]].map(([name,href,value])=><tr><td>{name}</td><td data-page-count={value}>{value}</td><td><a href={String(href)}>Open pagina</a></td></tr>)}</tbody></table></div><p class="admin-note">Een echte meting vereist een aangesloten statistiekbron. Deze cijfers meten geen daadwerkelijke bezoekers of installaties.</p></div></section>
+<section data-panel="data" hidden aria-label="Vergelijkingsdata"><div class="admin-metrics admin-metrics-three"><div><span>Modellen in voorbeeldbestand</span><strong>{modellen.length}</strong><small>Geen live D1-data</small></div><div><span>Gemeten kilometers in demo</span><strong>{(totaalKm/1000).toFixed(0)}k</strong><small>Som van modelgroepen</small></div><div><span>Voldoen aan demodrempel</span><strong>{publiceerbaar}</strong><small>Van {modellen.length} modellen</small></div></div><section class="admin-card"><div class="admin-card-heading"><div><h2>Dekking per automodel</h2><p>Voorbeelddata. Een blogconcept openen publiceert niets.</p></div><label class="admin-filter">Status<select id="data-filter"><option value="all">Alle modellen</option><option value="ready">Voldoende demodata</option><option value="limited">Te weinig demodata</option></select></label></div><div class="admin-table-scroll"><table class="data-table"><thead><tr><th>Model</th><th>Deelnemers</th><th>Kilometers</th><th>Grootste aandeel</th><th>Revly (l/100 km)</th><th>Officieel (l/100 km)</th><th>Status</th><th>In blogs</th><th>Actie</th></tr></thead><tbody>{modellen.map(m=>{const ok=genoegData(m,data.drempel);return <tr data-model-status={ok?'ready':'limited'}><td><strong>{m.merk} {m.model}</strong><small>{m.brandstof}</small></td><td>{m.revly.deelnemers}</td><td>{m.revly.kilometers.toLocaleString('nl-NL')}</td><td>{Math.round(m.revly.grootsteAandeel*100)}%</td><td>{fmt(m.revly.gemiddelde)}</td><td>{fmt(m.rdw)} {ok&&<small>({verschil(m)>0?'+':''}{verschil(m)}%)</small>}</td><td><span class={`admin-tag ${ok?'':'admin-tag-warn'}`}>{ok?'Voldoende demodata':'Te weinig demodata'}</span></td><td>{blogPerModel(m.id)}</td><td>{ok&&<a href="/keystatic/collection/blog/create">Nieuw blogconcept</a>}</td></tr>})}</tbody></table></div><p id="filter-status" class="admin-note" role="status">{modellen.length} modellen zichtbaar.</p><p class="admin-note">Demodrempel: minstens {data.drempel.deelnemers} deelnemers, {data.drempel.deelnemerMaanden} deelnemer-maanden, {data.drempel.kilometers.toLocaleString('nl-NL')} km en maximaal {data.drempel.maxAandeel*100}% van de kilometers van één deelnemer.</p></section></section>
+<section data-panel="backend" hidden aria-label="Backend"><section class="admin-card"><div class="admin-card-heading"><div><h2>Cloudflare aansluiten</h2><p>Hier komt later de status van je echte backend.</p></div><span class="admin-tag admin-tag-warn">Niet aangesloten</span></div>{[['Workers / API','Verzoeken, responstijden en foutmeldingen.'],['D1 / verbruiksgegevens','Publiceerbare aggregaten en laatste verwerking.'],['R2 / bestanden','Bestandsopslag en verwerking van uploads.'],['Toegang tot beheer','Inloggen en autorisatie vóór online gebruik.']].map(([name,description])=><div class="admin-task"><span>{name}<small>{description}</small></span><span class="admin-disconnected">Nog in te richten</span></div>)}<div class="admin-note">Deze pagina leest geen Cloudflare-account, geheime sleutels of persoonlijke dossiers. Een werkende editor is nog geen beveiligde productieomgeving.</div></section></section>
+</main><footer class="admin-footer">Revly beheer · lokale voorbeeldomgeving · <a href="/">Terug naar de website</a></footer></div></div><div id="admin-toast" role="status" class="admin-toast" hidden></div>
+<script>
+const pages:Record<string,[string,string]>={overzicht:['Goedemorgen, Jelle.','Je website, inhoud en gegevens bij elkaar.'],website:['Website bewerken','Beheer de inhoud via je bestaande Keystatic-editor.'],bezoek:['Websitebezoek','Ontdek hoe een aangesloten statistiekoverzicht eruit kan zien.'],data:['Vergelijkingsdata','Bekijk de dekking van de modellen in het voorbeeldbestand.'],backend:['Backend','Een duidelijke plek voor je toekomstige Cloudflare-koppelingen.']};
+const period=document.querySelector<HTMLSelectElement>('#admin-period')!;
+function changePanel(){let id=location.hash.slice(1)||'overzicht';if(!pages[id])id='overzicht';document.querySelectorAll<HTMLElement>('[data-panel]').forEach(el=>el.hidden=el.dataset.panel!==id);document.querySelectorAll('[data-panel-link]').forEach(el=>{if(el.getAttribute('data-panel-link')===id)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});document.querySelector('#panel-title')!.textContent=pages[id][0];document.querySelector('#panel-description')!.textContent=pages[id][1];document.querySelector<HTMLElement>('#stats-controls')!.hidden=!['overzicht','bezoek'].includes(id);}
+function updatePeriod(){const short=period.value==='7';const values=short?{visits:'486',users:'142',clicks:'38'}:{visits:'1.842',users:'386',clicks:'124'};document.querySelectorAll<HTMLElement>('[data-metric]').forEach(el=>el.textContent=values[el.dataset.metric as keyof typeof values]);document.querySelectorAll<HTMLElement>('[data-page-count]').forEach(el=>el.textContent=String(Math.round(Number(el.dataset.pageCount)*(short?486/1842:1))));document.querySelector('[data-range-start]')!.textContent=short?'27 oktober':'4 oktober';const points=short?[34,48,40,62,55,77,89]:[24,31,28,43,39,52,48,61,56,71,65,79,70,89];const chart=document.querySelector('#overview-bars')!;chart.replaceChildren(...points.map((v,i)=>{const bar=document.createElement('span');bar.style.height=`${v}%`;bar.title=`Periode ${i+1}: relatieve voorbeeldactiviteit ${v}`;return bar}));}
+window.addEventListener('hashchange',changePanel);period.addEventListener('change',updatePeriod);changePanel();updatePeriod();
+document.querySelector('#data-filter')!.addEventListener('change',e=>{const value=(e.target as HTMLSelectElement).value;let count=0;document.querySelectorAll<HTMLElement>('[data-model-status]').forEach(el=>{el.hidden=value!=='all'&&el.dataset.modelStatus!==value;if(!el.hidden)count++});document.querySelector('#filter-status')!.textContent=`${count} modellen zichtbaar.`});
+document.querySelector('#admin-export')!.addEventListener('click',()=>{const lines=['Statistiek;Waarde;Periode;Bron',...Array.from(document.querySelectorAll('[data-metric]')).map(el=>`${el.getAttribute('data-metric')};${el.textContent};${period.value} dagen;Fictieve demodata`)];const url=URL.createObjectURL(new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='revly-voorbeeldstatistieken.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);const t=document.querySelector<HTMLElement>('#admin-toast')!;t.textContent='CSV met fictieve voorbeeldcijfers gedownload.';t.hidden=false;setTimeout(()=>t.hidden=true,4000)});
+</script></body></html>

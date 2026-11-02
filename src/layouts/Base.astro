@@ -57,16 +57,23 @@ const tabs = lang === 'nl'
   ? [
       { key: 'home', href: '/', label: 'Home', icon: icons.home },
       { key: 'check', href: '/check/', label: 'Check', icon: icons.check },
-      { key: 'onderhoud', href: '/onderhoud/', label: 'Onderhoud', icon: icons.onderhoud },
+      { key: 'onderhoud', href: '/app/', label: 'De app', icon: icons.onderhoud },
       { key: 'functies', href: '/functies/', label: 'Functies', icon: icons.functies },
       { key: 'plus', href: '/plus/', label: 'Plus', icon: icons.plus },
     ]
   : [
-      { key: 'home', href: '/en/', label: 'Home', icon: icons.home },
-      { key: 'functies', href: '/en/support/', label: 'Help', icon: icons.hulp },
+      { key:'home',href:'/en/',label:'Home',icon:icons.home },
+      { key:'check',href:'/en/check/',label:'Car',icon:icons.check },
+      { key:'onderhoud',href:'/en/app/',label:'App',icon:icons.onderhoud },
+      { key:'functies',href:'/en/functies/',label:'Features',icon:icons.functies },
+      { key:'plus',href:'/en/plus/',label:'Plus',icon:icons.plus },
     ];
 
-const otherLangHref = lang === 'nl' ? (alternates.en ?? '/en/') : (alternates.nl ?? '/');
+const counterparts:Record<string,string> = {'/blog/verbruik-volvo-s60/':'/en/blog/volvo-s60-consumption/','/blog/distributieriem-vervangen/':'/en/blog/when-to-replace-timing-belt/'};
+const normalizedPath = path.endsWith('/') ? path : path + '/';
+const reverseCounterpart = Object.entries(counterparts).find(([,en])=>en===normalizedPath)?.[0];
+const otherLangHref = lang === 'nl' ? (counterparts[normalizedPath] ?? '/en' + normalizedPath) : (reverseCounterpart ?? (normalizedPath.replace(/^\/en/, '') || '/'));
+const resolvedAlternates = lang === 'en' ? {nl:otherLangHref,en:normalizedPath} : {nl:normalizedPath,en:otherLangHref};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -77,9 +84,9 @@ const otherLangHref = lang === 'nl' ? (alternates.en ?? '/en/') : (alternates.nl
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalUrl} />
   {noindex && <meta name="robots" content="noindex" />}
-  {alternates.nl && <link rel="alternate" hreflang="nl" href={siteUrl + alternates.nl} />}
-  {alternates.en && <link rel="alternate" hreflang="en" href={siteUrl + alternates.en} />}
-  {alternates.nl && <link rel="alternate" hreflang="x-default" href={siteUrl + alternates.nl} />}
+  {resolvedAlternates.nl && <link rel="alternate" hreflang="nl" href={siteUrl + resolvedAlternates.nl} />}
+  {resolvedAlternates.en && <link rel="alternate" hreflang="en" href={siteUrl + resolvedAlternates.en} />}
+  {resolvedAlternates.nl && <link rel="alternate" hreflang="x-default" href={siteUrl + resolvedAlternates.nl} />}
   <meta property="og:type" content={ogType} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -100,9 +107,11 @@ const otherLangHref = lang === 'nl' ? (alternates.en ?? '/en/') : (alternates.nl
   <header class={heroTop ? 'topbar on-hero' : 'topbar'}>
     <div class="wrap">
       <a class="logo" href={t.home}><img src="/revly-logo.png" alt="" width="30" height="30" />Revly</a>
+      <nav class="desktop-menu" aria-label={lang === 'nl' ? 'Hoofdmenu' : 'Main menu'}>{tabs.map(tb=><a href={tb.href} aria-current={tab === tb.key ? 'page' : undefined}>{tb.label}</a>)}</nav>
       <div class="topbar-end">
+        {import.meta.env.DEV && <a class="lang" href="/admin/">{lang === 'en' ? 'Admin' : 'Beheer'}</a>}
         <a class="lang" href={otherLangHref} hreflang={lang === 'nl' ? 'en' : 'nl'}>{t.andereTaal}</a>
-        <a class={heroTop ? 'btn btn-light btn-small' : 'btn btn-primary btn-small'} href={lang === 'nl' ? '/#download' : '/en/'}>Download</a>
+        <a class={heroTop ? 'btn btn-light btn-small' : 'btn btn-primary btn-small'} href={lang === 'nl' ? '/#download' : '/en/#download'}>Download</a>
       </div>
     </div>
   </header>
@@ -125,12 +134,12 @@ const otherLangHref = lang === 'nl' ? (alternates.en ?? '/en/') : (alternates.nl
       {lang === 'nl' ? (
         <>
           <div><h2 class="ft">App</h2><a href="/functies/">Functies</a><a href="/plus/">Revly Plus</a><a href="/#download">Download</a></div>
-          <div><h2 class="ft">Lezen</h2><a href="/check/">APK- en kentekencheck</a><a href="/onderhoud/">Onderhoud</a><a href="/blog/">Blog</a><a href="/verbruik/">Verbruik per model</a></div>
+          <div><h2 class="ft">Lezen</h2><a href="/check/">APK- en kentekencheck</a><a href="/app/">De app</a><a href="/blog/">Blog</a><a href="/verbruik/">Verbruik per model</a></div>
           <div><h2 class="ft">Hulp</h2><a href="/support/">Hulp en contact</a><a href="/privacy/">Privacyverklaring</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Gebruiksvoorwaarden</a></div>
         </>
       ) : (
         <>
-          <div><h2 class="ft">App</h2><a href="/en/">Home</a></div>
+          <div><h2 class="ft">App</h2><a href="/en/functies/">Features</a><a href="/en/plus/">Revly Plus</a><a href="/en/#download">Download</a></div><div><h2 class="ft">Explore</h2><a href="/en/check/">Find your car</a><a href="/en/app/">The app</a><a href="/en/blog/">Blog</a><a href="/en/verbruik/">Consumption by model</a></div>
           <div><h2 class="ft">Help</h2><a href="/en/support/">Help and contact</a><a href="/en/privacy/">Privacy policy</a></div>
           <div><h2 class="ft">Legal</h2><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of use</a></div>
         </>
@@ -146,5 +155,6 @@ const otherLangHref = lang === 'nl' ? (alternates.en ?? '/en/') : (alternates.nl
     ))}
     {km && <span class="tab-km" id="tab-km" aria-live="off">214.320 km</span>}
   </nav>
+<script>import '../lib/scroll-scenes';</script>
 </body>
 </html>

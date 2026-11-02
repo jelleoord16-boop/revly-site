@@ -1,0 +1,79 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+
+const rijen: [string, boolean, boolean][] = [
+  ['One car with maintenance records and reminders', true, true],
+  ['Consumption, trips and vehicle passport', true, true],
+  ['Vorige auto\'s volgen', true, true],
+  ['Meerdere auto\'s bijhouden', false, true],
+  ['Scan receipts and garage invoices', false, true],
+  ['Cost insights with depreciation and estimates', false, true],
+  ['Consumption alerts', false, true],
+  ['Export costs to Excel', false, true],
+  ['Business trip records', false, true],
+  ['Choose your app accent colour', false, true],
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Revly Plus',
+  description: 'Revly Plus with multiple cars, scanning and detailed costs.',
+  offers: [
+    { '@type': 'Offer', price: site.prijsMaand.replace(',', '.'), priceCurrency: 'EUR', name: 'Monthly' },
+    { '@type': 'Offer', price: site.prijsJaar.replace(',', '.'), priceCurrency: 'EUR', name: 'Yearly' },
+    { '@type': 'Offer', price: site.prijsLifetime.replace(',', '.'), priceCurrency: 'EUR', name: 'One-time purchase' },
+  ],
+};
+---
+<Base
+  lang="en"
+  tab="plus"
+  title="Revly Plus: more cars, scanning and cost insights"
+  description={`Your first car is free. Revly Plus adds more cars, scanning and cost insights. Monthly, yearly and lifetime options.`}
+  alternates={{ nl: '/plus/' }}
+  schema={schema}
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="/en/">Revly</a> / Revly Plus</div>
+      <div style="text-align:center;max-width:640px;margin:0 auto 40px">
+        <h1>Revly Plus</h1>
+        <p class="lead" style="margin:0 auto">Keep track of your first car for free. Plus adds more cars, scanning and detailed cost insights.</p>
+      </div>
+      <div class="price-grid">
+        <div class="card">
+          <h2 style="font-size:19px;margin:0 0 6px">Monthly</h2>
+          <div class="price">€ {site.prijsMaand} <small>per month</small></div>
+          <p class="muted">Cancel your monthly subscription through your Apple ID.</p>
+        </div>
+        <div class="card featured">
+          <span class="pill">Best subscription value</span>
+          <h2 style="font-size:19px;margin:10px 0 6px">Yearly</h2>
+          <div class="price">€ {site.prijsJaar} <small>per year</small></div>
+          <p class="muted">That is about € {(parseFloat(site.prijsJaar.replace(',', '.')) / 12).toFixed(2).replace('.', ',')} per month.</p>
+        </div>
+        <div class="card">
+          <h2 style="font-size:19px;margin:0 0 6px">One-time purchase</h2>
+          <div class="price">€ {site.prijsLifetime} <small>eenmalig</small></div>
+          <p class="muted">Lifetime access to Revly Plus, without a recurring subscription.</p>
+        </div>
+      </div>
+      {site.proefperiode && <p class="muted" style="text-align:center;margin-top:16px">Try first {site.proefperiode}.</p>}
+
+      <div class="prose" style="margin-top:56px;padding:0">
+        <h2>Free and Plus compared</h2>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Free</th><th>Plus</th></tr></thead>
+          <tbody>
+            {rijen.map(([naam, gratis, plus]) => (
+              <tr><td>{naam}</td><td class={gratis ? 'yes' : 'no'}>{gratis ? 'Yes' : 'No'}</td><td class={plus ? 'yes' : 'no'}>{plus ? 'Yes' : 'No'}</td></tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="notice">Payment is through the App Store. Manage subscriptions in iPhone Settings under your name, then Subscriptions. Access continues until the end of your paid period. Buying lifetime access does not automatically cancel an existing subscription; cancel it yourself.</p>
+      </div>
+    </div>
+  </section>
+</Base>

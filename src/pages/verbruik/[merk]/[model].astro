@@ -42,6 +42,7 @@ const schema = {
 
       {ok ? (
         <>
+          <div class="consumption-summary glass-surface">
           <div class="stat-grid" style="margin-top:24px">
             <div class="stat"><div class="label">Revly-rijders</div><div class="value">{fmt(m.revly.gemiddelde)} <small>l/100 km</small></div></div>
             <div class="stat"><div class="label">Officiële opgave</div><div class="value">{fmt(m.rdw)} <small>l/100 km</small></div></div>
@@ -66,6 +67,7 @@ const schema = {
               </div>
             </>
           )}
+          </div>
 
           <h2 style="margin-top:40px">Hoe we meten</h2>
           <p>Revly berekent het verbruik uit volle tankbeurten: de liters die je tankt, gedeeld door de kilometers sinds de vorige volle tank. Rijders delen alleen de maandtotalen, en alleen als ze daar zelf voor kiezen. We ontvangen geen kenteken, routes of locaties.</p>

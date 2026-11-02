@@ -1,0 +1,14 @@
+---
+const {lang='nl'}=Astro.props;
+const en=lang==='en';
+---
+<figure class="hero-app" aria-label={en?'Revly Garage preview with an illustrative BMW and example data. App interface in Dutch.':'Voorbeeld van de Revly Garage met een illustratieve BMW en voorbeeldgegevens.'}>
+  <div class="hero-phone" aria-hidden="true">
+    <img class="hero-garage-screen" src="/images/app/garage-current.jpg" width="1206" height="2622" alt="" fetchpriority="high" />
+    <div class="hero-car-selector"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 9 2-5h10l2 5M4 9h16v9H4zM7 18v3m10-3v3M7 13h2m6 0h2"/></svg><span>BMW E30</span><span>⌄</span></div>
+    <div class="hero-car-photo"><img src="/images/bmw-e30-example.jpg" width="1536" height="1024" alt="" /><div><strong>BMW E30</strong><span>1989 · Benzine</span></div></div>
+  </div>
+  <div class="glass hero-trip" aria-hidden="true"><span>{en?'Trip in progress':'Rit bezig'}</span><div class="hero-trip-distance">12,4 <small>km</small></div><div class="hero-trip-track"><i></i></div><div class="hero-trip-labels"><span>{en?'Home':'Thuis'}</span><span>18 min</span><span>{en?'Work':'Werk'}</span></div></div>
+  <div class="glass hero-service" aria-hidden="true"><span>{en?'Next service':'Volgende beurt'}</span><strong>34 <small>{en?'days':'dagen'}</small></strong><span>BMW E30</span></div>
+  <figcaption>{en?'App preview · example car and data':'Appvoorbeeld · voorbeeldauto en gegevens'}</figcaption>
+</figure>

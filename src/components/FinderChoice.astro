@@ -1,0 +1,7 @@
+---
+interface Props {id:string;label:string;placeholder?:string;options?:{label:string;value:string}[];disabled?:boolean;fixed?:boolean;value?:string;selectedLabel?:string;}
+const {id,label,placeholder='',options=[],disabled=false,fixed=false,value='',selectedLabel=''}=Astro.props;
+---
+<div class="finder-choice" data-choice data-options={JSON.stringify(options)} data-fixed={fixed?'true':'false'}>
+<label for={id} class="check-label">{label}</label><div class="finder-choice-control"><input id={id} class="finder-choice-input" role="combobox" aria-autocomplete={fixed?'none':'list'} aria-expanded="false" aria-controls={`${id}-options`} autocomplete="off" placeholder={placeholder} disabled={disabled} readonly={fixed} value={selectedLabel||value} data-value={value}/><button class="finder-choice-toggle" type="button" tabindex="-1" disabled={disabled} aria-label={`Show ${label.toLowerCase()} choices`}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button></div><div class="finder-choice-options" role="listbox" id={`${id}-options`} aria-label={`${label} choices`} hidden></div>
+</div>

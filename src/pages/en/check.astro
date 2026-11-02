@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import FinderChoice from '../../components/FinderChoice.astro';
+import catalogue from '../../../public/data/car-catalog.json';
+
+const quickNames=new Set(['Audi','BMW','Citroen','Dacia','Fiat','Ford','Honda','Hyundai','Kia','Land Rover','Lexus','Mazda','Mercedes-Benz','MINI','Mitsubishi','Nissan','Opel','Peugeot','Polestar','Porsche','Renault','Saab','Seat','Skoda','Subaru','Suzuki','Tesla','Toyota','Volkswagen','Volvo']);
+const quickMakes=catalogue.makes.filter(m=>quickNames.has(m.make));
+const moreMakes=catalogue.makes.filter(m=>!quickNames.has(m.make));
+---
+<Base lang="en" tab="check" title="Find your car | Mileage, maintenance and reminders" description="Select your car, enter kilometres or miles, and explore maintenance reminders and mileage milestones.">
+<section class="section" style="padding-top:40px"><div class="wrap check-grid finder-grid"><div><div class="breadcrumb"><a href="/en/">Revly</a> / Find your car</div><h1 style="font-size:clamp(40px,6vw,76px)">Find your car.</h1><p class="lead">Your car, your mileage. See what Revly could help you keep track of.</p>
+<form id="model-finder" class="card check-form" data-catalogue={JSON.stringify(catalogue.makes)} novalidate>
+<FinderChoice id="finder-make" label="Make" placeholder="Choose or search a make" options={[...quickMakes,...moreMakes].map(m=>({value:m.make,label:m.make}))}/>
+<FinderChoice id="finder-model" label="Model" placeholder="Choose a make first" disabled/>
+<p class="finder-help">Choose a model or type yours if it is not listed.</p>
+<label for="finder-distance" class="check-label">Odometer <span class="muted">(optional)</span></label><div class="finder-distance"><input id="finder-distance" type="text" inputmode="numeric" placeholder="For example: 124680"/><select id="finder-unit" aria-label="Distance unit"><option value="km">km</option><option value="mi">miles</option></select></div>
+<FinderChoice id="finder-fuel" label="Powertrain" fixed value="unknown" selectedLabel="Not sure" options={[{value:'unknown',label:'Not sure'},{value:'petrol',label:'Petrol'},{value:'diesel',label:'Diesel'},{value:'hybrid',label:'Hybrid'},{value:'phev',label:'Plug-in hybrid'},{value:'electric',label:'Electric'},{value:'other',label:'Other'}]}/>
+<p id="finder-error" class="field-error" role="alert"></p><button class="btn btn-primary" style="width:100%;margin-top:12px" type="submit">Show my car overview</button>
+<p class="muted" style="font-size:12px;margin:16px 0 0">{catalogue.makes.length} makes and {catalogue.makes.reduce((n,m)=>n+m.models.length,0).toLocaleString('en-GB')} model names from <a href="https://vpic.nhtsa.dot.gov/api/">NHTSA vPIC</a>. US-focused coverage; manual entry is always available. Your entries stay in this page and are not saved.</p>
+</form><p class="muted" style="font-size:14px;margin-top:18px">Have a Dutch registration? <a href="/check/">Use the RDW registration check</a>.</p></div>
+<div id="finder-result" aria-live="polite"><figure class="check-photo-example"><img src="/images/bmw-e30-example.jpg" width="1536" height="1024" alt="Illustrative photograph of a classic BMW E30 at sunset"/><figcaption><span class="check-photo-label">Example photo · AI-generated</span><strong>Every car has a story.</strong><p>Enter your car and mileage to see an overview. This photograph is illustrative, not a photo of the car you select.</p></figcaption></figure></div></div></section>
+<script>
+import { initCarFinder } from '../../lib/car-finder';
+import { initFinderChoices } from '../../lib/finder-choice';
+initFinderChoices();
+initCarFinder();
+</script>
+</Base>

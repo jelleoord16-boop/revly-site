@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import StoreKnop from '../../components/StoreKnop.astro';
+
+const groepen = [
+  {
+    titel: 'Maintenance and logbook',
+    tekst: 'Record each service, whether at home or at a garage. Add the work, oil type and cost.',
+    punten: ['Minor and major services, repairs and parts', 'Garage or DIY, with oil types such as 5W30', 'Scan invoices, including PDFs', 'Capture service-book entries with your camera', 'Export a maintenance report as a PDF'],
+  },
+  {
+    titel: 'Reminders',
+    tekst: 'Set reminders based on mileage, time and local weather.',
+    punten: ['Maintenance reminders based on time and mileage', 'Oil, timing belt, brake fluid and tyres', 'Winter tyres below 7°C', 'Battery check before winter', 'Switch each reminder type on or off'],
+  },
+  {
+    titel: 'Trips',
+    tekst: 'Enable trip recording, then review whether you were driving and which car you used.',
+    punten: ['Automatic detection, including through CarPlay', 'Mileage updates from recorded trips', 'Add missed trips from the past week', 'Business trip records with Plus', 'Routes stored on your phone'],
+  },
+  {
+    titel: 'Vehicle passport',
+    tekst: 'Your recorded car history in one place. Useful when selling, or just for yourself.',
+    punten: ['History, invoices and valuations', 'Share as a PDF', 'Keep previous cars in your history', 'Check the status of a previous car'],
+  },
+];
+---
+<Base
+  lang="en"
+  tab="functies"
+  title="Revly features: maintenance, reminders and trips"
+  description="Everything Revly does for your car: onderhoudslogboek, slimme meldingen, automatisch ritten bijhouden en een autopaspoort om te delen."
+  alternates={{ nl: '/functies/' }}
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="/en/">Revly</a> / Features</div>
+      <h1>Everything Revly does for your car</h1>
+      <p class="lead">For people who want to keep their car longer and understand what is happening under the bonnet.</p>
+      <div class="grid-2 surface-stage" style="margin-top:36px">
+        {groepen.map((g) => (
+          <div class="card glass-surface">
+            <h2 style="font-size:24px">{g.titel}</h2>
+            <p class="muted">{g.tekst}</p>
+            <ul class="checklist">{g.punten.map((p) => <li>{p}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+      <div class="cta-box">
+        <div><strong style="font-size:20px">Try Revly with your own car</strong><p>Enter a Dutch registration to retrieve vehicle details from RDW.</p></div>
+        <StoreKnop lang="en" />
+      </div>
+    </div>
+  </section>
+</Base>

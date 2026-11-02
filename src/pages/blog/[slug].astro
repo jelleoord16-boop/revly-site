@@ -5,7 +5,7 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   // Concepten worden niet gebouwd en staan dus nergens online.
-  const posts = await getCollection('blog', (p) => p.data.status === 'gepubliceerd');
+  const posts = await getCollection('blog', (p) => p.data.status === 'gepubliceerd' && p.data.taal === 'nl');
   return posts.map((p) => ({ params: { slug: p.id }, props: { p } }));
 }
 

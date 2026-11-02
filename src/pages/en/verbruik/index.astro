@@ -1,0 +1,45 @@
+---
+import Base from '../../../layouts/Base.astro';
+import data from '../../../data/verbruik.json';
+import { genoegData, fmt, verschil } from '../../../lib/verbruik';
+
+const modellen = [...data.modellen].sort((a, b) => a.merk.localeCompare(b.merk));
+const bijgewerkt = new Date(data.bijgewerkt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base
+  lang="en"
+  tab="check"
+  title="Real-world consumption by model | Revly"
+  description="Explore sample real-world consumption comparisons alongside official reference figures, by vehicle model."
+  alternates={{ nl: '/verbruik/' }}
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="/en/">Revly</a> / Consumption</div>
+      <h1>Real-world consumption by model</h1>
+      <p class="lead">Drivers can choose to contribute consumption totals. Compare model averages with official figures.</p>
+      <p><span class="demo-label">Sample data in this preview</span> <span class="muted" style="font-size:14px">Updated on {bijgewerkt}</span></p>
+      <div style="overflow-x:auto;margin-top:24px">
+        <table class="data-table">
+          <thead><tr><th>Model</th><th>Fuel</th><th>Model years</th><th>Revly drivers</th><th>Official</th><th>Difference</th></tr></thead>
+          <tbody>
+            {modellen.map((m) => {
+              const ok = genoegData(m, data.drempel);
+              return (
+                <tr>
+                  <td><a href={`/en/verbruik/${m.merkSlug}/${m.modelSlug}/`}>{m.merk} {m.model}</a></td>
+                  <td>{m.brandstof === 'Benzine' ? 'Petrol' : 'Diesel'}</td>
+                  <td class="muted">{m.bouwjaren}</td>
+                  <td class="num">{ok ? <strong>{fmt(m.revly.gemiddelde)} l</strong> : <span class="muted">Not enough data yet</span>}</td>
+                  <td class="num">{fmt(m.rdw)} l</td>
+                  <td class="num">{ok ? `+${verschil(m)}%` : ''}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p class="notice">All figures are sample data, in l/100 km. Real publication requires sufficient participants, participant-months, distance and a limited contribution share per participant. This preview covers Dutch petrol and diesel models without hybrid drive.</p>
+    </div>
+  </section>
+</Base>

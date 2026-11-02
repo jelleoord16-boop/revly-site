@@ -36,9 +36,9 @@ const groepen = [
       <div class="breadcrumb"><a href="/">Revly</a> / Functies</div>
       <h1>Alles wat Revly voor je auto doet</h1>
       <p class="lead">Gemaakt voor mensen die hun auto lang willen houden, en willen weten wat er onder de motorkap gebeurt.</p>
-      <div class="grid-2" style="margin-top:36px">
+      <div class="grid-2 surface-stage" style="margin-top:36px">
         {groepen.map((g) => (
-          <div class="card">
+          <div class="card glass-surface">
             <h2 style="font-size:24px">{g.titel}</h2>
             <p class="muted">{g.tekst}</p>
             <ul class="checklist">{g.punten.map((p) => <li>{p}</li>)}</ul>

@@ -5,8 +5,8 @@ const { model } = Astro.props;
 const m = data.modellen.find((x) => x.id === model);
 ---
 {m ? (
-  <div class="card" style="margin:24px 0">
-    <p class="eyebrow" style="margin-bottom:4px">Revly-verbruiksdata <span class="demo-label">Voorbeelddata</span></p>
+  <div class="card glass-surface consumption-inline" style="margin:24px 0">
+    <p class="consumption-source">Revly-verbruiksdata <span class="demo-label">Voorbeelddata</span></p>
     <p style="font-weight:700;font-size:21px;margin:0 0 4px">{m.merk} {m.model} ({m.brandstof.toLowerCase()})</p>
     {genoegData(m, data.drempel) ? (
       <>
