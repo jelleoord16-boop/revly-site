@@ -11,9 +11,16 @@ function render(){
  pending=false;
  const enabled=desktop.matches&&!reduced.matches;
  document.documentElement.classList.toggle('scroll-scenes',enabled);
- if(!enabled){hero?.style.removeProperty('--scene');return;}
  const vh=innerHeight;
- if(hero){const rect=hero.getBoundingClientRect();const progress=Math.max(0,Math.min(1,-rect.top/Math.max(1,rect.height-vh)));hero.style.setProperty('--scene',String(progress));}
+ if(hero){
+  if(reduced.matches){hero.style.removeProperty('--scene');}
+  else {
+   const rect=(desktop.matches?hero:hero.querySelector<HTMLElement>('.hero-app')!).getBoundingClientRect();
+   const progress=desktop.matches?-rect.top/Math.max(1,rect.height-vh):(vh*.85-rect.top)/(vh*.85+rect.height*.25);
+   hero.style.setProperty('--scene',String(Math.max(0,Math.min(1,progress))));
+  }
+ }
+ if(!enabled)return;
  if(!tour||!preview)return;
  const bounds=chapters.map(el=>({el,rect:el.getBoundingClientRect()}));
  const current=bounds.reduce((best,item)=>Math.abs(item.rect.top+item.rect.height/2-vh/2)<Math.abs(best.rect.top+best.rect.height/2-vh/2)?item:best,bounds[0]);

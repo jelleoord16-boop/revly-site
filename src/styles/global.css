@@ -496,3 +496,23 @@ summary { min-height:44px;align-content:center; }
 }
 @media(min-width:901px) and (max-height:780px) and (prefers-reduced-motion:no-preference){.scroll-scenes .hero-app{height:610px;scale:.88;transform-origin:center}.scroll-scenes .hero .hero-grid{padding-top:75px;padding-bottom:30px}.scroll-scenes .hero h1{font-size:clamp(60px,7vw,92px)}.scroll-scenes .hero .lead{font-size:18px}.scroll-scenes .hero-app figcaption{bottom:-40px}}
 @media(prefers-reduced-motion:reduce){.hero-phone,.hero-trip,.hero-service{translate:none;rotate:none}.tour-text{transition:none}}
+
+/* Keep both hero cards together at rest, then let scroll separate the layers. */
+@media(min-width:901px){.hero-trip{left:34px;top:238px}.hero-service{right:36px;top:360px}}
+@media(min-width:901px) and (prefers-reduced-motion:no-preference){.scroll-scenes .hero-trip{translate:calc(var(--scene)*-96px) calc(var(--scene)*-92px);rotate:calc(var(--scene)*-3deg)}.scroll-scenes .hero-service{translate:calc(var(--scene)*46px) calc(var(--scene)*96px);rotate:calc(var(--scene)*3deg)}}
+@media(max-width:900px){.hero-trip{left:0;top:230px;width:176px}.hero-service{display:flex;right:0;top:395px;width:140px;height:145px;padding:17px}.hero-service strong{font-size:44px}.hero-service small{font-size:13px}}
+@media(max-width:520px){.hero-trip{top:225px;left:0;width:154px;padding:14px}.hero-trip-distance{font-size:35px}.hero-trip-labels{font-size:10px}.hero-service{top:405px;right:0;width:127px;height:136px;padding:15px;font-size:11px}.hero-service strong{font-size:42px}.hero-service small{font-size:12px}}
+@media(max-width:900px) and (prefers-reduced-motion:no-preference){.hero-phone{translate:0 calc(var(--scene,0)*-16px);rotate:calc(var(--scene,0)*-2deg)}.hero-trip{translate:calc(var(--scene,0)*-10px) calc(var(--scene,0)*-38px);rotate:calc(var(--scene,0)*-3deg)}.hero-service{translate:calc(var(--scene,0)*8px) calc(var(--scene,0)*20px);rotate:calc(var(--scene,0)*3deg)}}
+
+.hero-oil-notice{position:absolute;left:18px;top:550px;width:300px;z-index:3;padding:16px;border-radius:23px;display:flex;align-items:center;gap:12px;transform:rotate(-2deg)}.hero-oil-notice>img{border-radius:10px;flex:none;width:36px;height:36px}.hero-oil-notice>div{min-width:0;flex:1}.hero-notice-heading{display:flex;gap:10px;justify-content:space-between;align-items:baseline}.hero-notice-heading strong{font-size:13px;line-height:1.3}.hero-notice-heading>span{font-size:9px;color:var(--hero-muted);white-space:nowrap}.hero-oil-notice p{font-size:12px;line-height:1.45;margin:5px 0 0;color:var(--hero-ink)}
+@media(min-width:901px) and (prefers-reduced-motion:no-preference){.scroll-scenes .hero-oil-notice{translate:calc(var(--scene,0)*-12px) calc(var(--scene,0)*-25px);rotate:calc(var(--scene,0)*3deg)}}
+@media(max-width:900px){.hero-app{height:710px}.hero-service{top:365px}.hero-oil-notice{left:50%;top:565px;width:calc(100% - 18px);max-width:300px;transform:translateX(-50%) rotate(-2deg);padding:14px}.hero-app figcaption{bottom:8px}}
+@media(max-width:900px) and (prefers-reduced-motion:no-preference){.hero-phone{translate:0 calc(var(--scene,0)*-30px);rotate:calc(var(--scene,0)*-4deg)}.hero-trip{translate:calc(var(--scene,0)*-14px) calc(var(--scene,0)*-72px);rotate:calc(var(--scene,0)*-6deg)}.hero-service{translate:calc(var(--scene,0)*10px) calc(var(--scene,0)*36px);rotate:calc(var(--scene,0)*6deg)}.hero-oil-notice{translate:0 calc(var(--scene,0)*-24px);rotate:calc(var(--scene,0)*4deg)}}
+@media(prefers-reduced-motion:reduce){.hero-oil-notice{translate:none;rotate:none}}
+
+/* Keep the reminder directly below the service card, within the main cluster. */
+@media(min-width:901px){.hero-service{top:290px}.hero-oil-notice{top:480px;left:38px;width:320px}}
+@media(min-width:901px) and (prefers-reduced-motion:no-preference){.scroll-scenes .hero-service{translate:calc(var(--scene)*46px) calc(var(--scene)*48px)}.scroll-scenes .hero-oil-notice{translate:calc(var(--scene)*-12px) calc(var(--scene)*22px)}}
+@media(max-width:900px){.hero-service{top:290px}.hero-oil-notice{top:490px;max-width:320px}.hero-oil-notice p{font-size:12px;line-height:1.5}}
+@media(max-width:520px){.hero-service{top:290px}.hero-oil-notice{top:490px}}
+@media(max-width:900px) and (prefers-reduced-motion:no-preference){.hero-service{translate:calc(var(--scene,0)*10px) calc(var(--scene,0)*24px)}.hero-oil-notice{translate:0 calc(var(--scene,0)*-6px)}}
