@@ -1,0 +1,6 @@
+@font-face{font-family:Manrope;font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/manrope-400.ttf') format('truetype')}
+@font-face{font-family:Manrope;font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/manrope-500.ttf') format('truetype')}
+@font-face{font-family:Manrope;font-style:normal;font-weight:600;font-display:swap;src:url('/fonts/manrope-600.ttf') format('truetype')}
+@font-face{font-family:Manrope;font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/manrope-700.ttf') format('truetype')}
+@font-face{font-family:Manrope;font-style:normal;font-weight:800;font-display:swap;src:url('/fonts/manrope-800.ttf') format('truetype')}
+body,button,input,select,textarea,h1,h2,h3,.v2-revly-hero h1{font-family:Manrope,Arial,sans-serif}button,input,select,textarea{font-size:inherit}h1,h2,h3{font-weight:700}.v2-revly-hero h1{font-weight:800}

@@ -8,8 +8,8 @@ const posts = (await getCollection('blog', (p) => p.data.status === 'gepubliceer
 <Base
   lang="en"
   tab="onderhoud"
-  title="Blog over auto-onderhoud | Revly"
-  description="Praktische artikelen over onderhoud van je auto: APK, distributieriem, banden, accu en verbruik. Geschreven voor wie zijn auto lang wil houden."
+  title="Car maintenance blog | Revly"
+  description="Practical articles about maintenance, timing belts, tyres, batteries and consumption. For people who want to keep their car longer."
   alternates={{ nl: '/blog/' }}
 >
   <section class="section">
@@ -20,7 +20,7 @@ const posts = (await getCollection('blog', (p) => p.data.status === 'gepubliceer
       <div class="post-list surface-stage" style="margin-top:32px">
         {posts.map((p) => (
           <a class="card post-item glass-surface" href={`/en/blog/${p.id}/`}>
-            <p class="meta">{p.data.datum?.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+            <p class="meta">{p.data.datum?.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
             <h2 style="font-size:21px;letter-spacing:-0.015em;line-height:1.2;margin:0 0 6px">{p.data.titel}</h2>
             <p class="muted">{p.data.samenvatting}</p>
           </a>

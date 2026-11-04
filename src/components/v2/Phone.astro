@@ -1,0 +1,5 @@
+---
+import DemoScreen from './DemoScreen.astro';
+const {image,alt='',bmw=false,priority=false}=Astro.props;
+---
+<div class:list={['v2-phone',bmw&&'v2-phone-bmw']}><DemoScreen image={image} alt={alt} priority={priority}/></div>

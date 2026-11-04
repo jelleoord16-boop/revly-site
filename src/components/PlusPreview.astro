@@ -1,0 +1,11 @@
+---
+import site from '../data/site.json';
+const {lang='nl'}=Astro.props;
+const en=lang==='en';
+---
+<section id="revly-plus" class="wrap plus-preview-section" aria-labelledby="plus-preview-title">
+ <div class="plus-preview">
+  <figure class="plus-preview-visual"><div class="plus-preview-phone"><img src="/images/app/costs-current.jpg" width="588" height="1280" loading="lazy" decoding="async" alt={en?'Revly costs screen with categories, cost per kilometre and annual comparisons, shown in Dutch':'Revly-kostenoverzicht met categorieën, kosten per kilometer en jaarvergelijking'}/></div><figcaption>{en?'Real app screen · shown in Dutch':'Echt scherm uit de app'}</figcaption></figure>
+  <div class="plus-preview-copy"><span class="plus-preview-label">Revly Plus</span><h2 id="plus-preview-title">{en?'Know what your car costs.':'Zie waar je autogeld blijft.'}</h2><p class="plus-preview-lead">{en?'From fuel to maintenance. See your recorded costs by category, compare years and find out what each kilometre costs.':'Van tanken tot onderhoud. Bekijk je geregistreerde kosten per categorie, vergelijk jaren en zie wat een kilometer je kost.'}</p><p class="plus-preview-extra">{en?'Plus also gives you more cars and receipt and invoice scanning. Your first car is free.':'Met Plus houd je ook meer auto’s bij en scan je bonnen en facturen. Je eerste auto blijft gratis.'}</p><a class="btn btn-light" href={en?'/en/plus/':'/plus/'}>{en?'Discover Revly Plus':'Ontdek Revly Plus'}<span aria-hidden="true">→</span></a><p class="plus-preview-prices">€ {site.prijsMaand}{en?' / month':' per maand'} · € {site.prijsJaar}{en?' / year':' per jaar'}<br/>{en?'Or € ':'Of € '}{site.prijsLifetime}{en?' as a one-time purchase.':' eenmalig.'}</p></div>
+ </div>
+</section>

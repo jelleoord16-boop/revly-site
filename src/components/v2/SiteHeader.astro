@@ -1,0 +1,11 @@
+---
+const {lang='nl',otherLangHref}=Astro.props;
+const en=lang==='en';
+const home=en?'/en/':'/';
+const path=Astro.url.pathname;
+const links=[{href:home,label:'Home'},{href:home+'check/',label:en?'Car':'Check'},{href:home+'app/',label:en?'App':'De app'},{href:home+'functies/',label:en?'Features':'Functies'},{href:home+'plus/',label:'Plus'}];
+---
+<header class="revly-header"><nav aria-label={en?'Main navigation':'Hoofdnavigatie'}><a class="brand" href={home} aria-label="Revly"><img src="/revly-logo.png" width="30" height="30" alt=""/>Revly</a><div class="links">{links.map(link=><a href={link.href} aria-current={path===link.href?'page':undefined}>{link.label}</a>)}</div><div class="actions"><a class="language" href={otherLangHref??(en?'/':'/en/')} hreflang={en?'nl':'en'}>{en?'NL':'EN'}</a><a class="download" href={home+'#download'}>Download</a></div></nav></header>
+<style>
+.revly-header{position:sticky;top:0;z-index:30;background:#fffffff2;color:#182235;border-bottom:1px solid #dce1e8;backdrop-filter:blur(20px)}nav{width:min(1120px,calc(100% - 80px));margin:auto;min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:inline-flex;align-items:center;gap:9px;font-size:24px;font-weight:750;letter-spacing:-.035em;text-decoration:none;color:inherit}.brand img{border-radius:8px}.links,.actions{display:flex;align-items:center;gap:24px}a{font:inherit;color:inherit;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;font-size:14px}a:hover{color:#235bce}.links a[aria-current=page]{text-decoration:underline;text-underline-offset:7px}.download{padding:10px 20px;background:#265fdb;border-radius:16px;color:white;font-weight:650;justify-content:center}.download:hover{background:#174bbf;color:white}a:focus-visible{outline:3px solid #265fdb;outline-offset:4px}@media(max-width:700px){nav{width:calc(100% - 44px);gap:0;flex-wrap:wrap;padding-top:8px}.brand{font-size:23px}.actions{gap:16px}.links{order:3;width:100%;justify-content:space-between;gap:14px;border-top:1px solid #e5e9f0;margin-top:8px}.links a{font-size:12px;min-height:48px;white-space:nowrap}.links{gap:10px}.download{min-height:40px;padding:8px 15px;font-size:13px}}
+</style>

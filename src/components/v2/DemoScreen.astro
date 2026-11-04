@@ -1,0 +1,9 @@
+---
+const {image,alt='',priority=false}=Astro.props;
+const aliases:Record<string,string>={'garage-current.jpg':'garage-bmw','maintenance-current.jpg':'maintenance-reminders','costs-current.jpg':'costs-overview','consumption-current.jpg':'consumption-overview','passport-current.jpg':'passport'};
+const key=(aliases[image]??image).replace(/\.(jpg|png)$/,'');
+const edited=['garage-bmw','garage-overview','maintenance-reminders','maintenance-history','costs-overview','costs-trends','costs-detail','passport','previous-detail','consumption-overview','consumption-history','sharing-settings','sharing-current','previous-cars-current','trips-current','trip-demo'];
+const source=key==='consumption-history'?'/images/app/edited/consumption-history-comparison.png':edited.includes(key)?`/images/app/edited/${key}.jpg`:`/images/app/${image}`;
+---
+<div class="demo-screen"><img class="demo-source" src={source} width="1206" height="2622" alt={alt} loading={priority?'eager':'lazy'} fetchpriority={priority?'high':undefined} decoding="async"/></div>
+<style>.demo-screen{position:relative;width:100%;overflow:hidden;border-radius:inherit;background:#000}.demo-source{display:block;width:100%;height:auto}</style>

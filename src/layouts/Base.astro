@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import SiteHeader from '../components/v2/SiteHeader.astro';
+import '../styles/version-two-pages.css';
+import '../styles/revly-font.css';
 import site from '../data/site.json';
 
 interface Props {
@@ -83,7 +86,7 @@ const resolvedAlternates = lang === 'en' ? {nl:otherLangHref,en:normalizedPath} 
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalUrl} />
-  {noindex && <meta name="robots" content="noindex" />}
+  <meta name="robots" content="noindex,nofollow" />
   {resolvedAlternates.nl && <link rel="alternate" hreflang="nl" href={siteUrl + resolvedAlternates.nl} />}
   {resolvedAlternates.en && <link rel="alternate" hreflang="en" href={siteUrl + resolvedAlternates.en} />}
   {resolvedAlternates.nl && <link rel="alternate" hreflang="x-default" href={siteUrl + resolvedAlternates.nl} />}
@@ -104,17 +107,8 @@ const resolvedAlternates = lang === 'en' ? {nl:otherLangHref,en:normalizedPath} 
   <script is:inline>if (new URLSearchParams(location.search).has('app')) document.documentElement.classList.add('app');</script>
 </head>
 <body>
-  <header class={heroTop ? 'topbar on-hero' : 'topbar'}>
-    <div class="wrap">
-      <a class="logo" href={t.home}><img src="/revly-logo.png" alt="" width="30" height="30" />Revly</a>
-      <nav class="desktop-menu" aria-label={lang === 'nl' ? 'Hoofdmenu' : 'Main menu'}>{tabs.map(tb=><a href={tb.href} aria-current={tab === tb.key ? 'page' : undefined}>{tb.label}</a>)}</nav>
-      <div class="topbar-end">
-        {import.meta.env.DEV && <a class="lang" href="/admin/">{lang === 'en' ? 'Admin' : 'Beheer'}</a>}
-        <a class="lang" href={otherLangHref} hreflang={lang === 'nl' ? 'en' : 'nl'}>{t.andereTaal}</a>
-        <a class={heroTop ? 'btn btn-light btn-small' : 'btn btn-primary btn-small'} href={lang === 'nl' ? '/#download' : '/en/#download'}>Download</a>
-      </div>
-    </div>
-  </header>
+<div class="v2-pages-banner"><span>{lang === 'en' ? 'Design 02' : 'Ontwerp 02'}</span><a href={`http://127.0.0.1:4321${lang === 'en' ? '/en/' : '/'}`}>{lang === 'en' ? 'View current version' : 'Bekijk huidige versie'} ↗</a></div>
+  <SiteHeader lang={lang} otherLangHref={otherLangHref}/>
 
   <main>
     <slot />
@@ -146,15 +140,7 @@ const resolvedAlternates = lang === 'en' ? {nl:otherLangHref,en:normalizedPath} 
       )}
     </div>
   </footer>
-  <nav class="tabbar" aria-label={lang === 'nl' ? 'Hoofdmenu' : 'Main menu'}>
-    {tabs.map((tb) => (
-      <a class="tab" href={tb.href} aria-current={tab === tb.key ? 'page' : undefined}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={tb.icon} /></svg>
-        <span>{tb.label}</span>
-      </a>
-    ))}
-    {km && <span class="tab-km" id="tab-km" aria-live="off">214.320 km</span>}
-  </nav>
+
 <script>import '../lib/scroll-scenes';</script>
 </body>
 </html>
