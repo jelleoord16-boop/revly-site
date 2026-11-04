@@ -1,5 +1,6 @@
 ---
 import HeroApp from '../components/HeroApp.astro';
+import PlusPreview from '../components/PlusPreview.astro';
 import Base from '../layouts/Base.astro';
 import StoreKnop from '../components/StoreKnop.astro';
 import site from '../data/site.json';
@@ -181,19 +182,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="wrap" style="padding-bottom:88px">
-    <div class="plus-band">
-      <div style="max-width:560px">
-        <h2 style="font-size:clamp(32px,4.5vw,56px)">Je eerste auto gratis. Meer met Plus.</h2>
-        <p style="font-size:19px;margin:0">Met Revly Plus houd je meer auto's bij, scan je bonnen en facturen en zie je wat je auto echt kost.</p>
-      </div>
-      <div>
-        <div class="plus-price">€ {site.prijsJaar}</div>
-        <p style="margin:6px 0 10px">per jaar, € {site.prijsMaand} per maand of € {site.prijsLifetime} eenmalig{site.proefperiode ? `, eerst ${site.proefperiode}` : ''}</p>
-        <a href="/plus/" style="font-weight:700">Bekijk Revly Plus</a>
-      </div>
-    </div>
-  </section>
+  <PlusPreview lang="nl" />
 
   {posts.length > 0 && (
     <section class="section" style="background:var(--card)">
