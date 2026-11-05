@@ -1,0 +1,7 @@
+---
+import TermPage from '../../components/terms/TermPage.astro';
+import {carTerms} from '../../data/car-terms';
+export function getStaticPaths(){return carTerms.map(term=>({params:{slug:term.slug.nl},props:{term}}));}
+const {term}=Astro.props;
+---
+<TermPage term={term} lang="nl"/>

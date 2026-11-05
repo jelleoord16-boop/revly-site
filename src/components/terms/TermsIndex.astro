@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import {carTerms} from '../../data/car-terms';
+import '../../styles/car-terms.css';
+const {lang='nl'}=Astro.props as {lang:'nl'|'en'};const en=lang==='en',hub=en?'/en/car-terms/':'/autobegrippen/';
+const categories=[...new Set(carTerms.map(t=>t.category[lang]))];
+const schema={'@context':'https://schema.org','@type':'DefinedTermSet',name:en?'Revly car terms':'Revly autobegrippen',url:`https://getrevly.nl${hub}`,description:en?'Clear explanations of car maintenance, oil and costs.':'Begrijpelijke uitleg over auto-onderhoud, motorolie en autokosten.'};
+---
+<Base title={en?'Car terms explained | Revly':'Autobegrippen eenvoudig uitgelegd | Revly'} description={en?'Understand car maintenance, oil and costs. Clear definitions, practical examples and useful links to the Revly app.':'Begrijp je auto beter. Korte definities, praktische voorbeelden en uitleg over onderhoud, motorolie en autokosten.'} lang={lang} schema={schema} image="/images/bmw-e30-example.jpg">
+ <header class="terms-index-hero"><img src="/images/bmw-e30-example.jpg" width="1536" height="1024" alt="" fetchpriority="high"/><div class="wrap"><h1>{en?'Car words.\nClearly explained.':'Autotaal.\nGewoon uitgelegd.'}</h1><p>{en?'From the numbers on an oil bottle to what a kilometre costs. Understand what you keep track of.':'Van de cijfers op een oliefles tot de kosten van een kilometer. Begrijp wat je bijhoudt.'}</p><span>{en?'Illustrative image':'Illustratieve afbeelding'}</span></div></header>
+ <section class="terms-index wrap" aria-labelledby="terms-heading"><div class="terms-index-heading"><div><h2 id="terms-heading">{en?'Find your term':'Zoek je begrip'}</h2><p>{en?'A first selection. More terms will follow.':'Een eerste selectie. We vullen de lijst verder aan.'}</p></div><a href={en?'/en/blog/':'/blog/'}>{en?'More stories in the blog':'Verder lezen in het blog'} <span aria-hidden="true">↗</span></a></div>
+ <form class="terms-search" role="search" onsubmit="return false"><div><label for="term-search">{en?'Search car terms':'Zoek in autobegrippen'}</label><input id="term-search" type="search" placeholder={en?'For example: oil or cost':'Bijvoorbeeld: olie of kosten'} autocomplete="off"/></div><div><label for="term-category">{en?'Topic':'Onderwerp'}</label><select id="term-category"><option value="">{en?'All topics':'Alle onderwerpen'}</option>{categories.map(c=><option value={c}>{c}</option>)}</select></div></form>
+ <p class="terms-count" role="status" aria-live="polite" data-term-status data-lang={lang}>{carTerms.length} {en?'terms':'begrippen'}</p>
+ <div class="terms-list">{carTerms.map(t=><article data-term data-category={t.category[lang]} data-search={`${t.name[lang]} ${t.definition[lang]} ${t.category[lang]}`}><a href={`${hub}${t.slug[lang]}/`}><img src={t.image} width="300" height="200" alt="" loading="lazy"/><div><span>{t.category[lang]}</span><h3>{t.name[lang]}</h3><p>{t.definition[lang]}</p></div><span class="term-arrow" aria-hidden="true">↗</span></a></article>)}</div>
+ <div class="terms-empty" hidden><h3>{en?'No matching terms yet':'Dit begrip staat er nog niet tussen'}</h3><p>{en?'Try a different search or view all topics.':'Probeer een ander zoekwoord of bekijk alle onderwerpen.'}</p><button class="btn btn-secondary" data-reset-terms type="button">{en?'Show all terms':'Toon alle begrippen'}</button></div>
+ <p class="terms-intro-note">{en?'Need practical maintenance stories? Visit the ':'Op zoek naar praktische onderhoudsverhalen? Bekijk het '}<a href={en?'/en/blog/':'/blog/'}>blog</a>.</p>
+ </section>
+</Base>
+<script>
+const search=document.querySelector<HTMLInputElement>('#term-search')!;
+const category=document.querySelector<HTMLSelectElement>('#term-category')!;
+const rows=Array.from(document.querySelectorAll<HTMLElement>('[data-term]'));
+const status=document.querySelector<HTMLElement>('[data-term-status]')!;
+const empty=document.querySelector<HTMLElement>('.terms-empty')!;
+const normalize=(text:string)=>text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+function filter(){const query=normalize(search.value);let count=0;rows.forEach(row=>{row.hidden=!(normalize(row.dataset.search!).includes(query)&&(!category.value||row.dataset.category===category.value));if(!row.hidden)count++;});empty.hidden=count!==0;status.textContent=status.dataset.lang==='en'?`${count} ${count===1?'term':'terms'}`:`${count} ${count===1?'begrip':'begrippen'}`;}
+search.addEventListener('input',filter);category.addEventListener('change',filter);document.querySelector('[data-reset-terms]')!.addEventListener('click',()=>{search.value='';category.value='';filter();search.focus();});
+</script>

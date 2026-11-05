@@ -41,6 +41,7 @@ tabs.forEach((t,k)=>{t.addEventListener('click',()=>pick(t));t.addEventListener(
 const scene=document.querySelector<HTMLElement>('.v2-device-stage')!;
 const drive=document.querySelector<HTMLElement>('.v2-drive')!;
 const maintenance=document.querySelector<HTMLElement>('.v2-maintenance')!;
+const maintenanceVisual=maintenance.querySelector<HTMLElement>('.v2-maintenance-visual')!;
 const wide=matchMedia('(min-width: 901px)');
 const steps=Array.from(document.querySelectorAll<HTMLElement>('[data-drive-step]'));
 let queued=false;
@@ -57,8 +58,9 @@ function paint(){
  const r=scene.getBoundingClientRect();
  const p=Math.max(0,Math.min(1,(vh*.8-r.top)/(vh*.8+r.height*.35)));
  scene.style.setProperty('--progress',String(p));
- const m=maintenance.getBoundingClientRect();
- const mp=Math.max(0,Math.min(1,(vh*.85-m.top)/(vh*.75+m.height*.18)));
+ // Follow the visual, which sits below the copy on mobile.
+ const m=maintenanceVisual.getBoundingClientRect();
+ const mp=Math.max(0,Math.min(1,(vh*.85-m.top)/(vh*.85+m.height*.15)));
  maintenance.style.setProperty('--maintenance',String(mp));
  const d=drive.getBoundingClientRect();
  const road=drive.querySelector<HTMLElement>('.v2-drive-road')!;

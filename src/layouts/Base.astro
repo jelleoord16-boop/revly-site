@@ -72,7 +72,7 @@ const tabs = lang === 'nl'
       { key:'plus',href:'/en/plus/',label:'Plus',icon:icons.plus },
     ];
 
-const counterparts:Record<string,string> = {'/blog/verbruik-volvo-s60/':'/en/blog/volvo-s60-consumption/','/blog/distributieriem-vervangen/':'/en/blog/when-to-replace-timing-belt/'};
+const counterparts:Record<string,string> = {'/autobegrippen/':'/en/car-terms/','/autobegrippen/5w30-motorolie/':'/en/car-terms/5w30-engine-oil/','/autobegrippen/onderhoudsinterval/':'/en/car-terms/service-interval/','/autobegrippen/kosten-per-kilometer/':'/en/car-terms/cost-per-kilometre/','/blog/verbruik-volvo-s60/':'/en/blog/volvo-s60-consumption/','/blog/distributieriem-vervangen/':'/en/blog/when-to-replace-timing-belt/'};
 const normalizedPath = path.endsWith('/') ? path : path + '/';
 const reverseCounterpart = Object.entries(counterparts).find(([,en])=>en===normalizedPath)?.[0];
 const otherLangHref = lang === 'nl' ? (counterparts[normalizedPath] ?? '/en' + normalizedPath) : (reverseCounterpart ?? (normalizedPath.replace(/^\/en/, '') || '/'));
@@ -107,7 +107,6 @@ const resolvedAlternates = lang === 'en' ? {nl:otherLangHref,en:normalizedPath} 
   <script is:inline>if (new URLSearchParams(location.search).has('app')) document.documentElement.classList.add('app');</script>
 </head>
 <body>
-<div class="v2-pages-banner"><span>{lang === 'en' ? 'Design 02' : 'Ontwerp 02'}</span><a href={`http://127.0.0.1:4321${lang === 'en' ? '/en/' : '/'}`}>{lang === 'en' ? 'View current version' : 'Bekijk huidige versie'} ↗</a></div>
   <SiteHeader lang={lang} otherLangHref={otherLangHref}/>
 
   <main>
@@ -127,13 +126,13 @@ const resolvedAlternates = lang === 'en' ? {nl:otherLangHref,en:normalizedPath} 
       </div>
       {lang === 'nl' ? (
         <>
-          <div><h2 class="ft">App</h2><a href="/functies/">Functies</a><a href="/plus/">Revly Plus</a><a href="/#download">Download</a></div>
-          <div><h2 class="ft">Lezen</h2><a href="/check/">APK- en kentekencheck</a><a href="/app/">De app</a><a href="/blog/">Blog</a><a href="/verbruik/">Verbruik per model</a></div>
+          <div><h2 class="ft">App</h2><a href="/app/">De app</a><a href="/plus/">Revly Plus</a><a href="/#download">Download</a></div>
+          <div><h2 class="ft">Lezen</h2><a href="/check/">APK- en kentekencheck</a><a href="/autobegrippen/">Autobegrippen</a><a href="/blog/">Blog</a><a href="/verbruik/">Verbruik per model</a></div>
           <div><h2 class="ft">Hulp</h2><a href="/support/">Hulp en contact</a><a href="/privacy/">Privacyverklaring</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Gebruiksvoorwaarden</a></div>
         </>
       ) : (
         <>
-          <div><h2 class="ft">App</h2><a href="/en/functies/">Features</a><a href="/en/plus/">Revly Plus</a><a href="/en/#download">Download</a></div><div><h2 class="ft">Explore</h2><a href="/en/check/">Find your car</a><a href="/en/app/">The app</a><a href="/en/blog/">Blog</a><a href="/en/verbruik/">Consumption by model</a></div>
+          <div><h2 class="ft">App</h2><a href="/en/app/">The app</a><a href="/en/plus/">Revly Plus</a><a href="/en/#download">Download</a></div><div><h2 class="ft">Explore</h2><a href="/en/check/">Find your car</a><a href="/en/car-terms/">Car terms</a><a href="/en/blog/">Blog</a><a href="/en/verbruik/">Consumption by model</a></div>
           <div><h2 class="ft">Help</h2><a href="/en/support/">Help and contact</a><a href="/en/privacy/">Privacy policy</a></div>
           <div><h2 class="ft">Legal</h2><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of use</a></div>
         </>

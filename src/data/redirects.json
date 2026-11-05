@@ -1,6 +1,24 @@
 {
   "regels": [
-    { "van": "/hulp/", "naar": "/support/", "code": "301" },
-    { "van": "/prijzen/", "naar": "/plus/", "code": "301" }
+    {
+      "van": "/hulp/",
+      "naar": "/support/",
+      "code": "301"
+    },
+    {
+      "van": "/prijzen/",
+      "naar": "/plus/",
+      "code": "301"
+    },
+    {
+      "van": "/functies/",
+      "naar": "/app/",
+      "code": "301"
+    },
+    {
+      "van": "/en/functies/",
+      "naar": "/en/app/",
+      "code": "301"
+    }
   ]
 }
