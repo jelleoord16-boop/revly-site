@@ -5,9 +5,28 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import keystatic from '@keystatic/astro';
 
-// Keystatic draait in deze proefversie alleen lokaal (npm run dev).
-// Voor beheer op getrevly.nl/keystatic komt er later de Cloudflare-adapter bij.
 const isDev = process.argv.includes('dev');
+const editorPreview = !isDev && process.env.CF_PAGES_BRANCH === 'codex/revly-preview';
+
+const previewEditor = {
+  name: 'revly-preview-editor',
+  hooks: {
+    'astro:config:setup': ({ injectRoute }) => {
+      injectRoute({
+        pattern: '/_keystatic-shell/',
+        entrypoint: './src/components/keystatic/PreviewShell.astro',
+        prerender: true,
+      });
+    },
+    'astro:build:done': ({ dir }) => {
+      writeFileSync(new URL('_routes.json', dir), JSON.stringify({
+        version: 1,
+        include: ['/keystatic', '/keystatic/*', '/api/keystatic/*'],
+        exclude: [],
+      }));
+    },
+  },
+};
 
 // Pagina's met noindex horen niet in de sitemap.
 const verbruik = JSON.parse(readFileSync('./src/data/verbruik.json', 'utf8'));
@@ -42,10 +61,10 @@ export default defineConfig({
   integrations: [
     markdoc(),
     sitemap({
-      filter: (page) => !page.includes('/admin/') && !page.includes('/onderhoud') && !page.includes('/keystatic') && !uitSitemap.some((p) => page.endsWith(p)),
+      filter: (page) => !page.includes('/admin/') && !page.includes('/onderhoud') && !page.includes('/keystatic') && !page.includes('/_keystatic-shell') && !uitSitemap.some((p) => page.endsWith(p)),
       i18n: { defaultLocale: 'nl', locales: { nl: 'nl-NL', en: 'en-GB' } },
     }),
     cloudflareRedirects,
-    ...(isDev ? [react(), keystatic()] : []),
+    ...(isDev ? [react(), keystatic()] : editorPreview ? [react(), previewEditor] : []),
   ],
 });
