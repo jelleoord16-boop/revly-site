@@ -19,6 +19,11 @@
       "van": "/en/functies/",
       "naar": "/en/app/",
       "code": "301"
+    },
+    {
+      "van": "/blog/verbruik-volvo-s60/",
+      "naar": "/blog/verbruik-volvo-s60-p2/",
+      "code": "301"
     }
   ]
 }

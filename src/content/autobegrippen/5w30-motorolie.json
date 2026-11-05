@@ -1,0 +1,72 @@
+{
+  "naam": "5W30-motorolie",
+  "naamEn": "5W30 engine oil",
+  "slugEn": "5w30-engine-oil",
+  "bestaandeAfbeelding": "/images/terms/garage-oil.png",
+  "bijgewerkt": "2026-11-04",
+  "category": {
+    "nl": "Motor en onderhoud",
+    "en": "Engine and maintenance"
+  },
+  "title": {
+    "nl": "Wat betekent 5W30?",
+    "en": "What does 5W30 mean?"
+  },
+  "definition": {
+    "nl": "5W30, ook geschreven als 5W-30, is een viscositeitsklasse voor motorolie. De aanduiding beschrijft hoe de olie zich gedraagt bij lage en hoge temperaturen.",
+    "en": "5W30, also written as 5W-30, is an engine oil viscosity grade. It describes how the oil behaves at low and high temperatures."
+  },
+  "intro": {
+    "nl": "Die letters en cijfers op een oliefles vertellen iets over de olie. Maar nog niet of die fles geschikt is voor jouw motor.",
+    "en": "The letters and numbers on an oil bottle describe the oil. They do not, on their own, tell you whether it suits your engine."
+  },
+  "heading": {
+    "nl": "Wat zeggen de cijfers?",
+    "en": "What do the numbers tell you?"
+  },
+  "explanation": {
+    "nl": [
+      "De W staat voor winter. Het getal ervoor hoort bij de viscositeitsklasse voor lage temperaturen. Bij dezelfde warme klasse stroomt 5W-30 bij kou gemakkelijker dan 10W-30.",
+      "De 30 is de viscositeitsklasse bij hoge temperatuur. Het is geen temperatuur in graden en ook geen kwaliteitscijfer."
+    ],
+    "en": [
+      "W stands for winter. The number before it is the low-temperature viscosity grade. With the same hot grade, 5W-30 flows more easily in the cold than 10W-30.",
+      "The 30 is the high-temperature viscosity grade. It is not a temperature in degrees or a quality rating."
+    ]
+  },
+  "exampleTitle": {
+    "nl": "Dezelfde 5W30, toch een andere olie",
+    "en": "Same 5W30 grade, different oil"
+  },
+  "example": {
+    "nl": "Je ziet twee flessen 5W30 in de winkel. De viscositeitsklasse is gelijk, maar de overige specificaties en fabrikantgoedkeuringen kunnen verschillen. Kijk daarom naar de volledige voorschriften van jouw auto, niet alleen naar 5W30.",
+    "en": "You see two bottles labelled 5W30 in a shop. Their viscosity grade matches, but their other specifications and manufacturer approvals may differ. Check your car’s full requirements rather than the grade alone."
+  },
+  "takeaway": {
+    "nl": "Gebruik de olie die bij de motor en de voorschriften van de fabrikant past. Raadpleeg het instructieboekje of vraag je garage bij twijfel.",
+    "en": "Use oil that meets your engine manufacturer’s requirements. Check the handbook or ask your garage if you are unsure."
+  },
+  "alt": {
+    "nl": "Illustratieve werkbank met motorolie en een klassieke auto op de achtergrond",
+    "en": "Illustrative workbench with engine oil and a classic car in the background"
+  },
+  "appAnchor": "onderhoud",
+  "appCopy": {
+    "nl": "Leg in Revly vast welke olie bij een beurt is gebruikt. Zo kun je dat later terugvinden in je onderhoudshistorie.",
+    "en": "Record the oil used during a service in Revly, so you can find it again in your maintenance history."
+  },
+  "sources": [
+    {
+      "label": "Castrol: motorolie-viscositeitsklassen",
+      "url": "https://www.castrol.com/nl_nl/netherlands/home/products/our-brands/viscosity-grades.html"
+    },
+    {
+      "label": "BOVAG: SAE-specificatie",
+      "url": "https://www.bovag.nl/techneutentaal/sae-specificatie"
+    }
+  ],
+  "gerelateerd": [
+    "onderhoudsinterval",
+    "kosten-per-kilometer"
+  ]
+}

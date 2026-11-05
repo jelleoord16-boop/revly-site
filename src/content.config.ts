@@ -11,6 +11,8 @@ const blog = defineCollection({
     bijgewerkt: z.coerce.date().nullable().optional(),
     taal: z.enum(['nl', 'en']).default('nl'),
     samenvatting: z.string().optional().default(''),
+    heroAfbeelding: z.string().nullable().optional(),
+    heroAlt: z.string().optional().default(''),
     seo: z
       .object({
         titel: z.string().optional().default(''),

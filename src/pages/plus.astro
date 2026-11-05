@@ -1,4 +1,5 @@
 ---
+import copy from '../data/pages/plus.json';
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 
@@ -29,8 +30,8 @@ const schema = {
 ---
 <Base
   tab="plus"
-  title="Revly Plus: meerdere auto's, scannen en kosteninzicht"
-  description={`Revly is gratis voor je eerste auto. Met Revly Plus voor € ${site.prijsJaar} per jaar houd je meerdere auto's bij en scan je bonnen en facturen.`}
+  title={copy.seoTitel.nl.trim() || copy.kop.nl}
+  description={copy.meta.nl.replace('{jaarprijs}', site.prijsJaar)}
   alternates={{ nl: '/plus/' }}
   schema={schema}
 >
@@ -38,8 +39,8 @@ const schema = {
     <div class="wrap">
       <div class="breadcrumb"><a href="/">Revly</a> / Revly Plus</div>
       <div style="text-align:center;max-width:640px;margin:0 auto 40px">
-        <h1>Revly Plus</h1>
-        <p class="lead" style="margin:0 auto">Houd je eerste auto gratis bij. Plus voegt meerdere auto's, scannen en uitgebreid kosteninzicht toe.</p>
+        <h1>{copy.kop.nl}</h1>
+        <p class="lead" style="margin:0 auto">{copy.intro.nl}</p>
       </div>
       <div class="price-grid">
         <div class="card">

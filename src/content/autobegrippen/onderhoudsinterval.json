@@ -1,0 +1,68 @@
+{
+  "naam": "Onderhoudsinterval",
+  "naamEn": "Service interval",
+  "slugEn": "service-interval",
+  "bestaandeAfbeelding": "/images/terms/garage-oil.png",
+  "bijgewerkt": "2026-11-04",
+  "category": {
+    "nl": "Motor en onderhoud",
+    "en": "Engine and maintenance"
+  },
+  "title": {
+    "nl": "Wat is een onderhoudsinterval?",
+    "en": "What is a service interval?"
+  },
+  "definition": {
+    "nl": "Een onderhoudsinterval is de tijd of afstand tussen onderhoudsmomenten volgens het onderhoudsschema van je auto. Het kan bijvoorbeeld gaan om olie verversen of een onderhoudsbeurt.",
+    "en": "A service interval is the time or distance between maintenance tasks specified in your car’s service schedule. It can apply to an oil change or a scheduled service."
+  },
+  "intro": {
+    "nl": "Niet alleen hoeveel je rijdt telt mee. Ook de tijd sinds de vorige beurt kan bepalen wanneer onderhoud nodig is.",
+    "en": "Mileage is only part of the picture. Time since the last service can also determine when maintenance is due."
+  },
+  "heading": {
+    "nl": "Tijd én kilometers bijhouden",
+    "en": "Keep track of time and distance"
+  },
+  "explanation": {
+    "nl": [
+      "Onderhoudstaken kunnen verschillende intervallen hebben. Het moment voor motorolie hoeft niet gelijk te zijn aan dat voor een ander onderdeel. Volg het schema voor jouw motor en uitvoering.",
+      "Staat er een grens in tijd én kilometers? Lees in het onderhoudsschema welke voorwaarde geldt. Vaak gaat het om de grens die je het eerst bereikt."
+    ],
+    "en": [
+      "Different maintenance tasks can have different intervals. Engine oil may not be due at the same time as another component. Follow the schedule for your engine and version.",
+      "If both a time and distance limit are given, check how they apply in your service schedule. Often, the first limit reached determines the due date."
+    ]
+  },
+  "exampleTitle": {
+    "nl": "Een jaar voorbij, weinig gereden",
+    "en": "A year has passed, with little driving"
+  },
+  "example": {
+    "nl": "Stel dat jouw onderhoudsschema voor een taak 12 maanden of 15.000 km voorschrijft, afhankelijk van wat eerst komt. Je hebt na een jaar maar 6.000 km gereden. In dit voorbeeld is het onderhoud toch aan de beurt door de verstreken tijd. Deze getallen zijn een rekenvoorbeeld, geen advies voor jouw auto.",
+    "en": "Suppose a task in your schedule is due every 12 months or 15,000 km, whichever comes first. You drive only 6,000 km in a year. In this example, the task is still due because the time limit has passed. These numbers are illustrative, not a recommendation for your car."
+  },
+  "takeaway": {
+    "nl": "Een APK is geen vervanging voor onderhoud. Bewaar de datum en kilometerstand van de vorige beurt en houd het onderhoudsschema erbij.",
+    "en": "A roadworthiness inspection does not replace servicing. Keep the date and odometer reading of the last service alongside your maintenance schedule."
+  },
+  "alt": {
+    "nl": "Illustratieve werkbank in een garage met een klassieke auto",
+    "en": "Illustrative garage workbench with a classic car"
+  },
+  "appAnchor": "onderhoud",
+  "appCopy": {
+    "nl": "Stel in Revly een herinnering in op datum of kilometerstand en leg vast wat er is gedaan. Gebruik daarbij het interval uit het onderhoudsschema van je auto.",
+    "en": "Set a reminder by date or mileage in Revly and record completed work. Use the interval in your car’s service schedule."
+  },
+  "sources": [
+    {
+      "label": "ANWB: de onderhoudsinterval van je auto aanhouden",
+      "url": "https://www.anwb.nl/auto/onderhoud-en-reparatie/garage/preventief-onderhoud"
+    }
+  ],
+  "gerelateerd": [
+    "5w30-motorolie",
+    "kosten-per-kilometer"
+  ]
+}

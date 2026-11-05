@@ -1,5 +1,6 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
 import { block } from '@keystatic/core/content-components';
+import { autobegrippen, siteContent } from './keystatic.site-content';
 import verbruik from './src/data/verbruik.json';
 
 const modelOpties = verbruik.modellen.map((m) => ({
@@ -15,12 +16,14 @@ export default config({
   ui: {
     brand: { name: 'Revly' },
     navigation: {
-      Inhoud: ['blog', 'vragen'],
-      Instellingen: ['site', 'redirects'],
+      Inhoud: ['blog', 'autobegrippen', 'vragen'],
+      'Pagina’s': ['home', 'app', 'plus', 'begrippenOverzicht'],
+      Instellingen: ['siteCopy', 'site', 'redirects'],
     },
   },
 
   collections: {
+    autobegrippen,
     blog: collection({
       label: 'Blog',
       slugField: 'titel',
@@ -56,6 +59,16 @@ export default config({
           label: 'Samenvatting',
           description: 'Staat in het blogoverzicht onder de titel.',
           multiline: true,
+        }),
+        heroAfbeelding: fields.image({
+          label: 'Headerafbeelding',
+          description: 'Verschijnt boven de artikeltekst. Zonder deelafbeelding wordt deze ook gebruikt voor linkvoorbeelden.',
+          directory: 'public/images/blog/headers',
+          publicPath: '/images/blog/headers/',
+        }),
+        heroAlt: fields.text({
+          label: 'Alt-tekst bij de headerafbeelding',
+          description: 'Beschrijf kort wat de afbeelding toevoegt. Laat leeg als de afbeelding decoratief is.',
         }),
         seo: fields.object(
           {
@@ -131,6 +144,7 @@ export default config({
   },
 
   singletons: {
+    ...siteContent,
     site: singleton({
       label: 'Algemene gegevens',
       path: 'src/data/site',

@@ -1,0 +1,19 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props;
+---
+<img src={src} alt={alt} fetchpriority="high" />
+<style>
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-block: 24px;
+  }
+</style>

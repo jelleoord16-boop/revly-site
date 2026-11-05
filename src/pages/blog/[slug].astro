@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import BlogHeaderImage from '../../components/BlogHeaderImage.astro';
 import StoreKnop from '../../components/StoreKnop.astro';
 import { getCollection, render } from 'astro:content';
 
@@ -17,6 +18,10 @@ const beschrijving = d.seo.beschrijving || d.samenvatting;
 const datum = d.datum?.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 const url = `https://getrevly.nl/blog/${p.id}/`;
 
+const headerImage = d.heroAfbeelding;
+const shareImage = d.seo.afbeelding || headerImage;
+const articleImage = headerImage || d.seo.afbeelding;
+
 const schema = [
   {
     '@context': 'https://schema.org',
@@ -29,7 +34,7 @@ const schema = [
     author: { '@type': 'Person', name: 'Jelle Oord' },
     publisher: { '@type': 'Organization', name: 'Revly', url: 'https://getrevly.nl' },
     mainEntityOfPage: url,
-    ...(d.seo.afbeelding ? { image: 'https://getrevly.nl' + d.seo.afbeelding } : {}),
+    ...(articleImage ? { image: new URL(articleImage, url).href } : {}),
   },
   {
     '@context': 'https://schema.org',
@@ -48,7 +53,7 @@ const schema = [
   description={beschrijving}
   lang={d.taal}
   noindex={d.seo.noindex}
-  image={d.seo.afbeelding}
+  image={shareImage}
   canonical={d.seo.canonical || undefined}
   schema={schema}
   ogType="article"
@@ -60,6 +65,7 @@ const schema = [
       <h1>{d.titel}</h1>
       <p class="meta">{datum}{d.bijgewerkt && ` · bijgewerkt ${d.bijgewerkt.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })}`} · Jelle Oord</p>
       {d.samenvatting && <p class="lead" style="margin-top:18px">{d.samenvatting}</p>}
+      {headerImage && <BlogHeaderImage src={headerImage} alt={d.heroAlt} />}
       <Content />
       <div class="cta-box">
         <div><strong style="font-size:20px">Nooit meer vergeten wanneer het tijd is</strong><p>Revly onthoudt het onderhoud van je auto en geeft op tijd een seintje.</p></div>

@@ -1,4 +1,5 @@
 ---
+import copy from '../../data/pages/termen.json';
 import Base from '../../layouts/Base.astro';
 import {carTerms} from '../../data/car-terms';
 import '../../styles/car-terms.css';
@@ -6,8 +7,8 @@ const {lang='nl'}=Astro.props as {lang:'nl'|'en'};const en=lang==='en',hub=en?'/
 const categories=[...new Set(carTerms.map(t=>t.category[lang]))];
 const schema={'@context':'https://schema.org','@type':'DefinedTermSet',name:en?'Revly car terms':'Revly autobegrippen',url:`https://getrevly.nl${hub}`,description:en?'Clear explanations of car maintenance, oil and costs.':'Begrijpelijke uitleg over auto-onderhoud, motorolie en autokosten.'};
 ---
-<Base title={en?'Car terms explained | Revly':'Autobegrippen eenvoudig uitgelegd | Revly'} description={en?'Understand car maintenance, oil and costs. Clear definitions, practical examples and useful links to the Revly app.':'Begrijp je auto beter. Korte definities, praktische voorbeelden en uitleg over onderhoud, motorolie en autokosten.'} lang={lang} schema={schema} image="/images/bmw-e30-example.jpg">
- <header class="terms-index-hero"><img src="/images/bmw-e30-example.jpg" width="1536" height="1024" alt="" fetchpriority="high"/><div class="wrap"><h1>{en?'Car words.\nClearly explained.':'Autotaal.\nGewoon uitgelegd.'}</h1><p>{en?'From the numbers on an oil bottle to what a kilometre costs. Understand what you keep track of.':'Van de cijfers op een oliefles tot de kosten van een kilometer. Begrijp wat je bijhoudt.'}</p><span>{en?'Illustrative image':'Illustratieve afbeelding'}</span></div></header>
+<Base title={copy.seoTitel[lang].trim() || copy.kop[lang]} description={copy.meta[lang]} lang={lang} schema={schema} image="/images/bmw-e30-example.jpg">
+ <header class="terms-index-hero"><img src="/images/bmw-e30-example.jpg" width="1536" height="1024" alt="" fetchpriority="high"/><div class="wrap"><h1>{copy.kop[lang]}</h1><p>{copy.intro[lang]}</p><span>{en?'Illustrative image':'Illustratieve afbeelding'}</span></div></header>
  <section class="terms-index wrap" aria-labelledby="terms-heading"><div class="terms-index-heading"><div><h2 id="terms-heading">{en?'Find your term':'Zoek je begrip'}</h2><p>{en?'A first selection. More terms will follow.':'Een eerste selectie. We vullen de lijst verder aan.'}</p></div><a href={en?'/en/blog/':'/blog/'}>{en?'More stories in the blog':'Verder lezen in het blog'} <span aria-hidden="true">↗</span></a></div>
  <form class="terms-search" role="search" onsubmit="return false"><div><label for="term-search">{en?'Search car terms':'Zoek in autobegrippen'}</label><input id="term-search" type="search" placeholder={en?'For example: oil or cost':'Bijvoorbeeld: olie of kosten'} autocomplete="off"/></div><div><label for="term-category">{en?'Topic':'Onderwerp'}</label><select id="term-category"><option value="">{en?'All topics':'Alle onderwerpen'}</option>{categories.map(c=><option value={c}>{c}</option>)}</select></div></form>
  <p class="terms-count" role="status" aria-live="polite" data-term-status data-lang={lang}>{carTerms.length} {en?'terms':'begrippen'}</p>

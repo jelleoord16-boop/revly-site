@@ -1,0 +1,140 @@
+{
+  "nl": {
+    "menu": {
+      "home": "Home",
+      "check": "Check je auto",
+      "app": "De app",
+      "plus": "Plus",
+      "blog": "Blog",
+      "download": "Download"
+    },
+    "footerIntro": "Het logboek voor je auto. Gemaakt in Nederland door een autoliefhebber.",
+    "footerKolommen": [
+      {
+        "kop": "App",
+        "links": [
+          {
+            "url": "/app/",
+            "label": "De app"
+          },
+          {
+            "url": "/plus/",
+            "label": "Revly Plus"
+          },
+          {
+            "url": "/#download",
+            "label": "Download"
+          }
+        ]
+      },
+      {
+        "kop": "Lezen",
+        "links": [
+          {
+            "url": "/check/",
+            "label": "APK- en kentekencheck"
+          },
+          {
+            "url": "/autobegrippen/",
+            "label": "Autobegrippen"
+          },
+          {
+            "url": "/blog/",
+            "label": "Blog"
+          },
+          {
+            "url": "/verbruik/",
+            "label": "Verbruik per model"
+          }
+        ]
+      },
+      {
+        "kop": "Hulp",
+        "links": [
+          {
+            "url": "/support/",
+            "label": "Hulp en contact"
+          },
+          {
+            "url": "/privacy/",
+            "label": "Privacyverklaring"
+          },
+          {
+            "url": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
+            "label": "Gebruiksvoorwaarden"
+          }
+        ]
+      }
+    ],
+    "metaStandaard": "Revly brengt je auto, ritten, onderhoud en kosten bij elkaar."
+  },
+  "en": {
+    "menu": {
+      "home": "Home",
+      "check": "Find your car",
+      "app": "App",
+      "plus": "Plus",
+      "blog": "Blog",
+      "download": "Download"
+    },
+    "footerIntro": "The logbook for your car. Made in the Netherlands by a car enthusiast.",
+    "footerKolommen": [
+      {
+        "kop": "App",
+        "links": [
+          {
+            "url": "/en/app/",
+            "label": "The app"
+          },
+          {
+            "url": "/en/plus/",
+            "label": "Revly Plus"
+          },
+          {
+            "url": "/en/#download",
+            "label": "Download"
+          }
+        ]
+      },
+      {
+        "kop": "Explore",
+        "links": [
+          {
+            "url": "/en/check/",
+            "label": "Find your car"
+          },
+          {
+            "url": "/en/car-terms/",
+            "label": "Car terms"
+          },
+          {
+            "url": "/en/blog/",
+            "label": "Blog"
+          },
+          {
+            "url": "/en/verbruik/",
+            "label": "Consumption by model"
+          }
+        ]
+      },
+      {
+        "kop": "Help",
+        "links": [
+          {
+            "url": "/en/support/",
+            "label": "Help and contact"
+          },
+          {
+            "url": "/en/privacy/",
+            "label": "Privacy policy"
+          },
+          {
+            "url": "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
+            "label": "Terms of use"
+          }
+        ]
+      }
+    ],
+    "metaStandaard": "Revly brings your car, trips, maintenance and costs together."
+  }
+}

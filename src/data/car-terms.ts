@@ -1,45 +1,56 @@
-export const carTerms = [
- {
-  id:'oil', slug:{nl:'5w30-motorolie',en:'5w30-engine-oil'}, name:{nl:'5W30-motorolie',en:'5W30 engine oil'}, category:{nl:'Motor en onderhoud',en:'Engine and maintenance'},
-  title:{nl:'Wat betekent 5W30?',en:'What does 5W30 mean?'},
-  definition:{nl:'5W30, ook geschreven als 5W-30, is een viscositeitsklasse voor motorolie. De aanduiding beschrijft hoe de olie zich gedraagt bij lage en hoge temperaturen.',en:'5W30, also written as 5W-30, is an engine oil viscosity grade. It describes how the oil behaves at low and high temperatures.'},
-  intro:{nl:'Die letters en cijfers op een oliefles vertellen iets over de olie. Maar nog niet of die fles geschikt is voor jouw motor.',en:'The letters and numbers on an oil bottle describe the oil. They do not, on their own, tell you whether it suits your engine.'},
-  heading:{nl:'Wat zeggen de cijfers?',en:'What do the numbers tell you?'},
-  explanation:{nl:['De W staat voor winter. Het getal ervoor hoort bij de viscositeitsklasse voor lage temperaturen. Bij dezelfde warme klasse stroomt 5W-30 bij kou gemakkelijker dan 10W-30.','De 30 is de viscositeitsklasse bij hoge temperatuur. Het is geen temperatuur in graden en ook geen kwaliteitscijfer.'],en:['W stands for winter. The number before it is the low-temperature viscosity grade. With the same hot grade, 5W-30 flows more easily in the cold than 10W-30.','The 30 is the high-temperature viscosity grade. It is not a temperature in degrees or a quality rating.']},
-  exampleTitle:{nl:'Dezelfde 5W30, toch een andere olie',en:'Same 5W30 grade, different oil'},
-  example:{nl:'Je ziet twee flessen 5W30 in de winkel. De viscositeitsklasse is gelijk, maar de overige specificaties en fabrikantgoedkeuringen kunnen verschillen. Kijk daarom naar de volledige voorschriften van jouw auto, niet alleen naar 5W30.',en:'You see two bottles labelled 5W30 in a shop. Their viscosity grade matches, but their other specifications and manufacturer approvals may differ. Check your car’s full requirements rather than the grade alone.'},
-  takeaway:{nl:'Gebruik de olie die bij de motor en de voorschriften van de fabrikant past. Raadpleeg het instructieboekje of vraag je garage bij twijfel.',en:'Use oil that meets your engine manufacturer’s requirements. Check the handbook or ask your garage if you are unsure.'},
-  image:'/images/terms/garage-oil.png',alt:{nl:'Illustratieve werkbank met motorolie en een klassieke auto op de achtergrond',en:'Illustrative workbench with engine oil and a classic car in the background'},
-  appAnchor:'onderhoud',appCopy:{nl:'Leg in Revly vast welke olie bij een beurt is gebruikt. Zo kun je dat later terugvinden in je onderhoudshistorie.',en:'Record the oil used during a service in Revly, so you can find it again in your maintenance history.'},
-  sources:[{label:'Castrol: motorolie-viscositeitsklassen',url:'https://www.castrol.com/nl_nl/netherlands/home/products/our-brands/viscosity-grades.html'},{label:'BOVAG: SAE-specificatie',url:'https://www.bovag.nl/techneutentaal/sae-specificatie'}],
- },
- {
-  id:'interval',slug:{nl:'onderhoudsinterval',en:'service-interval'},name:{nl:'Onderhoudsinterval',en:'Service interval'},category:{nl:'Motor en onderhoud',en:'Engine and maintenance'},
-  title:{nl:'Wat is een onderhoudsinterval?',en:'What is a service interval?'},
-  definition:{nl:'Een onderhoudsinterval is de tijd of afstand tussen onderhoudsmomenten volgens het onderhoudsschema van je auto. Het kan bijvoorbeeld gaan om olie verversen of een onderhoudsbeurt.',en:'A service interval is the time or distance between maintenance tasks specified in your car’s service schedule. It can apply to an oil change or a scheduled service.'},
-  intro:{nl:'Niet alleen hoeveel je rijdt telt mee. Ook de tijd sinds de vorige beurt kan bepalen wanneer onderhoud nodig is.',en:'Mileage is only part of the picture. Time since the last service can also determine when maintenance is due.'},
-  heading:{nl:'Tijd én kilometers bijhouden',en:'Keep track of time and distance'},
-  explanation:{nl:['Onderhoudstaken kunnen verschillende intervallen hebben. Het moment voor motorolie hoeft niet gelijk te zijn aan dat voor een ander onderdeel. Volg het schema voor jouw motor en uitvoering.','Staat er een grens in tijd én kilometers? Lees in het onderhoudsschema welke voorwaarde geldt. Vaak gaat het om de grens die je het eerst bereikt.'],en:['Different maintenance tasks can have different intervals. Engine oil may not be due at the same time as another component. Follow the schedule for your engine and version.','If both a time and distance limit are given, check how they apply in your service schedule. Often, the first limit reached determines the due date.']},
-  exampleTitle:{nl:'Een jaar voorbij, weinig gereden',en:'A year has passed, with little driving'},
-  example:{nl:'Stel dat jouw onderhoudsschema voor een taak 12 maanden of 15.000 km voorschrijft, afhankelijk van wat eerst komt. Je hebt na een jaar maar 6.000 km gereden. In dit voorbeeld is het onderhoud toch aan de beurt door de verstreken tijd. Deze getallen zijn een rekenvoorbeeld, geen advies voor jouw auto.',en:'Suppose a task in your schedule is due every 12 months or 15,000 km, whichever comes first. You drive only 6,000 km in a year. In this example, the task is still due because the time limit has passed. These numbers are illustrative, not a recommendation for your car.'},
-  takeaway:{nl:'Een APK is geen vervanging voor onderhoud. Bewaar de datum en kilometerstand van de vorige beurt en houd het onderhoudsschema erbij.',en:'A roadworthiness inspection does not replace servicing. Keep the date and odometer reading of the last service alongside your maintenance schedule.'},
-  image:'/images/terms/garage-oil.png',alt:{nl:'Illustratieve werkbank in een garage met een klassieke auto',en:'Illustrative garage workbench with a classic car'},
-  appAnchor:'onderhoud',appCopy:{nl:'Stel in Revly een herinnering in op datum of kilometerstand en leg vast wat er is gedaan. Gebruik daarbij het interval uit het onderhoudsschema van je auto.',en:'Set a reminder by date or mileage in Revly and record completed work. Use the interval in your car’s service schedule.'},
-  sources:[{label:'ANWB: de onderhoudsinterval van je auto aanhouden',url:'https://www.anwb.nl/auto/onderhoud-en-reparatie/garage/preventief-onderhoud'}],
- },
- {
-  id:'cost',slug:{nl:'kosten-per-kilometer',en:'cost-per-kilometre'},name:{nl:'Kosten per kilometer',en:'Cost per kilometre'},category:{nl:'Autokosten',en:'Car costs'},
-  title:{nl:'Wat kost je auto per kilometer?',en:'What does your car cost per kilometre?'},
-  definition:{nl:'Kosten per kilometer zijn de meegenomen autokosten over een periode, gedeeld door de afstand in diezelfde periode. De uitkomst hangt af van welke kosten je meetelt.',en:'Cost per kilometre is the car costs included for a period divided by the distance driven in that same period. The result depends on which costs you include.'},
-  intro:{nl:'Alleen tanken geeft een ander bedrag dan tanken, onderhoud, verzekering en afschrijving samen. Kijk dus altijd wat er achter het getal zit.',en:'Fuel alone gives a different figure from fuel, maintenance, insurance and depreciation combined. Always check what a figure includes.'},
-  heading:{nl:'Welke kosten tel je mee?',en:'Which costs should you include?'},
-  explanation:{nl:['Brandstof of laden en onderhoud zijn herkenbare posten. Voor een vollediger overzicht kijk je ook naar vaste kosten, zoals verzekering en wegenbelasting, en naar afschrijving.','Gebruik voor de kosten en de kilometers dezelfde periode. Een bedrag zonder afschrijving is niet rechtstreeks vergelijkbaar met een bedrag waarin waardeverlies wel zit.'],en:['Fuel or charging and maintenance are familiar costs. A fuller picture also includes fixed costs such as insurance and road tax, plus depreciation.','Use the same period for costs and distance. A figure excluding depreciation is not directly comparable with one that includes loss of value.']},
-  exampleTitle:{nl:'€ 500 aan kosten, 2.000 km gereden',en:'€500 in costs, 2,000 km driven'},
-  example:{nl:'In een fictieve maand registreer je € 350 voor brandstof en € 150 voor onderhoud. Je rijdt 2.000 km. De geregistreerde kosten zijn dan € 500 ÷ 2.000 = € 0,25 per km. Verzekering, wegenbelasting en afschrijving zitten niet in dit voorbeeld.',en:'In an illustrative month, you record €350 for fuel and €150 for maintenance, and drive 2,000 km. Recorded costs are €500 ÷ 2,000 = €0.25 per km. This example excludes insurance, road tax and depreciation.'},
-  takeaway:{nl:'Noteer wat je meerekent. Zo vergelijk je je eigen cijfers over verschillende perioden op dezelfde manier.',en:'Keep track of what is included, so you can compare your own figures consistently across periods.'},
-  image:'/images/bmw-e30-example.jpg',alt:{nl:'Illustratieve BMW E30 langs een landweg bij zonsondergang',en:'Illustrative BMW E30 on a country road at sunset'},
-  appAnchor:'kosten',appCopy:{nl:'Bekijk in Revly de kosten die je hebt vastgelegd. Uitgebreid kosteninzicht, inclusief afschrijving en schattingen, hoort bij Revly Plus.',en:'Review the costs you have recorded in Revly. Detailed cost insights, including depreciation and estimates, are part of Revly Plus.'},
-  sources:[{label:'ANWB: autokosten per maand en per kilometer',url:'https://www.anwb.nl/auto/autokosten/autokosten-per-maand'},{label:'RVO: vaste en variabele autokosten',url:'https://www.rvo.nl/onderwerpen/brandstofprijsvergelijking/kosten-autobezit-en-klimaateffecten-autos'}],
- }
-] as const;
+type Translation<T = string> = { nl: T; en: T };
+
+interface TermEntry {
+  naam: string;
+  naamEn: string;
+  slugEn: string;
+  category: Translation;
+  title: Translation;
+  definition: Translation;
+  intro: Translation;
+  heading: Translation;
+  explanation: Translation<string[]>;
+  exampleTitle: Translation;
+  example: Translation;
+  takeaway: Translation;
+  alt: Translation;
+  heroAfbeelding?: string | null;
+  bestaandeAfbeelding?: string;
+  appAnchor: string;
+  appCopy: Translation;
+  sources: { label: string; url: string }[];
+  gerelateerd?: string[];
+  bijgewerkt?: string | null;
+  seoTitel?: Translation;
+  meta?: Translation;
+}
+
+const entries = import.meta.glob<TermEntry>('../content/autobegrippen/*.json', {
+  eager: true,
+  import: 'default',
+});
+
+export const carTerms = Object.entries(entries).map(([path, entry]) => {
+  const id = path.split('/').pop()!.replace(/\.json$/, '');
+  const slugEn = entry.slugEn || id;
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slugEn)) {
+    throw new Error(`Ongeldige Engelse URL voor autobegrip ${id}`);
+  }
+  const image = [entry.heroAfbeelding, entry.bestaandeAfbeelding]
+    .find(path => path && /^\/images\/[a-z0-9/_-]+\.(avif|gif|jpe?g|png|webp)$/i.test(path))
+    || '/images/bmw-e30-example.jpg';
+  return {
+    ...entry,
+    id,
+    slug: { nl: id, en: slugEn },
+    name: { nl: entry.naam, en: entry.naamEn },
+    image,
+    sources: (entry.sources ?? []).filter(source => /^https?:\/\//i.test(source.url)),
+  };
+});
+
+if (new Set(carTerms.map(term => term.slug.en)).size !== carTerms.length) {
+  throw new Error('Ieder autobegrip moet een unieke Engelse URL hebben.');
+}
+
 export type CarTerm = typeof carTerms[number];

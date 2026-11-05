@@ -5,22 +5,30 @@ import '../../styles/car-terms.css';
 const {term,lang='nl'}=Astro.props as {term:CarTerm;lang:'nl'|'en'};
 const en=lang==='en',base=en?'/en/':'/',hub=en?'/en/car-terms/':'/autobegrippen/';
 const title=term.title[lang],description=term.definition[lang];
+const seoTitle = term.seoTitel?.[lang]?.trim() || `${title} | Revly`;
+const meta = term.meta?.[lang]?.trim() || description.slice(0, 157);
+const updated = new Date(term.bijgewerkt ?? '');
+const date = Number.isFinite(updated.valueOf()) && new Intl.DateTimeFormat(en ? 'en-GB' : 'nl-NL', {
+  dateStyle: 'long', timeZone: 'UTC',
+}).format(updated);
+const appHref = `${base}app/${term.appAnchor ? '#' + encodeURIComponent(term.appAnchor) : ''}`;
+const related = (term.gerelateerd ?? []).flatMap(id => carTerms.filter(t => t.id === id && t.id !== term.id));
 const canonical=`https://getrevly.nl${hub}${term.slug[lang]}/`;
-const toc=[['definitie',en?'Definition':'Definitie'],['uitleg',term.heading[lang]],['voorbeeld',en?'An example':'Een voorbeeld'],['in-revly',en?'Keep track in Revly':'Bijhouden in Revly'],['bronnen',en?'Sources':'Bronnen']];
+const toc=[['definitie',en?'Definition':'Definitie'],['uitleg',term.heading[lang]],['voorbeeld',term.exampleTitle[lang]],['in-revly',en?'Keep track in Revly':'Bijhouden in Revly'],['bronnen',en?'Sources':'Bronnen']];
 const schema=[{'@context':'https://schema.org','@type':'DefinedTerm',name:term.name[lang],description,url:canonical,inDefinedTermSet:`https://getrevly.nl${hub}`},{'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Revly',item:`https://getrevly.nl${base}`},{'@type':'ListItem',position:2,name:en?'Car terms':'Autobegrippen',item:`https://getrevly.nl${hub}`},{'@type':'ListItem',position:3,name:term.name[lang],item:canonical}]}];
 ---
-<Base title={`${title} | Revly`} description={description.slice(0,157)} lang={lang} image={term.image} canonical={canonical} schema={schema}>
+<Base title={seoTitle} description={meta} lang={lang} image={term.image} canonical={canonical} schema={schema}>
 <article class="term-article">
- <header class="term-hero wrap"><div class="term-hero-copy"><nav class="breadcrumb" aria-label={en?'Breadcrumb':'Broodkruimelpad'}><a href={base}>Revly</a><span aria-hidden="true">/</span><a href={hub}>{en?'Car terms':'Autobegrippen'}</a></nav><h1>{title}</h1><p class="lead">{term.intro[lang]}</p><p class="term-meta">{en?'By Revly · Updated 4 November 2026':'Door Revly · Bijgewerkt op 4 november 2026'}</p></div><figure><img src={term.image} alt={term.alt[lang]} width="1536" height="1024" fetchpriority="high"/><figcaption>{en?'Illustrative image':'Illustratieve afbeelding'}</figcaption></figure></header>
+ <header class="term-hero wrap"><div class="term-hero-copy"><nav class="breadcrumb" aria-label={en?'Breadcrumb':'Broodkruimelpad'}><a href={base}>Revly</a><span aria-hidden="true">/</span><a href={hub}>{en?'Car terms':'Autobegrippen'}</a></nav><h1>{title}</h1><p class="lead">{term.intro[lang]}</p><p class="term-meta">{en?'By Revly':'Door Revly'}{date ? ` · ${en?'Updated':'Bijgewerkt op'} ${date}` : null}</p></div><figure><img src={term.image} alt={term.alt[lang]} width="1536" height="1024" fetchpriority="high"/>{term.image !== term.heroAfbeelding && <figcaption>{en?'Illustrative image':'Illustratieve afbeelding'}</figcaption>}</figure></header>
  <div class="term-body wrap"><aside><nav class="term-toc" aria-label={en?'On this page':'Inhoudsopgave'}><strong>{en?'On this page':'Op deze pagina'}</strong><ol>{toc.map(([id,label])=><li><a href={`#${id}`}>{label}</a></li>)}</ol></nav></aside>
  <div class="term-content">
   <section id="definitie" class="term-definition"><h2>{en?'In one sentence':'Kort uitgelegd'}</h2><p>{description}</p></section>
   <section id="uitleg"><h2>{term.heading[lang]}</h2>{term.explanation[lang].map(text=><p>{text}</p>)}</section>
   <section id="voorbeeld" class="term-example"><span>{en?'Practical example':'Praktisch voorbeeld'}</span><h2>{term.exampleTitle[lang]}</h2><p>{term.example[lang]}</p></section>
   <p class="term-takeaway">{term.takeaway[lang]}</p>
-  <section id="in-revly" class="term-app"><div><img src="/revly-logo.png" width="38" height="38" alt=""/><h2>{en?'Keep track in Revly':'Bijhouden in Revly'}</h2></div><p>{term.appCopy[lang]}</p><a class="btn btn-primary" href={`${base}app/#${term.appAnchor}`}>{en?'See it in the app':'Bekijk het in de app'} <span aria-hidden="true">→</span></a></section>
+  <section id="in-revly" class="term-app"><div><img src="/revly-logo.png" width="38" height="38" alt=""/><h2>{en?'Keep track in Revly':'Bijhouden in Revly'}</h2></div><p>{term.appCopy[lang]}</p><a class="btn btn-primary" href={appHref}>{en?'See it in the app':'Bekijk het in de app'} <span aria-hidden="true">→</span></a></section>
   <section id="bronnen" class="term-sources"><h2>{en?'Sources and further reading':'Bronnen en verder lezen'}</h2><p>{en?'General information. Your vehicle handbook takes precedence for maintenance instructions.':'Algemene uitleg. Voor onderhoudsvoorschriften is het instructieboekje van jouw auto leidend.'}</p><ul>{term.sources.map(source=><li><a href={source.url}>{source.label}</a></li>)}</ul></section>
-  <section class="term-related"><h2>{en?'Related terms':'Lees ook'}</h2>{carTerms.filter(t=>t.id!==term.id).map(t=><a href={`${hub}${t.slug[lang]}/`}><span>{t.name[lang]}</span><span aria-hidden="true">↗</span></a>)}<a href={hub}>{en?'All car terms':'Alle autobegrippen'} <span aria-hidden="true">→</span></a></section>
+  <section class="term-related"><h2>{en?'Related terms':'Lees ook'}</h2>{related.map(t=><a href={`${hub}${t.slug[lang]}/`}><span>{t.name[lang]}</span><span aria-hidden="true">↗</span></a>)}<a href={hub}>{en?'All car terms':'Alle autobegrippen'} <span aria-hidden="true">→</span></a></section>
  </div></div>
 </article>
 </Base>

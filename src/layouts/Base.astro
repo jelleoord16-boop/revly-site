@@ -1,14 +1,17 @@
 ---
 import '../styles/global.css';
+import StructuredData from '../components/StructuredData.astro';
 import SiteFooter from '../components/v2/SiteFooter.astro';
 import SiteHeader from '../components/v2/SiteHeader.astro';
 import '../styles/version-two-pages.css';
 import '../styles/revly-font.css';
+import { carTerms } from '../data/car-terms';
+import siteCopy from '../data/site-copy.json';
 import site from '../data/site.json';
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   lang?: 'nl' | 'en';
   alternates?: { nl?: string; en?: string };
   noindex?: boolean;
@@ -23,7 +26,7 @@ interface Props {
 
 const {
   title,
-  description,
+  description: pageDescription,
   lang = 'nl',
   alternates = {},
   noindex = false,
@@ -36,11 +39,11 @@ const {
   km = false,
 } = Astro.props;
 
+const description = pageDescription?.trim() || siteCopy[lang].metaStandaard;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://getrevly.nl';
 const path = Astro.url.pathname;
 const canonicalUrl = canonical || siteUrl + path;
 const ogImage = image ? siteUrl + image : siteUrl + '/og-revly.png';
-const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
 const t = {
   nl: { functies: 'Functies', plus: 'Revly Plus', verbruik: 'Verbruik', blog: 'Blog', hulp: 'Hulp', andereTaal: 'EN', home: '/' },
@@ -73,7 +76,10 @@ const tabs = lang === 'nl'
       { key:'plus',href:'/en/plus/',label:'Plus',icon:icons.plus },
     ];
 
-const counterparts:Record<string,string> = {'/autobegrippen/':'/en/car-terms/','/autobegrippen/5w30-motorolie/':'/en/car-terms/5w30-engine-oil/','/autobegrippen/onderhoudsinterval/':'/en/car-terms/service-interval/','/autobegrippen/kosten-per-kilometer/':'/en/car-terms/cost-per-kilometre/','/blog/verbruik-volvo-s60/':'/en/blog/volvo-s60-consumption/','/blog/distributieriem-vervangen/':'/en/blog/when-to-replace-timing-belt/'};
+const counterparts:Record<string,string> = {'/autobegrippen/':'/en/car-terms/','/blog/verbruik-volvo-s60-p2/':'/en/blog/volvo-s60-consumption/','/blog/distributieriem-vervangen/':'/en/blog/when-to-replace-timing-belt/'};
+for (const term of carTerms) {
+  counterparts[`/autobegrippen/${term.slug.nl}/`] = `/en/car-terms/${term.slug.en}/`;
+}
 const normalizedPath = path.endsWith('/') ? path : path + '/';
 const reverseCounterpart = Object.entries(counterparts).find(([,en])=>en===normalizedPath)?.[0];
 const otherLangHref = lang === 'nl' ? (counterparts[normalizedPath] ?? '/en' + normalizedPath) : (reverseCounterpart ?? (normalizedPath.replace(/^\/en/, '') || '/'));
@@ -104,7 +110,7 @@ const resolvedAlternates = lang === 'en' ? {nl:otherLangHref,en:normalizedPath} 
   <meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
   {site.appStoreUrl && <meta name="apple-itunes-app" content={`app-id=${site.appStoreUrl.match(/id(\d+)/)?.[1] ?? ''}`} />}
-  {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  <StructuredData title={title} description={description} lang={lang} canonical={canonicalUrl} image={image} schema={schema} />
   <script is:inline>if (new URLSearchParams(location.search).has('app')) document.documentElement.classList.add('app');</script>
 </head>
 <body>

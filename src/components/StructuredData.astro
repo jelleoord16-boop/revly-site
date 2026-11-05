@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  lang: 'nl' | 'en';
+  canonical: string;
+  image?: string | null;
+  schema?: object | object[];
+}
+
+const { title, description, lang, canonical, image, schema } = Astro.props;
+const home = new URL('/', Astro.site ?? 'https://getrevly.nl').href;
+const website = home + '#website';
+const organization = home + '#organization';
+const entities = schema ? [schema].flat() : [];
+const graph = [
+  {
+    '@type': 'WebPage',
+    '@id': canonical + '#webpage',
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: lang,
+    isPartOf: { '@id': website },
+    ...(image ? { image: new URL(image, home).href } : {}),
+  },
+  ...entities,
+];
+
+if (canonical === home) {
+  graph.push(
+    { '@type': 'WebSite', '@id': website, url: home, name: 'Revly', publisher: { '@id': organization } },
+    { '@type': 'Organization', '@id': organization, url: home, name: 'Revly', logo: new URL('/revly-logo.png', home).href },
+  );
+}
+const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+---
+<script type="application/ld+json" is:inline set:html={json} />

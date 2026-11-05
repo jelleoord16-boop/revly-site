@@ -1,9 +1,13 @@
 ---
 import '../styles/version-two.css';
+import StructuredData from '../components/StructuredData.astro';
 import '../styles/revly-font.css';
 import SiteFooter from '../components/v2/SiteFooter.astro';
 import SiteHeader from '../components/v2/SiteHeader.astro';
-const {lang='nl',title='Revly | Je auto. Alles bij elkaar.'}=Astro.props;
+import siteCopy from '../data/site-copy.json';
+const {lang='nl',title='Revly | Je auto. Alles bij elkaar.',description:pageDescription}=Astro.props as {lang?: 'nl' | 'en'; title?: string; description?: string};
 const en=lang==='en';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://getrevly.nl').href;
+const description = pageDescription?.trim() || siteCopy[lang].metaStandaard;
 ---
-<!doctype html><html lang={lang}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title}</title><meta name="description" content={en?'Revly brings your car, trips, maintenance and costs together.':'Revly brengt je auto, ritten, onderhoud en kosten bij elkaar.'}/><meta name="robots" content="noindex,nofollow"/><link rel="icon" href="/favicon.png"/><meta name="theme-color" content="#ffffff"/></head><body class="version-two"><a class="v2-skip" href="#main">{en?'Skip to content':'Naar de inhoud'}</a><SiteHeader lang={lang}/><main id="main"><slot/></main><SiteFooter lang={lang}/></body></html>
+<!doctype html><html lang={lang}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title}</title><meta name="description" content={description}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta name="robots" content="noindex,nofollow"/><link rel="icon" href="/favicon.png"/><meta name="theme-color" content="#ffffff"/><StructuredData title={title} description={description} lang={lang} canonical={canonical}/></head><body class="version-two"><a class="v2-skip" href="#main">{en?'Skip to content':'Naar de inhoud'}</a><SiteHeader lang={lang}/><main id="main"><slot/></main><SiteFooter lang={lang}/></body></html>

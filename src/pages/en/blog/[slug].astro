@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import BlogHeaderImage from '../../../components/BlogHeaderImage.astro';
 import StoreKnop from '../../../components/StoreKnop.astro';
 import { getCollection, render } from 'astro:content';
 
@@ -17,6 +18,10 @@ const beschrijving = d.seo.beschrijving || d.samenvatting;
 const datum = d.datum?.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const url = `https://getrevly.nl/en/blog/${p.id}/`;
 
+const headerImage = d.heroAfbeelding;
+const shareImage = d.seo.afbeelding || headerImage;
+const articleImage = headerImage || d.seo.afbeelding;
+
 const schema = [
   {
     '@context': 'https://schema.org',
@@ -24,12 +29,12 @@ const schema = [
     headline: d.titel,
     description: beschrijving,
     datePublished: d.datum?.toISOString().slice(0, 10),
-    dateModified: (d.updated ?? d.datum)?.toISOString().slice(0, 10),
+    dateModified: (d.bijgewerkt ?? d.datum)?.toISOString().slice(0, 10),
     inLanguage: d.taal,
     author: { '@type': 'Person', name: 'Jelle Oord' },
     publisher: { '@type': 'Organization', name: 'Revly', url: 'https://getrevly.nl' },
     mainEntityOfPage: url,
-    ...(d.seo.afbeelding ? { image: 'https://getrevly.nl' + d.seo.afbeelding } : {}),
+    ...(articleImage ? { image: new URL(articleImage, url).href } : {}),
   },
   {
     '@context': 'https://schema.org',
@@ -48,7 +53,7 @@ const schema = [
   description={beschrijving}
   lang={d.taal}
   noindex={d.seo.noindex}
-  image={d.seo.afbeelding}
+  image={shareImage}
   canonical={d.seo.canonical || undefined}
   schema={schema}
   ogType="article"
@@ -58,8 +63,9 @@ const schema = [
     <div class="prose">
       <div class="breadcrumb"><a href="/en/">Revly</a> / <a href="/en/blog/">Blog</a></div>
       <h1>{d.titel}</h1>
-      <p class="meta">{datum}{d.updated && ` · updated ${d.bijgewerkt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })}`} · Jelle Oord</p>
+      <p class="meta">{datum}{d.bijgewerkt && ` · updated ${d.bijgewerkt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })}`} · Jelle Oord</p>
       {d.samenvatting && <p class="lead" style="margin-top:18px">{d.samenvatting}</p>}
+      {headerImage && <BlogHeaderImage src={headerImage} alt={d.heroAlt} />}
       <Content />
       <div class="cta-box">
         <div><strong style="font-size:20px">Keep track of what is due</strong><p>Record your maintenance and set reminders in Revly.</p></div>

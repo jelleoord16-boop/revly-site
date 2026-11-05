@@ -1,0 +1,72 @@
+{
+  "naam": "Kosten per kilometer",
+  "naamEn": "Cost per kilometre",
+  "slugEn": "cost-per-kilometre",
+  "bestaandeAfbeelding": "/images/bmw-e30-example.jpg",
+  "bijgewerkt": "2026-11-04",
+  "category": {
+    "nl": "Autokosten",
+    "en": "Car costs"
+  },
+  "title": {
+    "nl": "Wat kost je auto per kilometer?",
+    "en": "What does your car cost per kilometre?"
+  },
+  "definition": {
+    "nl": "Kosten per kilometer zijn de meegenomen autokosten over een periode, gedeeld door de afstand in diezelfde periode. De uitkomst hangt af van welke kosten je meetelt.",
+    "en": "Cost per kilometre is the car costs included for a period divided by the distance driven in that same period. The result depends on which costs you include."
+  },
+  "intro": {
+    "nl": "Alleen tanken geeft een ander bedrag dan tanken, onderhoud, verzekering en afschrijving samen. Kijk dus altijd wat er achter het getal zit.",
+    "en": "Fuel alone gives a different figure from fuel, maintenance, insurance and depreciation combined. Always check what a figure includes."
+  },
+  "heading": {
+    "nl": "Welke kosten tel je mee?",
+    "en": "Which costs should you include?"
+  },
+  "explanation": {
+    "nl": [
+      "Brandstof of laden en onderhoud zijn herkenbare posten. Voor een vollediger overzicht kijk je ook naar vaste kosten, zoals verzekering en wegenbelasting, en naar afschrijving.",
+      "Gebruik voor de kosten en de kilometers dezelfde periode. Een bedrag zonder afschrijving is niet rechtstreeks vergelijkbaar met een bedrag waarin waardeverlies wel zit."
+    ],
+    "en": [
+      "Fuel or charging and maintenance are familiar costs. A fuller picture also includes fixed costs such as insurance and road tax, plus depreciation.",
+      "Use the same period for costs and distance. A figure excluding depreciation is not directly comparable with one that includes loss of value."
+    ]
+  },
+  "exampleTitle": {
+    "nl": "€ 500 aan kosten, 2.000 km gereden",
+    "en": "€500 in costs, 2,000 km driven"
+  },
+  "example": {
+    "nl": "In een fictieve maand registreer je € 350 voor brandstof en € 150 voor onderhoud. Je rijdt 2.000 km. De geregistreerde kosten zijn dan € 500 ÷ 2.000 = € 0,25 per km. Verzekering, wegenbelasting en afschrijving zitten niet in dit voorbeeld.",
+    "en": "In an illustrative month, you record €350 for fuel and €150 for maintenance, and drive 2,000 km. Recorded costs are €500 ÷ 2,000 = €0.25 per km. This example excludes insurance, road tax and depreciation."
+  },
+  "takeaway": {
+    "nl": "Noteer wat je meerekent. Zo vergelijk je je eigen cijfers over verschillende perioden op dezelfde manier.",
+    "en": "Keep track of what is included, so you can compare your own figures consistently across periods."
+  },
+  "alt": {
+    "nl": "Illustratieve BMW E30 langs een landweg bij zonsondergang",
+    "en": "Illustrative BMW E30 on a country road at sunset"
+  },
+  "appAnchor": "kosten",
+  "appCopy": {
+    "nl": "Bekijk in Revly de kosten die je hebt vastgelegd. Uitgebreid kosteninzicht, inclusief afschrijving en schattingen, hoort bij Revly Plus.",
+    "en": "Review the costs you have recorded in Revly. Detailed cost insights, including depreciation and estimates, are part of Revly Plus."
+  },
+  "sources": [
+    {
+      "label": "ANWB: autokosten per maand en per kilometer",
+      "url": "https://www.anwb.nl/auto/autokosten/autokosten-per-maand"
+    },
+    {
+      "label": "RVO: vaste en variabele autokosten",
+      "url": "https://www.rvo.nl/onderwerpen/brandstofprijsvergelijking/kosten-autobezit-en-klimaateffecten-autos"
+    }
+  ],
+  "gerelateerd": [
+    "5w30-motorolie",
+    "onderhoudsinterval"
+  ]
+}

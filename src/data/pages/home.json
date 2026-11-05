@@ -1,0 +1,180 @@
+{
+  "seoTitel": {
+    "nl": "Revly | Rij. Revly onthoudt de rest.",
+    "en": "Revly | Drive. Revly remembers the rest."
+  },
+  "kop": {
+    "nl": "Rij.",
+    "en": "Drive."
+  },
+  "kopVervolg": {
+    "nl": "Revly onthoudt de rest.",
+    "en": "Revly remembers the rest."
+  },
+  "intro": {
+    "nl": "Het logboek voor je auto. Houd je ritten, kilometers en onderhoud bij elkaar. Ook als je auto ouder is dan je telefoon.",
+    "en": "The logbook for your car. Keep your trips, mileage and maintenance together. Even if your car is older than your phone."
+  },
+  "primaireKnop": {
+    "nl": "Ontdek Revly",
+    "en": "Discover Revly"
+  },
+  "secundaireKnop": {
+    "nl": "Kijk in de app",
+    "en": "See the app"
+  },
+  "gratis": {
+    "nl": "Gratis voor je eerste auto.",
+    "en": "Free for your first car."
+  },
+  "meta": {
+    "nl": "Revly brengt je auto, ritten, onderhoud en kosten bij elkaar.",
+    "en": "Revly brings your car, trips, maintenance and costs together."
+  },
+  "secties": {
+    "verhaal": {
+      "kop": {
+        "nl": "Je auto heeft een verhaal. Houd het bij elkaar.",
+        "en": "Your car has a story. Keep it together."
+      },
+      "tekst": {
+        "nl": "Je eerste auto of die ene die je nooit meer vergeet. Geef de ritten, het onderhoud en de historie een eigen plek.",
+        "en": "Whether it is your first car or the one you will never forget. Give its trips, maintenance and history a place of their own."
+      }
+    },
+    "overzicht": {
+      "kop": {
+        "nl": "Dit is Revly.",
+        "en": "Get to know Revly."
+      },
+      "knop": {
+        "nl": "Bekijk alle appschermen",
+        "en": "See all app screens"
+      }
+    },
+    "ritten": {
+      "bovenkop": {
+        "nl": "Onderweg met Revly",
+        "en": "On the road with Revly"
+      },
+      "kop": {
+        "nl": "Jij rijdt.",
+        "en": "You drive."
+      },
+      "vervolg": {
+        "nl": "Revly houdt bij.",
+        "en": "Revly keeps track."
+      },
+      "tekst": {
+        "nl": "Van een geregistreerde rit naar je volgende onderhoudsmoment.",
+        "en": "From a recorded trip to your next maintenance reminder."
+      },
+      "knop": {
+        "nl": "Bekijk je onderhoud",
+        "en": "See your maintenance"
+      }
+    },
+    "onderhoud": {
+      "bovenkop": {
+        "nl": "Onderhoud",
+        "en": "Maintenance"
+      },
+      "kop": {
+        "nl": "Een seintje.",
+        "en": "A reminder."
+      },
+      "vervolg": {
+        "nl": "Op het juiste moment.",
+        "en": "At the right time."
+      },
+      "tekst": {
+        "nl": "Stel herinneringen in op datum of kilometerstand. Zo zie je wat eraan komt en wat er al aan je auto is gedaan.",
+        "en": "Set reminders by date or mileage. Keep track of what is coming up and what has already been done."
+      },
+      "knop": {
+        "nl": "Bekijk onderhoud",
+        "en": "Explore maintenance"
+      }
+    },
+    "inzichten": {
+      "bovenkop": {
+        "nl": "Ken je cijfers",
+        "en": "Know your numbers"
+      },
+      "kop": {
+        "nl": "Meer inzicht. Minder giswerk.",
+        "en": "A clearer picture."
+      }
+    },
+    "vorigeAutos": {
+      "bovenkop": {
+        "nl": "Jouw auto’s",
+        "en": "Your cars"
+      },
+      "kop": {
+        "nl": "Sommige auto’s blijven je bij.",
+        "en": "Some cars stay with you."
+      },
+      "tekst": {
+        "nl": "Bewaar de historie van de auto waarin je rijdt. En kijk terug naar de auto’s die eraan voorafgingen.",
+        "en": "Keep the history of the car you drive. And revisit the ones that came before."
+      },
+      "fotobijschrift": {
+        "nl": "Voor de kilometers die je bijblijven.",
+        "en": "For the miles you remember."
+      },
+      "kaartKop": {
+        "nl": "Een plek voor je vorige auto’s.",
+        "en": "A place for your previous cars."
+      },
+      "kaartTekst": {
+        "nl": "Je vindt ze terug in je profiel, naast de auto van nu.",
+        "en": "Find them in your profile, along with your current car."
+      }
+    },
+    "plus": {
+      "kop": {
+        "nl": "Je eerste auto gratis.",
+        "en": "Your first car is free."
+      },
+      "vervolg": {
+        "nl": "Meer met Plus.",
+        "en": "More with Plus."
+      },
+      "tekst": {
+        "nl": "Houd meer auto’s bij, scan bonnen en facturen en krijg uitgebreid kosteninzicht.",
+        "en": "Keep more cars, scan receipts and invoices, and get detailed cost insights."
+      },
+      "knop": {
+        "nl": "Bekijk Plus",
+        "en": "Explore Plus"
+      }
+    },
+    "download": {
+      "kop": {
+        "nl": "Je auto heeft een verhaal.",
+        "en": "Your car has a story."
+      },
+      "vervolg": {
+        "nl": "Bewaar het in Revly.",
+        "en": "Keep it in Revly."
+      },
+      "tekst": {
+        "nl": "Gratis voor je eerste auto.",
+        "en": "Free for your first car."
+      },
+      "winkelKnop": {
+        "nl": "Download in de App Store",
+        "en": "Download on the App Store"
+      },
+      "winkelBinnenkort": {
+        "nl": "Binnenkort in de App Store",
+        "en": "Coming soon to the App Store"
+      },
+      "knop": {
+        "nl": "Check je auto",
+        "en": "Explore your car"
+      }
+    }
+  }
+}

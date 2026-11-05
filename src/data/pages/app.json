@@ -1,0 +1,120 @@
+{
+  "seoTitel": {
+    "nl": "Ontdek de Revly app | Garage, ritten en onderhoud",
+    "en": "Explore the Revly app | Garage, trips and maintenance"
+  },
+  "meta": {
+    "nl": "Bekijk Revly in actie: onderhoud, ritten, verbruik, kosten, auto delen en de historie van je auto.",
+    "en": "See real Revly screens for maintenance, trips, consumption, costs, car sharing and your vehicle history."
+  },
+  "broodkruimel": {
+    "nl": "/",
+    "en": "/en/"
+  },
+  "kop": {
+    "nl": "De app",
+    "en": "The app"
+  },
+  "intro": {
+    "nl": "Leer je auto kennen.",
+    "en": "Get to know your car."
+  },
+  "hoofdstukken": {
+    "garage": {
+      "nl": {
+        "label": "Garage",
+        "kop": "Je auto. Alles bij elkaar.",
+        "tekst": "Je auto, kilometerstand en herinneringen op één plek. Leg een tankbeurt of onderhoud vast wanneer het jou uitkomt."
+      },
+      "en": {
+        "label": "Garage",
+        "kop": "Your car. All together.",
+        "tekst": "Your car, mileage and reminders in one place. Record a fill-up or maintenance whenever you need to."
+      }
+    },
+    "onderhoud": {
+      "nl": {
+        "label": "Onderhoud",
+        "kop": "Zie wat eraan komt.",
+        "tekst": "Herinneringen op datum of kilometerstand helpen je vooruit te kijken. Bewaar ook wat er aan je auto is gedaan, met de kosten erbij."
+      },
+      "en": {
+        "label": "Maintenance",
+        "kop": "See what is coming up.",
+        "tekst": "Reminders by date or mileage help you plan ahead. Keep a record of the work done on your car, including the cost."
+      }
+    },
+    "ritten": {
+      "nl": {
+        "label": "Ritten",
+        "kop": "Van een rit naar overzicht.",
+        "tekst": "Bekijk je geregistreerde ritten per maand. Open een rit voor de route, afstand en duur en geef aan of je privé of zakelijk reed."
+      },
+      "en": {
+        "label": "Trips",
+        "kop": "From a trip to a clearer picture.",
+        "tekst": "Review your recorded trips by month. Open a trip for its route, distance and duration, and mark it as personal or business."
+      }
+    },
+    "verbruik": {
+      "nl": {
+        "label": "Verbruik",
+        "kop": "Wat verbruikt jouw auto?",
+        "tekst": "Je tankbeurten geven inzicht in je verbruik. Bekijk de ontwikkeling per maand en leg je eigen cijfers naast de officiële fabrieksopgave."
+      },
+      "en": {
+        "label": "Consumption",
+        "kop": "What does your car use?",
+        "tekst": "Your fill-ups give you insight into consumption. Follow it month by month and compare your figures with the official manufacturer rating."
+      }
+    },
+    "kosten": {
+      "nl": {
+        "label": "Kosten",
+        "kop": "Weet waar je geld blijft.",
+        "tekst": "Van tanken en onderhoud tot verzekering en wegenbelasting. Bekijk je geregistreerde kosten per categorie en vergelijk de jaren. Uitgebreid kosteninzicht hoort bij Plus."
+      },
+      "en": {
+        "label": "Costs",
+        "kop": "Know where your money goes.",
+        "tekst": "From fuel and maintenance to insurance and road tax. Review recorded costs by category and compare years. Detailed cost insights are part of Plus."
+      }
+    },
+    "delen": {
+      "nl": {
+        "label": "Auto delen",
+        "kop": "Eén auto, samen bijhouden.",
+        "tekst": "Nodig iemand uit voor het gedeelde autodossier en bekijk wie toegang heeft. Zo houd je de gegevens van jullie auto bij elkaar."
+      },
+      "en": {
+        "label": "Sharing",
+        "kop": "One car, kept together.",
+        "tekst": "Invite someone to a shared vehicle record and see who has access. Keep the records for your car together."
+      }
+    },
+    "vorige-autos": {
+      "nl": {
+        "label": "Vorige auto’s",
+        "kop": "Ook je vorige auto’s horen erbij.",
+        "tekst": "Een andere auto hoeft geen afscheid van je historie te zijn. Bekijk je vorige auto’s terug vanuit je profiel."
+      },
+      "en": {
+        "label": "Previous cars",
+        "kop": "Your previous cars belong here, too.",
+        "tekst": "Changing cars does not have to mean losing your history. Revisit your previous cars from your profile."
+      }
+    },
+    "autopaspoort": {
+      "nl": {
+        "label": "Autopaspoort",
+        "kop": "Een historie die je kunt laten zien.",
+        "tekst": "Onderhoud, reparaties en documenten vertellen het verhaal van je auto. Houd ze samen in het autopaspoort en deel je historie wanneer je dat wilt."
+      },
+      "en": {
+        "label": "Vehicle passport",
+        "kop": "A history you can show.",
+        "tekst": "Maintenance, repairs and documents tell your car’s story. Keep them together in a vehicle passport and share the history when you choose."
+      }
+    }
+  }
+}
