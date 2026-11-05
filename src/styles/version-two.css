@@ -38,12 +38,24 @@ h1,h2,h3{letter-spacing:-.025em}::selection{background:#cbdcff;color:#122440}.v2
 @media(max-width:700px) and (prefers-reduced-motion:no-preference){.v2-revly-hero .v2-device-centre{transform:translate3d(-50%,calc(var(--progress)*-90px),0) rotate(calc(3deg - var(--progress)*7deg))}.v2-hero-trip{transform:translate3d(0,calc(var(--progress)*-165px),0) rotate(calc(-4deg + var(--progress)*10deg))}.v2-hero-service{transform:translate3d(0,calc(var(--progress)*-215px),0) rotate(calc(5deg - var(--progress)*12deg))}.v2-revly-hero .v2-hero-notification{transform:translate3d(0,calc(var(--progress)*-125px),0) rotate(calc(-2deg + var(--progress)*6deg))}}
 @media(prefers-reduced-motion:reduce){.v2-revly-hero .v2-device,.v2-hero-trip,.v2-hero-service,.v2-revly-hero .v2-hero-notification{will-change:auto}}
 
-/* Keep desktop layers together while their different travel reveals the depth. */
-@media(min-width:701px) and (prefers-reduced-motion:no-preference){
-.v2-revly-hero .v2-device-centre{translate:calc(var(--progress)*18px) calc(var(--progress)*-110px);rotate:calc(var(--progress)*-8deg)}
-.v2-hero-trip{translate:calc(var(--progress)*-38px) calc(var(--progress)*-180px);rotate:calc(var(--progress)*12deg)}
-.v2-hero-service{translate:calc(var(--progress)*26px) calc(var(--progress)*-230px);rotate:calc(var(--progress)*-13deg)}
-.v2-revly-hero .v2-hero-notification{translate:calc(var(--progress)*-25px) calc(var(--progress)*-150px);rotate:calc(var(--progress)*7deg)}
+/* The cards start over the phone and spread out early in the desktop scroll. */
+@media (min-width: 701px) and (prefers-reduced-motion: no-preference) {
+  .v2-revly-hero .v2-device-centre {
+    translate: 0 calc(var(--progress) * -18px);
+    rotate: calc(var(--progress) * -4deg);
+  }
+  .v2-hero-trip {
+    translate: calc(50px - var(--progress) * 88px) calc(16px - var(--progress) * 51px);
+    rotate: calc(var(--progress) * -4deg);
+  }
+  .v2-hero-service {
+    translate: calc(-48px + var(--progress) * 74px) calc(var(--progress) * -18px);
+    rotate: calc(var(--progress) * 4deg);
+  }
+  .v2-revly-hero .v2-hero-notification {
+    translate: calc(32px - var(--progress) * 57px) calc(-18px + var(--progress) * 26px);
+    rotate: calc(var(--progress) * -2deg);
+  }
 }
 @media(prefers-reduced-motion:no-preference){
 .v2-maintenance-visual>.v2-phone{translate:none;rotate:none;transform:translate3d(0,calc(45px - var(--maintenance,0)*85px),0) rotate(calc(4deg - var(--maintenance,0)*5deg))}

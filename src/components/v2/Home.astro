@@ -42,6 +42,7 @@ const scene=document.querySelector<HTMLElement>('.v2-device-stage')!;
 const drive=document.querySelector<HTMLElement>('.v2-drive')!;
 const maintenance=document.querySelector<HTMLElement>('.v2-maintenance')!;
 const maintenanceVisual=maintenance.querySelector<HTMLElement>('.v2-maintenance-visual')!;
+const desktopHero=matchMedia('(min-width: 701px)');
 const wide=matchMedia('(min-width: 901px)');
 const steps=Array.from(document.querySelectorAll<HTMLElement>('[data-drive-step]'));
 let queued=false;
@@ -56,7 +57,9 @@ function paint(){
   return;
  }
  const r=scene.getBoundingClientRect();
- const p=Math.max(0,Math.min(1,(vh*.8-r.top)/(vh*.8+r.height*.35)));
+ const mobileProgress=Math.max(0,Math.min(1,(vh*.8-r.top)/(vh*.8+r.height*.35)));
+ const desktopProgress=Math.max(0,Math.min(1,scrollY/220));
+ const p=desktopHero.matches ? 1-(1-desktopProgress)**2 : mobileProgress;
  scene.style.setProperty('--progress',String(p));
  // Follow the visual, which sits below the copy on mobile.
  const m=maintenanceVisual.getBoundingClientRect();

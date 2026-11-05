@@ -1,8 +1,9 @@
 ---
 import '../styles/version-two.css';
 import '../styles/revly-font.css';
+import SiteFooter from '../components/v2/SiteFooter.astro';
 import SiteHeader from '../components/v2/SiteHeader.astro';
 const {lang='nl',title='Revly | Je auto. Alles bij elkaar.'}=Astro.props;
-const en=lang==='en';const home=en?'/en/':'/';
+const en=lang==='en';
 ---
-<!doctype html><html lang={lang}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title}</title><meta name="description" content={en?'Revly brings your car, trips, maintenance and costs together.':'Revly brengt je auto, ritten, onderhoud en kosten bij elkaar.'}/><meta name="robots" content="noindex,nofollow"/><link rel="icon" href="/favicon.png"/><meta name="theme-color" content="#ffffff"/></head><body class="version-two"><a class="v2-skip" href="#main">{en?'Skip to content':'Naar de inhoud'}</a><SiteHeader lang={lang}/><main id="main"><slot/></main><footer class="v2-footer"><div class="v2-shell"><div class="v2-footer-top"><a class="v2-brand" href={home}><img src="/revly-logo.png" width="25" height="25" alt=""/>Revly</a><p>{en?'Made in the Netherlands. For the cars we drive.':'Gemaakt in Nederland. Voor de auto’s waarin we rijden.'}</p></div><div class="v2-footer-links"><a href={`${home}support/`}>{en?'Help & contact':'Hulp en contact'}</a><a href={`${home}privacy/`}>{en?'Privacy':'Privacy'}</a><a href={`${home}blog/`}>Blog</a><a href={en?"/en/car-terms/":"/autobegrippen/"}>{en?"Car terms":"Autobegrippen"}</a></div></div></footer></body></html>
+<!doctype html><html lang={lang}><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{title}</title><meta name="description" content={en?'Revly brings your car, trips, maintenance and costs together.':'Revly brengt je auto, ritten, onderhoud en kosten bij elkaar.'}/><meta name="robots" content="noindex,nofollow"/><link rel="icon" href="/favicon.png"/><meta name="theme-color" content="#ffffff"/></head><body class="version-two"><a class="v2-skip" href="#main">{en?'Skip to content':'Naar de inhoud'}</a><SiteHeader lang={lang}/><main id="main"><slot/></main><SiteFooter lang={lang}/></body></html>
